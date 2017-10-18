@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitMap", "GitMap\GitMap.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitMap.AcceptanceTests", "GitMap.AcceptanceTests\GitMap.AcceptanceTests.csproj", "{DE131444-C4E7-475D-888E-5BF05C299D14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitMap.UnitTests", "GitMap.UnitTests\GitMap.UnitTests.csproj", "{8DA8F6DE-034A-4CD6-BC7E-F8BEE8B345E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DE131444-C4E7-475D-888E-5BF05C299D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE131444-C4E7-475D-888E-5BF05C299D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE131444-C4E7-475D-888E-5BF05C299D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA8F6DE-034A-4CD6-BC7E-F8BEE8B345E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA8F6DE-034A-4CD6-BC7E-F8BEE8B345E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA8F6DE-034A-4CD6-BC7E-F8BEE8B345E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA8F6DE-034A-4CD6-BC7E-F8BEE8B345E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
