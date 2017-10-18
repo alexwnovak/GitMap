@@ -2,5 +2,6 @@
 {
    public interface IAppLauncher
    {
+      void LaunchUI();
    }
 }
