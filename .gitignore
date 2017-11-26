@@ -17,6 +17,7 @@ build/
 
 # Build related
 
+.vs/
 tools/Cake/
 tools/xunit.runner.console/
 tools/nuget.exe
