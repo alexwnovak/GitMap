@@ -1,4 +1,6 @@
-﻿namespace GitMap
+﻿using GitModel;
+
+namespace GitMap
 {
    public class AppController
    {
@@ -11,6 +13,11 @@
 
       public void Run( string[] arguments )
       {
+         if ( arguments[0] == GitFileNames.CommitFileName )
+         {
+            _appLauncher.LaunchCommitEditor( arguments[0] );
+         }
+
          _appLauncher.LaunchUI();
       }
    }
