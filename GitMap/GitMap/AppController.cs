@@ -1,4 +1,5 @@
-﻿using GitModel;
+﻿using System.IO;
+using GitModel;
 
 namespace GitMap
 {
@@ -13,12 +14,19 @@ namespace GitMap
 
       public void Run( string[] arguments )
       {
-         if ( arguments[0] == GitFileNames.CommitFileName )
+         if ( arguments.Length == 0 )
          {
-            _appLauncher.LaunchCommitEditor( arguments[0] );
+            _appLauncher.LaunchUI();
          }
+         else
+         {
+            string fileName = Path.GetFileName( arguments[0] );
 
-         _appLauncher.LaunchUI();
+            if ( fileName == GitFileNames.CommitFileName )
+            {
+               _appLauncher.LaunchCommitEditor( arguments[0] );
+            }
+         }
       }
    }
 }

@@ -40,5 +40,25 @@ namespace GitMap.UnitTests
 
          appLauncherMock.Verify( al => al.LaunchCommitEditor( GitFileNames.CommitFileName ), Times.Once() );
       }
+
+      [Fact]
+      public void Run_PassesCommitFileWithAPath_LaunchesCommitEditor()
+      {
+         string commitFilePath = $@"C:\SomeRepo\.git\{GitFileNames.CommitFileName}";
+
+         // Arrange
+
+         var appLauncherMock = new Mock<IAppLauncher>();
+
+         // Act
+
+         var appController = new AppController( appLauncherMock.Object );
+
+         appController.Run( new[] { commitFilePath } );
+
+         // Assert
+
+         appLauncherMock.Verify( al => al.LaunchCommitEditor( commitFilePath ), Times.Once() );
+      }
    }
 }
