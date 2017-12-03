@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace GitMap
@@ -18,20 +19,18 @@ namespace GitMap
          _workflows = workflows;
       }
 
+      private static string GetFilePath( string[] arguments ) =>
+         arguments?.Length > 0 ? arguments[0] : string.Empty;
+
       public void Run( string[] arguments )
       {
-         if ( arguments.Length == 0 )
-         {
-            _appLauncher.LaunchUI();
-         }
-         else
-         {
-            string fileName = Path.GetFileName( arguments[0] );
+         string filePath = GetFilePath( arguments );
 
-            if ( _workflows.TryGetValue( fileName, out var workflow ) )
-            {
-               workflow.Launch( arguments[0] );
-            }
+         string fileName = Path.GetFileName( filePath );
+
+         if ( _workflows.TryGetValue( fileName, out var workflow ) )
+         {
+            workflow.Launch( filePath );
          }
       }
    }
