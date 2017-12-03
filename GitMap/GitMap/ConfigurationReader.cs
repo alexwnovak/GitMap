@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Win32;
 
 namespace GitMap
 {
@@ -6,12 +7,17 @@ namespace GitMap
    {
       public ConfigurationPair Read<T>()
       {
-         if ( typeof( T ) == typeof( CommitWorkflow ) )
-         {
-            string filePath = @"C:\Program Files\Notepad++\notepad++.exe";
-            string arguments = @"-multiInst -notabbar -nosession -noPlugin %1";
+         string workflowName = typeof( T ).Name;
 
-            return new ConfigurationPair( filePath, arguments );
+         using ( var key = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\GitMap" ) )
+         {
+            var filePath = key.GetValue( $"{workflowName}FilePath" );
+            var arguments = key.GetValue( $"{workflowName}Arguments" );
+
+            if ( filePath != null && arguments != null )
+            {
+               return new ConfigurationPair( filePath.ToString(), arguments.ToString() );
+            }
          }
 
          throw new NotImplementedException();
