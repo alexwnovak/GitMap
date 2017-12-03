@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
 using Moq;
 
@@ -74,6 +75,31 @@ namespace GitMap.UnitTests
          appController.Run( new string[0] );
 
          workflowMock.Verify( w => w.Launch( string.Empty ), Times.Once() );
+      }
+
+      [Fact]
+      public void Run_NoMatchingWorkflowWasFound_ReturnsExitCode1()
+      {
+         var appController = new AppController( new Dictionary<string, IWorkflow>() );
+
+         int exitCode = appController.Run( new string[0] );
+
+         exitCode.Should().Be( 1 );
+      }
+
+      [Fact]
+      public void Run_WorkflowIsRun_ReturnsExitCode0()
+      {
+         var workflows = new Dictionary<string, IWorkflow>
+         {
+            [""] = Mock.Of<IWorkflow>()
+         };
+
+         var appController = new AppController( workflows );
+
+         int exitCode = appController.Run( new string[0] );
+
+         exitCode.Should().Be( 0 );
       }
    }
 }

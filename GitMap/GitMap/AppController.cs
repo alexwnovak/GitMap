@@ -15,7 +15,7 @@ namespace GitMap
       private static string GetFilePath( string[] arguments ) =>
          arguments?.Length > 0 ? arguments[0] : string.Empty;
 
-      public void Run( string[] arguments )
+      public int Run( string[] arguments )
       {
          string filePath = GetFilePath( arguments );
          string fileName = Path.GetFileName( filePath );
@@ -23,7 +23,10 @@ namespace GitMap
          if ( _workflows.TryGetValue( fileName, out var workflow ) )
          {
             workflow.Launch( filePath );
+            return 0;
          }
+
+         return 1;
       }
    }
 }
