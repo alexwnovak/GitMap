@@ -18,7 +18,6 @@ namespace GitMap
       public void Run( string[] arguments )
       {
          string filePath = GetFilePath( arguments );
-
          string fileName = Path.GetFileName( filePath );
 
          if ( _workflows.TryGetValue( fileName, out var workflow ) )
