@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppController.cs" />
+    <Compile Include="CommitWorkflow.cs" />
     <Compile Include="IAppLauncher.cs" />
     <Compile Include="IWorkflow.cs" />
     <Compile Include="Program.cs" />
