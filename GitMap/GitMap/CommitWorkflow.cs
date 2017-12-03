@@ -15,7 +15,9 @@
       {
          var configuration = _configurationReader.Read<CommitWorkflow>();
 
-         _processRunner.Run( configuration.FilePath, configuration.Arguments );
+         string arguments = configuration.Arguments.Replace( "%1", parameter );
+
+         _processRunner.Run( configuration.FilePath, arguments );
       }
    }
 }
