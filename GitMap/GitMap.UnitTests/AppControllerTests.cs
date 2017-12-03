@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System.Collections.Generic;
+using Xunit;
 using Moq;
 using GitModel;
 
@@ -59,6 +60,40 @@ namespace GitMap.UnitTests
          // Assert
 
          appLauncherMock.Verify( al => al.LaunchCommitEditor( commitFilePath ), Times.Once() );
+      }
+
+      [Fact]
+      public void Run_ArgumentMatchesWorkflow_LaunchesThatWorkflow()
+      {
+         var workflowMock = new Mock<IWorkflow>();
+
+         var workflows = new Dictionary<string, IWorkflow>
+         {
+            ["Some File Path"] = workflowMock.Object
+         };
+
+         var appController = new AppController( workflows );
+
+         appController.Run( new[] { "Some File Path" } );
+
+         workflowMock.Verify( w => w.Launch( "Some File Path" ), Times.Once() );
+      }
+
+      [Fact]
+      public void Run_ArgumentPartialPathMatchesWorkflow_LaunchesThatWorkflow()
+      {
+         var workflowMock = new Mock<IWorkflow>();
+
+         var workflows = new Dictionary<string, IWorkflow>
+         {
+            ["Commit.txt"] = workflowMock.Object
+         };
+
+         var appController = new AppController( workflows );
+
+         appController.Run( new[] { @"C:\Repo\.git\Commit.txt" } );
+
+         workflowMock.Verify( w => w.Launch( @"C:\Repo\.git\Commit.txt" ), Times.Once() );
       }
    }
 }
