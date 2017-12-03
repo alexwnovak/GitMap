@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using Xunit;
 using Moq;
@@ -7,6 +8,14 @@ namespace GitMap.UnitTests
 {
    public class AppControllerTests
    {
+      [Fact]
+      public void Run_WorkflowsAreNull_ThrowsArgumentException()
+      {
+         Action constructor = () => new AppController( null );
+
+         constructor.ShouldThrow<ArgumentException>();
+      }
+
       [Fact]
       public void Run_ArgumentMatchesWorkflow_LaunchesThatWorkflow()
       {

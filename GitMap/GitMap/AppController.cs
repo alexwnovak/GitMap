@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace GitMap
@@ -9,7 +10,7 @@ namespace GitMap
 
       public AppController( IDictionary<string, IWorkflow> workflows )
       {
-         _workflows = workflows;
+         _workflows = workflows ?? throw new ArgumentException( nameof( workflows ) );
       }
 
       private static string GetFilePath( string[] arguments ) =>
