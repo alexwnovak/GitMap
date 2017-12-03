@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="AppController.cs" />
     <Compile Include="IAppLauncher.cs" />
+    <Compile Include="IWorkflow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
