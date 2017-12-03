@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace GitMap
 {
    public class AppController
    {
-      private readonly IAppLauncher _appLauncher;
       private readonly IDictionary<string, IWorkflow> _workflows;
-
-      public AppController( IAppLauncher appLauncher )
-      {
-         _appLauncher = appLauncher;
-      }
 
       public AppController( IDictionary<string, IWorkflow> workflows )
       {
