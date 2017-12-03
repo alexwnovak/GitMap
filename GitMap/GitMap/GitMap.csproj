@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="AppController.cs" />
     <Compile Include="CommitWorkflow.cs" />
+    <Compile Include="ConfigurationPair.cs" />
     <Compile Include="IAppLauncher.cs" />
     <Compile Include="IConfigurationReader.cs" />
     <Compile Include="IProcessRunner.cs" />
