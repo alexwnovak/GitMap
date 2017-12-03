@@ -78,6 +78,24 @@ namespace GitMap.UnitTests
       }
 
       [Fact]
+      public void Run_ArgumentsAreNullAndMatchesWorkflow_LaunchesThatWorkflow()
+      {
+         var workflowMock = new Mock<IWorkflow>();
+
+         var workflows = new Dictionary<string, IWorkflow>
+         {
+            ["Commit.txt"] = Mock.Of<IWorkflow>(),
+            [""] = workflowMock.Object
+         };
+
+         var appController = new AppController( workflows );
+
+         appController.Run( null );
+
+         workflowMock.Verify( w => w.Launch( string.Empty ), Times.Once() );
+      }
+
+      [Fact]
       public void Run_NoMatchingWorkflowWasFound_ReturnsExitCode1()
       {
          var appController = new AppController( new Dictionary<string, IWorkflow>() );
