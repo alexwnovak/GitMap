@@ -1,0 +1,1 @@
+git config --global core.editor C:/Git/alexwnovak/GitMap/GitMap/GitMap/bin/Debug/GitMap.exe
