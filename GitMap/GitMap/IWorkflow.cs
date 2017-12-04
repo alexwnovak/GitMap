@@ -2,6 +2,6 @@
 {
    public interface IWorkflow
    {
-      void Launch( string parameter );
+      int Launch( string parameter );
    }
 }

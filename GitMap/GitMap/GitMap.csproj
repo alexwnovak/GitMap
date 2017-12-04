@@ -48,8 +48,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppController.cs" />
+    <Compile Include="CommitWorkflow.cs" />
+    <Compile Include="ConfigurationPair.cs" />
+    <Compile Include="ConfigurationReader.cs" />
     <Compile Include="IAppLauncher.cs" />
+    <Compile Include="IConfigurationReader.cs" />
+    <Compile Include="IProcessRunner.cs" />
     <Compile Include="IWorkflow.cs" />
+    <Compile Include="ProcessRunner.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
