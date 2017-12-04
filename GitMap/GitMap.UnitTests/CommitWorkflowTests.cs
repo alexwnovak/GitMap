@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using FluentAssertions;
+using Moq;
 using Xunit;
 
 namespace GitMap.UnitTests
@@ -31,6 +32,21 @@ namespace GitMap.UnitTests
          commitWorkflow.Launch( "COMMIT_EDITMSG" );
 
          processRunnerMock.Verify( pr => pr.Run( "file path", "-file COMMIT_EDITMSG" ), Times.Once() );
+      }
+
+      [Fact]
+      public void Launch_EditorIsLaunched_ReturnsEditorProcessExitCode()
+      {
+         var configurationReaderMock = new Mock<IConfigurationReader>();
+         configurationReaderMock.Setup( cr => cr.Read<CommitWorkflow>() ).Returns( new ConfigurationPair( "does not matter", "does not matter" ) );
+         var processRunnerMock = new Mock<IProcessRunner>();
+         processRunnerMock.Setup( pr => pr.Run( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( 1 );
+
+         var commitWorkflow = new CommitWorkflow( configurationReaderMock.Object, processRunnerMock.Object );
+
+         int exitCode = commitWorkflow.Launch( "COMMIT_EDITMSG" );
+
+         exitCode.Should().Be( 1 );
       }
    }
 }

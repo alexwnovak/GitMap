@@ -11,13 +11,13 @@
          _processRunner = processRunner;
       }
 
-      public void Launch( string parameter )
+      public int Launch( string parameter )
       {
          var configuration = _configurationReader.Read<CommitWorkflow>();
 
          string arguments = configuration.Arguments.Replace( "%1", parameter );
 
-         _processRunner.Run( configuration.FilePath, arguments );
+         return _processRunner.Run( configuration.FilePath, arguments );
       }
    }
 }
