@@ -2,6 +2,8 @@
 {
    public class ConfigurationPair
    {
+      public static ConfigurationPair Empty = new ConfigurationPair();
+
       public string FilePath
       {
          get;
@@ -16,6 +18,10 @@
       {
          FilePath = filePath;
          Arguments = arguments;
+      }
+
+      private ConfigurationPair()
+      {
       }
    }
 }

@@ -48,5 +48,18 @@ namespace GitMap.UnitTests
 
          exitCode.Should().Be( 1 );
       }
+
+      [Fact]
+      public void Launch_NoEditorConfigured_ReturnsExitCode1()
+      {
+         var configurationReaderMock = new Mock<IConfigurationReader>();
+         configurationReaderMock.Setup( cr => cr.Read<CommitWorkflow>() ).Returns( ConfigurationPair.Empty );
+
+         var commitWorkflow = new CommitWorkflow( configurationReaderMock.Object, Mock.Of<IProcessRunner>() );
+
+         int exitCode = commitWorkflow.Launch( "COMMIT_EDITMSG" );
+
+         exitCode.Should().Be( 1 );
+      }
    }
 }

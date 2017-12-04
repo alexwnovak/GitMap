@@ -15,6 +15,11 @@
       {
          var configuration = _configurationReader.Read<CommitWorkflow>();
 
+         if ( configuration == ConfigurationPair.Empty )
+         {
+            return 1;
+         }
+
          string arguments = configuration.Arguments.Replace( "%1", parameter );
 
          return _processRunner.Run( configuration.FilePath, arguments );
