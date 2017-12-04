@@ -128,5 +128,23 @@ namespace GitMap.UnitTests
 
          exitCode.Should().Be( 0 );
       }
+
+      [Fact]
+      public void Run_WorkflowReturnsExitCode_ExitCodeIsReturnedToEnvironment()
+      {
+         var workflowMock = new Mock<IWorkflow>();
+         workflowMock.Setup( w => w.Launch( It.IsAny<string>() ) ).Returns( 123 );
+
+         var workflows = new Dictionary<string, IWorkflow>
+         {
+            [""] = workflowMock.Object
+         };
+
+         var appController = new AppController( workflows );
+
+         int exitCode = appController.Run( new string[0] );
+
+         exitCode.Should().Be( 123 );
+      }
    }
 }

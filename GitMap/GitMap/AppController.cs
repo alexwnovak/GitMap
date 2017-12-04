@@ -23,8 +23,7 @@ namespace GitMap
 
          if ( _workflows.TryGetValue( fileName, out var workflow ) )
          {
-            workflow.Launch( filePath );
-            return 0;
+            return workflow.Launch( filePath );
          }
 
          return 1;
