@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 
 namespace GitMap
 {
@@ -8,6 +7,7 @@ namespace GitMap
       public ConfigurationPair Read<T>()
       {
          string workflowName = typeof( T ).Name;
+         ConfigurationPair configuredEditorInfo = ConfigurationPair.Empty;
 
          using ( var key = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\GitMap" ) )
          {
@@ -16,11 +16,11 @@ namespace GitMap
 
             if ( filePath != null && arguments != null )
             {
-               return new ConfigurationPair( filePath.ToString(), arguments.ToString() );
+               configuredEditorInfo = new ConfigurationPair( filePath.ToString(), arguments.ToString() );
             }
          }
 
-         throw new NotImplementedException();
+         return configuredEditorInfo;
       }
    }
 }
