@@ -7,7 +7,7 @@ namespace GitMap
    {
       private static int Main( string[] arguments )
       {
-         var commitWorkflow = new CommitWorkflow( new ConfigurationReader(), new ProcessRunner() );
+         var commitWorkflow = new CommitWorkflow( "CommitWorkflow", new ConfigurationReader(), new ProcessRunner() );
 
          var workflows = new Dictionary<string, IWorkflow>
          {

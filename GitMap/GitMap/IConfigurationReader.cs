@@ -2,6 +2,6 @@
 {
    public interface IConfigurationReader
    {
-      ConfigurationPair Read<T>();
+      ConfigurationPair Read( string workflowName );
    }
 }

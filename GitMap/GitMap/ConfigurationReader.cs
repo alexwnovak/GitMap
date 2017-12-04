@@ -4,9 +4,8 @@ namespace GitMap
 {
    public class ConfigurationReader : IConfigurationReader
    {
-      public ConfigurationPair Read<T>()
+      public ConfigurationPair Read( string workflowName )
       {
-         string workflowName = typeof( T ).Name;
          ConfigurationPair configuredEditorInfo = ConfigurationPair.Empty;
 
          using ( var key = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\GitMap" ) )
