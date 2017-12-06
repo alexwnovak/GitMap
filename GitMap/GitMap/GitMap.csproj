@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppController.cs" />
-    <Compile Include="CommitWorkflow.cs" />
+    <Compile Include="Workflow.cs" />
     <Compile Include="ConfigurationPair.cs" />
     <Compile Include="ConfigurationReader.cs" />
     <Compile Include="IAppLauncher.cs" />

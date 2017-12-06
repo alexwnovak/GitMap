@@ -1,12 +1,12 @@
 ﻿namespace GitMap
 {
-   public class CommitWorkflow : IWorkflow
+   public class Workflow : IWorkflow
    {
       private readonly string _workflowName;
       private readonly IConfigurationReader _configurationReader;
       private readonly IProcessRunner _processRunner;
 
-      public CommitWorkflow( string workflowName, IConfigurationReader configurationReader, IProcessRunner processRunner )
+      public Workflow( string workflowName, IConfigurationReader configurationReader, IProcessRunner processRunner )
       {
          _workflowName = workflowName;
          _configurationReader = configurationReader;

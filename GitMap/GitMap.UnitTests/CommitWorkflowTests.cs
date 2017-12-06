@@ -13,7 +13,7 @@ namespace GitMap.UnitTests
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( new ConfigurationPair( "file path", "arguments" ) );
          var processRunnerMock = new Mock<IProcessRunner>();
 
-         var commitWorkflow = new CommitWorkflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
+         var commitWorkflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
 
          commitWorkflow.Launch( null );
 
@@ -27,7 +27,7 @@ namespace GitMap.UnitTests
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( new ConfigurationPair( "file path", "-file %1" ) );
          var processRunnerMock = new Mock<IProcessRunner>();
 
-         var commitWorkflow = new CommitWorkflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
+         var commitWorkflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
 
          commitWorkflow.Launch( "COMMIT_EDITMSG" );
 
@@ -42,7 +42,7 @@ namespace GitMap.UnitTests
          var processRunnerMock = new Mock<IProcessRunner>();
          processRunnerMock.Setup( pr => pr.Run( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( 1 );
 
-         var commitWorkflow = new CommitWorkflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
+         var commitWorkflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
 
          int exitCode = commitWorkflow.Launch( "COMMIT_EDITMSG" );
 
@@ -55,7 +55,7 @@ namespace GitMap.UnitTests
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( ConfigurationPair.Empty );
 
-         var commitWorkflow = new CommitWorkflow( "CommitWorkflow", configurationReaderMock.Object, Mock.Of<IProcessRunner>() );
+         var commitWorkflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, Mock.Of<IProcessRunner>() );
 
          int exitCode = commitWorkflow.Launch( "COMMIT_EDITMSG" );
 
