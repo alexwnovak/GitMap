@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Moq;
 using TechTalk.SpecFlow;
 
 namespace GitMap.AcceptanceTests.Steps
@@ -6,28 +6,36 @@ namespace GitMap.AcceptanceTests.Steps
    [Binding]
    public class CommitFlowFeatureSteps
    {
-      [Given( @"I have a valid COMMIT_EDITMSG file" )]
-      public void GivenIHaveAValidCOMMIT_EDITMSGFile()
-      {
-         ScenarioContext.Current.Pending();
-      }
+      private string _configuredEditor;
+      private const string _commitFilePath = @"C:\Git\Repo\.git\COMMIT_EDITMSG";
 
-      [Given( @"my commit editor is configured to be notepad\.exe" )]
-      public void GivenMyCommitEditorIsConfiguredToBeNotepad_Exe()
+      private readonly Mock<IConfigurationReader> _configurationReaderMock = new Mock<IConfigurationReader>();
+      private readonly Mock<IProcessRunner> _processRunnerMock = new Mock<IProcessRunner>();
+
+      [Given( @"my commit editor is configured to be (.*)" )]
+      public void GivenMyCommitEditorIsConfiguredToBeNotepad_Exe( string editorPath )
       {
-         ScenarioContext.Current.Pending();
+         _configuredEditor = editorPath;
+
+         var notepadConfiguration = new ConfigurationPair( _configuredEditor, "%1" );
+
+         _configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( notepadConfiguration );
       }
 
       [When( @"the application launches" )]
       public void WhenTheApplicationLaunches()
       {
-         ScenarioContext.Current.Pending();
+         var factory = new AppControllerFactory( _configurationReaderMock.Object, _processRunnerMock.Object );
+
+         var appController = factory.Create();
+
+         appController.Run( new[] { _commitFilePath } );
       }
 
       [Then( @"my configured commit editor is launched with the commit file" )]
       public void ThenMyConfiguredCommitEditorIsLaunchedWithTheCommitFile()
       {
-         ScenarioContext.Current.Pending();
+         _processRunnerMock.Verify( pr => pr.Run( _configuredEditor, _commitFilePath ), Times.Once() );
       }
    }
 }
