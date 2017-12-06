@@ -15,7 +15,7 @@ namespace GitMap
       {
          var workflows = new Dictionary<string, IWorkflow>
          {
-            [GitFileNames.CommitFileName] = CreateWorkflow( "CommitWorkflow" )
+            [GitFileNames.CommitFileName] = CreateWorkflow( WorkflowNames.CommitWorkflow )
          };
 
          return new AppController( workflows ).Run( arguments );
