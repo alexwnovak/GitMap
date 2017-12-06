@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppController.cs" />
+    <Compile Include="AppControllerFactory.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="ConfigurationPair.cs" />
     <Compile Include="ConfigurationReader.cs" />
