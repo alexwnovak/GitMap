@@ -3,15 +3,26 @@ using GitModel;
 
 namespace GitMap
 {
-   public static class AppControllerFactory
+   public class AppControllerFactory
    {
-      private static readonly IConfigurationReader _configurationReader = new ConfigurationReader();
-      private static readonly IProcessRunner _processRunner = new ProcessRunner();
+      private readonly IConfigurationReader _configurationReader;
+      private readonly IProcessRunner _processRunner;
 
-      private static IWorkflow CreateWorkflow( string workflowName ) =>
-         new Workflow( workflowName, _configurationReader, _processRunner );
+      public AppControllerFactory()
+         : this( new ConfigurationReader(), new ProcessRunner() )
+      {
+      }
 
-      public static AppController Create()
+      public AppControllerFactory( IConfigurationReader configurationReader, IProcessRunner processRunner )
+      {
+         _configurationReader = configurationReader;
+         _processRunner = processRunner;
+      }
+
+      private IWorkflow CreateWorkflow( string workflowName ) =>
+         new Workflow( workflowName, _configurationReader, _processRunner);
+
+      public AppController Create()
       {
          var workflows = new Dictionary<string, IWorkflow>
          {
