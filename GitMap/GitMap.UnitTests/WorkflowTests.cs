@@ -4,7 +4,7 @@ using Xunit;
 
 namespace GitMap.UnitTests
 {
-   public class CommitWorkflowTests
+   public class WorkflowTests
    {
       [Fact]
       public void Launch_GetsCommitEditorConfiguration_LaunchesConfiguredEditor()
@@ -13,9 +13,9 @@ namespace GitMap.UnitTests
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( new ConfigurationPair( "file path", "arguments" ) );
          var processRunnerMock = new Mock<IProcessRunner>();
 
-         var commitWorkflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
+         var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
 
-         commitWorkflow.Launch( null );
+         workflow.Launch( null );
 
          processRunnerMock.Verify( pr => pr.Run( "file path", "arguments" ), Times.Once() );
       }
@@ -27,9 +27,9 @@ namespace GitMap.UnitTests
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( new ConfigurationPair( "file path", "-file %1" ) );
          var processRunnerMock = new Mock<IProcessRunner>();
 
-         var commitWorkflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
+         var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
 
-         commitWorkflow.Launch( "COMMIT_EDITMSG" );
+         workflow.Launch( "COMMIT_EDITMSG" );
 
          processRunnerMock.Verify( pr => pr.Run( "file path", "-file COMMIT_EDITMSG" ), Times.Once() );
       }
@@ -42,9 +42,9 @@ namespace GitMap.UnitTests
          var processRunnerMock = new Mock<IProcessRunner>();
          processRunnerMock.Setup( pr => pr.Run( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( 1 );
 
-         var commitWorkflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
+         var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
 
-         int exitCode = commitWorkflow.Launch( "COMMIT_EDITMSG" );
+         int exitCode = workflow.Launch( "COMMIT_EDITMSG" );
 
          exitCode.Should().Be( 1 );
       }
@@ -55,9 +55,9 @@ namespace GitMap.UnitTests
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( ConfigurationPair.Empty );
 
-         var commitWorkflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, Mock.Of<IProcessRunner>() );
+         var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, Mock.Of<IProcessRunner>() );
 
-         int exitCode = commitWorkflow.Launch( "COMMIT_EDITMSG" );
+         int exitCode = workflow.Launch( "COMMIT_EDITMSG" );
 
          exitCode.Should().Be( 1 );
       }
