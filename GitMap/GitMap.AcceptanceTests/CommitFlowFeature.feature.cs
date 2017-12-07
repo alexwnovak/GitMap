@@ -83,12 +83,10 @@ namespace GitMap.AcceptanceTests
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-   testRunner.Given("I have a valid COMMIT_EDITMSG file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Given("my commit editor is configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-   testRunner.And("my commit editor is configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
    testRunner.When("the application launches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 11
+#line 10
    testRunner.Then("my configured commit editor is launched with the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
