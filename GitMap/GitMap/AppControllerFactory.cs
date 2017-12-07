@@ -29,7 +29,7 @@ namespace GitMap
             [GitFileNames.CommitFileName] = CreateWorkflow( WorkflowNames.CommitWorkflow )
          };
 
-         return new AppController( workflows );
+         return new AppController( workflows, new OutputController() );
       }
    }
 }
