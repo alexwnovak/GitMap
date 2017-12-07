@@ -18,5 +18,21 @@ namespace GitMap
          Console.WriteLine( $"{assemblyName.Name} version {version}");
          Console.ForegroundColor = previousColor;
       }
+
+      public void DisplayConfigurationError( string fileName )
+      {
+         var previousColor = Console.ForegroundColor;
+
+         var thisAssembly = Assembly.GetExecutingAssembly();
+         var assemblyName = thisAssembly.GetName();
+
+         Console.ForegroundColor = ConsoleColor.Red;
+         Console.Write( $"[{assemblyName.Name} Error]: " );
+
+         Console.ForegroundColor = ConsoleColor.Gray;
+         Console.WriteLine( $"No editor configured for this workflow (trying to edit {fileName})" );
+
+         Console.ForegroundColor = previousColor;
+      }
    }
 }

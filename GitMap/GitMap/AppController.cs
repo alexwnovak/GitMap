@@ -30,6 +30,7 @@ namespace GitMap
             return workflow.Launch( filePath );
          }
 
+         _outputController.DisplayConfigurationError( fileName );
          return 1;
       }
    }

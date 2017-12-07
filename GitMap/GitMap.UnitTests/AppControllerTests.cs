@@ -158,5 +158,17 @@ namespace GitMap.UnitTests
 
          outputControllerMock.Verify( oc => oc.DisplayBanner(), Times.Once() );
       }
+
+      [Fact]
+      public void Run_NoConfigurationForWorkflow_DisplaysError()
+      {
+         var outputControllerMock = new Mock<IOutputController>();
+
+         var appController = new AppController( new Dictionary<string, IWorkflow>(), outputControllerMock.Object );
+
+         appController.Run( new[] { @"C:\Repo\.git\COMMIT_EDITMSG" } );
+
+         outputControllerMock.Verify( oc => oc.DisplayConfigurationError( "COMMIT_EDITMSG" ), Times.Once() );
+      }
    }
 }
