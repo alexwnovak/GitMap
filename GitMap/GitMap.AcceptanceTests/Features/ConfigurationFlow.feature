@@ -5,5 +5,5 @@
 
 @Acceptance
 Scenario: Running GitMap from my desktop
-	Given I launch GitMap with no arguments
+	Given I have launched the application with no arguments
 	Then the UI appears

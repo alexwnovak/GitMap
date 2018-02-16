@@ -9,9 +9,17 @@ namespace GitMap.UnitTests
    public class AppControllerTests
    {
       [Fact]
-      public void Run_WorkflowsAreNull_ThrowsArgumentException()
+      public void Constructor_WorkflowsAreNull_ThrowsArgumentException()
       {
          Action constructor = () => new AppController( null, Mock.Of<IOutputController>() );
+
+         constructor.ShouldThrow<ArgumentException>();
+      }
+
+      [Fact]
+      public void Constructor_OutputControllerIsNull_ThrowsArgumentException()
+      {
+         Action constructor = () => new AppController( new Dictionary<string, IWorkflow>(), null );
 
          constructor.ShouldThrow<ArgumentException>();
       }

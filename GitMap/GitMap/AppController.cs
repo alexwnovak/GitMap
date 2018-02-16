@@ -12,7 +12,7 @@ namespace GitMap
       public AppController( IDictionary<string, IWorkflow> workflows, IOutputController outputController )
       {
          _workflows = workflows ?? throw new ArgumentException( nameof( workflows ) );
-         _outputController = outputController;
+         _outputController = outputController ?? throw new ArgumentException( nameof( outputController ) );
       }
 
       private static string GetFilePath( string[] arguments ) =>

@@ -10,24 +10,24 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace GitMap.AcceptanceTests
+namespace GitMap.AcceptanceTests.Features
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class LaunchingGitMapForConfigurationFeature : Xunit.IClassFixture<LaunchingGitMapForConfigurationFeature.FixtureData>, System.IDisposable
+    public partial class RebaseFlowFeature : Xunit.IClassFixture<RebaseFlowFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "ConfigurationLaunch.feature"
+#line 1 "RebaseFlow.feature"
 #line hidden
         
-        public LaunchingGitMapForConfigurationFeature(LaunchingGitMapForConfigurationFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public RebaseFlowFeature(RebaseFlowFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -36,9 +36,8 @@ namespace GitMap.AcceptanceTests
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Launching GitMap for configuration", "\tAs a developer,\r\n   I want to run GitMap to configure what applications serve as" +
-                    " my editors\r\n\tSo I can have a specialized editing experience for each Git scenar" +
-                    "io", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Rebase Flow", "   As a developer\r\n   When I launch an interactive rebase\r\n   I want my configure" +
+                    "d commit editor to be launched", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -73,20 +72,22 @@ namespace GitMap.AcceptanceTests
             this.ScenarioTearDown();
         }
         
-        [Xunit.FactAttribute(DisplayName="Running GitMap from my desktop")]
-        [Xunit.TraitAttribute("FeatureTitle", "Launching GitMap for configuration")]
-        [Xunit.TraitAttribute("Description", "Running GitMap from my desktop")]
+        [Xunit.FactAttribute(DisplayName="Editing an interactive rebase")]
+        [Xunit.TraitAttribute("FeatureTitle", "Rebase Flow")]
+        [Xunit.TraitAttribute("Description", "Editing an interactive rebase")]
         [Xunit.TraitAttribute("Category", "Acceptance")]
-        public virtual void RunningGitMapFromMyDesktop()
+        public virtual void EditingAnInteractiveRebase()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Running GitMap from my desktop", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Editing an interactive rebase", new string[] {
                         "Acceptance"});
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
- testRunner.Given("I launch GitMap with no arguments", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Given("my commit editor has been configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.Then("the UI appears", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.When("the application launches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+   testRunner.Then("my configured editor is launched with the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -98,12 +99,12 @@ this.ScenarioSetup(scenarioInfo);
             
             public FixtureData()
             {
-                LaunchingGitMapForConfigurationFeature.FeatureSetup();
+                RebaseFlowFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                LaunchingGitMapForConfigurationFeature.FeatureTearDown();
+                RebaseFlowFeature.FeatureTearDown();
             }
         }
     }

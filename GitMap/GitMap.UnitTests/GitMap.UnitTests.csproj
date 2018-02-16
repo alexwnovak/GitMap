@@ -73,7 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppControllerTests.cs" />
-    <Compile Include="CommitWorkflowTests.cs" />
+    <Compile Include="WorkflowTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

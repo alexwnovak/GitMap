@@ -10,24 +10,24 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace GitMap.AcceptanceTests
+namespace GitMap.AcceptanceTests.Features
 {
     using TechTalk.SpecFlow;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CommitFlowFeatureFeature : Xunit.IClassFixture<CommitFlowFeatureFeature.FixtureData>, System.IDisposable
+    public partial class CommitFlowFeature : Xunit.IClassFixture<CommitFlowFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "CommitFlowFeature.feature"
+#line 1 "CommitFlow.feature"
 #line hidden
         
-        public CommitFlowFeatureFeature(CommitFlowFeatureFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CommitFlowFeature(CommitFlowFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -36,7 +36,7 @@ namespace GitMap.AcceptanceTests
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CommitFlowFeature", "   As a developer\r\n   When I make a commit\r\n   I want my configured commit editor" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Commit Flow", "   As a developer\r\n   When I make a commit\r\n   I want my configured commit editor" +
                     " to be launched", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -73,7 +73,7 @@ namespace GitMap.AcceptanceTests
         }
         
         [Xunit.FactAttribute(DisplayName="Making a commit")]
-        [Xunit.TraitAttribute("FeatureTitle", "CommitFlowFeature")]
+        [Xunit.TraitAttribute("FeatureTitle", "Commit Flow")]
         [Xunit.TraitAttribute("Description", "Making a commit")]
         [Xunit.TraitAttribute("Category", "Acceptance")]
         public virtual void MakingACommit()
@@ -83,11 +83,11 @@ namespace GitMap.AcceptanceTests
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-   testRunner.Given("my commit editor is configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Given("my commit editor has been configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
    testRunner.When("the application launches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-   testRunner.Then("my configured commit editor is launched with the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("my configured editor is launched with the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -99,12 +99,12 @@ this.ScenarioSetup(scenarioInfo);
             
             public FixtureData()
             {
-                CommitFlowFeatureFeature.FeatureSetup();
+                CommitFlowFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CommitFlowFeatureFeature.FeatureTearDown();
+                CommitFlowFeature.FeatureTearDown();
             }
         }
     }

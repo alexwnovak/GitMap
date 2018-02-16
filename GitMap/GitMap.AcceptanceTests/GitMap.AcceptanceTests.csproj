@@ -75,19 +75,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommitFlowFeature.feature.cs">
+    <Compile Include="Features\CommitFlow.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CommitFlowFeature.feature</DependentUpon>
+      <DependentUpon>CommitFlow.feature</DependentUpon>
     </Compile>
-    <Compile Include="ConfigurationLaunch.feature.cs">
+    <Compile Include="Features\ConfigurationFlow.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ConfigurationLaunch.feature</DependentUpon>
+      <DependentUpon>ConfigurationFlow.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Steps\CommitFlowFeatureSteps.cs" />
-    <Compile Include="Steps\LaunchingGitMapForConfigurationSteps.cs" />
+    <Compile Include="Features\RebaseFlow.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RebaseFlow.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Steps\LaunchSteps.cs" />
+    <Compile Include="Steps\CommitFlowSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitMap\GitMap.csproj">
@@ -97,15 +102,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="CommitFlowFeature.feature">
+    <None Include="Features\CommitFlow.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CommitFlowFeature.feature.cs</LastGenOutput>
+      <LastGenOutput>CommitFlow.feature.cs</LastGenOutput>
     </None>
-    <None Include="ConfigurationLaunch.feature">
+    <None Include="Features\ConfigurationFlow.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ConfigurationLaunch.feature.cs</LastGenOutput>
+      <LastGenOutput>ConfigurationFlow.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Features\RebaseFlow.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>RebaseFlow.feature.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />

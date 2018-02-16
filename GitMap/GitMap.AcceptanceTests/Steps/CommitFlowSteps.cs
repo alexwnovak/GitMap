@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 namespace GitMap.AcceptanceTests.Steps
 {
    [Binding]
-   public class CommitFlowFeatureSteps
+   public class CommitFlowSteps
    {
       private string _configuredEditor;
       private const string _commitFilePath = @"C:\Git\Repo\.git\COMMIT_EDITMSG";
@@ -12,7 +12,14 @@ namespace GitMap.AcceptanceTests.Steps
       private readonly Mock<IConfigurationReader> _configurationReaderMock = new Mock<IConfigurationReader>();
       private readonly Mock<IProcessRunner> _processRunnerMock = new Mock<IProcessRunner>();
 
-      [Given( @"my commit editor is configured to be (.*)" )]
+      private readonly ScenarioContext _scenarioContext;
+
+      public CommitFlowSteps( ScenarioContext scenarioContext )
+      {
+         _scenarioContext = scenarioContext;
+      }
+
+      [Given( "my commit editor has been configured to be (.*)" )]
       public void GivenMyCommitEditorIsConfiguredToBeNotepad_Exe( string editorPath )
       {
          _configuredEditor = editorPath;
@@ -20,9 +27,13 @@ namespace GitMap.AcceptanceTests.Steps
          var notepadConfiguration = new ConfigurationPair( _configuredEditor, "%1" );
 
          _configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( notepadConfiguration );
+
+         _scenarioContext.Set( _processRunnerMock );
+         _scenarioContext["configuredEditor"] = editorPath;
+         _scenarioContext["filePath"] = _commitFilePath;
       }
 
-      [When( @"the application launches" )]
+      [When( "the application launches" )]
       public void WhenTheApplicationLaunches()
       {
          var factory = new AppControllerFactory( _configurationReaderMock.Object, _processRunnerMock.Object );
@@ -30,12 +41,6 @@ namespace GitMap.AcceptanceTests.Steps
          var appController = factory.Create();
 
          appController.Run( new[] { _commitFilePath } );
-      }
-
-      [Then( @"my configured commit editor is launched with the commit file" )]
-      public void ThenMyConfiguredCommitEditorIsLaunchedWithTheCommitFile()
-      {
-         _processRunnerMock.Verify( pr => pr.Run( _configuredEditor, _commitFilePath ), Times.Once() );
       }
    }
 }
