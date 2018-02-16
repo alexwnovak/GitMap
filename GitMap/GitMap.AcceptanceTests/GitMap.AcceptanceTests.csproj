@@ -92,7 +92,6 @@
       <DependentUpon>RebaseFlow.feature</DependentUpon>
     </Compile>
     <Compile Include="Steps\LaunchSteps.cs" />
-    <Compile Include="Steps\RebaseFlowSteps.cs" />
     <Compile Include="Steps\CommitFlowSteps.cs" />
   </ItemGroup>
   <ItemGroup>
