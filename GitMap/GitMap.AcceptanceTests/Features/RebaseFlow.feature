@@ -5,6 +5,6 @@
 
 @Acceptance
 Scenario: Editing an interactive rebase
-   Given my commit editor has been configured to be notepad.exe
-   When the application launches
-   Then my configured editor is launched with the file
+   Given my rebase editor has been configured to be notepad.exe
+   When the application launches with the argument C:\Repo\.git\git-rebase-todo
+   Then notepad.exe is launched with the commit file

@@ -22,6 +22,15 @@ namespace GitMap.AcceptanceTests.Steps
          _scenarioContext.Set( appControllerPageObject );
       }
 
+      [Given( "my rebase editor has been configured to be (.*)" )]
+      public void GivenMyRebaseEditorIsConfigured( string editorPath )
+      {
+         var appControllerPageObject = new AppControllerPageObject();
+         appControllerPageObject.AddRebaseWorkflow( editorPath );
+
+         _scenarioContext.Set( appControllerPageObject );
+      }
+
       [When( "the application launches" )]
       public void WhenTheApplicationLaunches()
       {

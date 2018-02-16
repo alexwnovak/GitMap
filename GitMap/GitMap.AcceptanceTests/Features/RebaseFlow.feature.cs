@@ -83,11 +83,11 @@ namespace GitMap.AcceptanceTests.Features
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-   testRunner.Given("my commit editor has been configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Given("my rebase editor has been configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
-   testRunner.When("the application launches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+   testRunner.When("the application launches with the argument C:\\Repo\\.git\\git-rebase-todo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-   testRunner.Then("my configured editor is launched with the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("notepad.exe is launched with the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
