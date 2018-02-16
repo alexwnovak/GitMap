@@ -17,17 +17,17 @@ namespace GitMap.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.2.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class RebaseFlowFeatureFeature : Xunit.IClassFixture<RebaseFlowFeatureFeature.FixtureData>, System.IDisposable
+    public partial class RebaseFlowFeature : Xunit.IClassFixture<RebaseFlowFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "RebaseFlowFeature.feature"
+#line 1 "RebaseFlow.feature"
 #line hidden
         
-        public RebaseFlowFeatureFeature(RebaseFlowFeatureFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public RebaseFlowFeature(RebaseFlowFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -36,7 +36,7 @@ namespace GitMap.AcceptanceTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "RebaseFlowFeature", "   As a developer\r\n   When I launch an interactive rebase\r\n   I want my configure" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Rebase Flow", "   As a developer\r\n   When I launch an interactive rebase\r\n   I want my configure" +
                     "d commit editor to be launched", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -73,7 +73,7 @@ namespace GitMap.AcceptanceTests.Features
         }
         
         [Xunit.FactAttribute(DisplayName="Editing an interactive rebase")]
-        [Xunit.TraitAttribute("FeatureTitle", "RebaseFlowFeature")]
+        [Xunit.TraitAttribute("FeatureTitle", "Rebase Flow")]
         [Xunit.TraitAttribute("Description", "Editing an interactive rebase")]
         [Xunit.TraitAttribute("Category", "Acceptance")]
         public virtual void EditingAnInteractiveRebase()
@@ -99,12 +99,12 @@ this.ScenarioSetup(scenarioInfo);
             
             public FixtureData()
             {
-                RebaseFlowFeatureFeature.FeatureSetup();
+                RebaseFlowFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                RebaseFlowFeatureFeature.FeatureTearDown();
+                RebaseFlowFeature.FeatureTearDown();
             }
         }
     }

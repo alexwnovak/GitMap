@@ -1,4 +1,4 @@
-﻿Feature: CommitFlowFeature
+﻿Feature: Commit Flow
    As a developer
    When I make a commit
    I want my configured commit editor to be launched

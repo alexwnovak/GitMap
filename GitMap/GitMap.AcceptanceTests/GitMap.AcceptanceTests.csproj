@@ -75,10 +75,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\CommitFlowFeature.feature.cs">
+    <Compile Include="Features\CommitFlow.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CommitFlowFeature.feature</DependentUpon>
+      <DependentUpon>CommitFlow.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\ConfigurationLaunch.feature.cs">
       <AutoGen>True</AutoGen>
@@ -86,10 +86,10 @@
       <DependentUpon>ConfigurationLaunch.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Features\RebaseFlowFeature.feature.cs">
+    <Compile Include="Features\RebaseFlow.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RebaseFlowFeature.feature</DependentUpon>
+      <DependentUpon>RebaseFlow.feature</DependentUpon>
     </Compile>
     <Compile Include="Steps\LaunchSteps.cs" />
     <Compile Include="Steps\RebaseFlowFeatureSteps.cs" />
@@ -103,18 +103,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Features\CommitFlowFeature.feature">
+    <None Include="Features\CommitFlow.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>CommitFlowFeature.feature.cs</LastGenOutput>
+      <LastGenOutput>CommitFlow.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\ConfigurationLaunch.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ConfigurationLaunch.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Features\RebaseFlowFeature.feature">
+    <None Include="Features\RebaseFlow.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>RebaseFlowFeature.feature.cs</LastGenOutput>
+      <LastGenOutput>RebaseFlow.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

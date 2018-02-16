@@ -1,4 +1,4 @@
-﻿Feature: RebaseFlowFeature
+﻿Feature: Rebase Flow
    As a developer
    When I launch an interactive rebase
    I want my configured commit editor to be launched
