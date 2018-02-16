@@ -12,6 +12,13 @@ namespace GitMap.AcceptanceTests.Steps
       private readonly Mock<IConfigurationReader> _configurationReaderMock = new Mock<IConfigurationReader>();
       private readonly Mock<IProcessRunner> _processRunnerMock = new Mock<IProcessRunner>();
 
+      private readonly ScenarioContext _scenarioContext;
+
+      public CommitFlowFeatureSteps( ScenarioContext scenarioContext )
+      {
+         _scenarioContext = scenarioContext;
+      }
+
       [Given( @"my commit editor is configured to be (.*)" )]
       public void GivenMyCommitEditorIsConfiguredToBeNotepad_Exe( string editorPath )
       {
@@ -20,6 +27,10 @@ namespace GitMap.AcceptanceTests.Steps
          var notepadConfiguration = new ConfigurationPair( _configuredEditor, "%1" );
 
          _configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( notepadConfiguration );
+
+         _scenarioContext.Set( _processRunnerMock );
+         _scenarioContext["configuredEditor"] = editorPath;
+         _scenarioContext["filePath"] = _commitFilePath;
       }
 
       [When( @"the application launches" )]
@@ -30,12 +41,6 @@ namespace GitMap.AcceptanceTests.Steps
          var appController = factory.Create();
 
          appController.Run( new[] { _commitFilePath } );
-      }
-
-      [Then( @"my configured editor is launched with the file" )]
-      public void ThenMyConfiguredCommitEditorIsLaunchedWithTheCommitFile()
-      {
-         _processRunnerMock.Verify( pr => pr.Run( _configuredEditor, _commitFilePath ), Times.Once() );
       }
    }
 }
