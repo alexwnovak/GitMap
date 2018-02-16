@@ -20,7 +20,7 @@ namespace GitMap
       }
 
       private IWorkflow CreateWorkflow( string workflowName ) =>
-         new Workflow( workflowName, _configurationReader, _processRunner);
+         new Workflow( workflowName, _configurationReader, _processRunner );
 
       public AppController Create()
       {
