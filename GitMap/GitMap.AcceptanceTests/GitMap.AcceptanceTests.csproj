@@ -92,8 +92,8 @@
       <DependentUpon>RebaseFlow.feature</DependentUpon>
     </Compile>
     <Compile Include="Steps\LaunchSteps.cs" />
-    <Compile Include="Steps\RebaseFlowFeatureSteps.cs" />
-    <Compile Include="Steps\CommitFlowFeatureSteps.cs" />
+    <Compile Include="Steps\RebaseFlowSteps.cs" />
+    <Compile Include="Steps\CommitFlowSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitMap\GitMap.csproj">

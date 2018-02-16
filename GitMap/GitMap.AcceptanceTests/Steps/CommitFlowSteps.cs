@@ -4,7 +4,7 @@ using TechTalk.SpecFlow;
 namespace GitMap.AcceptanceTests.Steps
 {
    [Binding]
-   public class CommitFlowFeatureSteps
+   public class CommitFlowSteps
    {
       private string _configuredEditor;
       private const string _commitFilePath = @"C:\Git\Repo\.git\COMMIT_EDITMSG";
@@ -14,7 +14,7 @@ namespace GitMap.AcceptanceTests.Steps
 
       private readonly ScenarioContext _scenarioContext;
 
-      public CommitFlowFeatureSteps( ScenarioContext scenarioContext )
+      public CommitFlowSteps( ScenarioContext scenarioContext )
       {
          _scenarioContext = scenarioContext;
       }
