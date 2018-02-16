@@ -87,7 +87,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
    testRunner.When("the application launches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-   testRunner.Then("my configured commit editor is launched with the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("my configured editor is launched with the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -7,4 +7,4 @@
 Scenario: Making a commit
    Given my commit editor is configured to be notepad.exe
    When the application launches
-   Then my configured commit editor is launched with the commit file
+   Then my configured editor is launched with the file

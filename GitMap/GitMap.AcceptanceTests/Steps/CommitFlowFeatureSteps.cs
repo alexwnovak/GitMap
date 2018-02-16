@@ -32,7 +32,7 @@ namespace GitMap.AcceptanceTests.Steps
          appController.Run( new[] { _commitFilePath } );
       }
 
-      [Then( @"my configured commit editor is launched with the commit file" )]
+      [Then( @"my configured editor is launched with the file" )]
       public void ThenMyConfiguredCommitEditorIsLaunchedWithTheCommitFile()
       {
          _processRunnerMock.Verify( pr => pr.Run( _configuredEditor, _commitFilePath ), Times.Once() );
