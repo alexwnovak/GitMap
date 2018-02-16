@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace GitMap.AcceptanceTests
+namespace GitMap.AcceptanceTests.Features
 {
     using TechTalk.SpecFlow;
     
