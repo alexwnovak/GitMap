@@ -26,7 +26,8 @@ namespace GitMap.AcceptanceTests.Steps
       [Given( "I have launched the application with no arguments" )]
       public void GivenILaunchGitMapWithNoArguments()
       {
-         _scenarioContext.Pending();
+         var appController = new AppControllerFactory().Create();
+         appController.Run( new string[0] );
       }
 
       [Then( "the UI appears" )]
