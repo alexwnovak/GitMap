@@ -55,7 +55,6 @@
     <Compile Include="Workflow.cs" />
     <Compile Include="ConfigurationPair.cs" />
     <Compile Include="ConfigurationReader.cs" />
-    <Compile Include="IAppLauncher.cs" />
     <Compile Include="IConfigurationReader.cs" />
     <Compile Include="IProcessRunner.cs" />
     <Compile Include="IWorkflow.cs" />
