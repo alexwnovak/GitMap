@@ -24,7 +24,7 @@ namespace GitMap.AcceptanceTests.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "ConfigurationLaunch.feature"
+#line 1 "ConfigurationFlow.feature"
 #line hidden
         
         public LaunchingGitMapForConfigurationFeature(LaunchingGitMapForConfigurationFeature.FixtureData fixtureData, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
