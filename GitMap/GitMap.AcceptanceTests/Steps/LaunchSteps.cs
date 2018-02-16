@@ -4,11 +4,11 @@ using TechTalk.SpecFlow;
 namespace GitMap.AcceptanceTests.Steps
 {
    [Binding]
-   public class EditorSteps
+   public class LaunchSteps
    {
       private readonly ScenarioContext _scenarioContext;
 
-      public EditorSteps( ScenarioContext scenarioContext )
+      public LaunchSteps( ScenarioContext scenarioContext )
       {
          _scenarioContext = scenarioContext;
       }
@@ -18,9 +18,21 @@ namespace GitMap.AcceptanceTests.Steps
       {
          var processRunnerMock = _scenarioContext.Get<Mock<IProcessRunner>>();
          string configuredEditor = (string) _scenarioContext["configuredEditor"];
-         string filePath  = (string) _scenarioContext["filePath"];
+         string filePath = (string) _scenarioContext["filePath"];
 
          processRunnerMock.Verify( pr => pr.Run( configuredEditor, filePath ), Times.Once() );
+      }
+
+      [Given( "I have launched GitMap with no arguments" )]
+      public void GivenILaunchGitMapWithNoArguments()
+      {
+         _scenarioContext.Pending();
+      }
+
+      [Then( @"the UI appears" )]
+      public void ThenTheUIAppears()
+      {
+         _scenarioContext.Pending();
       }
    }
 }

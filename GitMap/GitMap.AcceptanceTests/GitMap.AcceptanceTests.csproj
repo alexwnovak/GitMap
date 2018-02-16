@@ -91,10 +91,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RebaseFlowFeature.feature</DependentUpon>
     </Compile>
-    <Compile Include="Steps\EditorSteps.cs" />
+    <Compile Include="Steps\LaunchSteps.cs" />
     <Compile Include="Steps\RebaseFlowFeatureSteps.cs" />
     <Compile Include="Steps\CommitFlowFeatureSteps.cs" />
-    <Compile Include="Steps\LaunchingGitMapForConfigurationSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GitMap\GitMap.csproj">
