@@ -19,7 +19,7 @@ namespace GitMap.AcceptanceTests.Steps
          _scenarioContext = scenarioContext;
       }
 
-      [Given( @"my commit editor has been configured to be (.*)" )]
+      [Given( "my commit editor has been configured to be (.*)" )]
       public void GivenMyCommitEditorIsConfiguredToBeNotepad_Exe( string editorPath )
       {
          _configuredEditor = editorPath;
@@ -33,7 +33,7 @@ namespace GitMap.AcceptanceTests.Steps
          _scenarioContext["filePath"] = _commitFilePath;
       }
 
-      [When( @"the application launches" )]
+      [When( "the application launches" )]
       public void WhenTheApplicationLaunches()
       {
          var factory = new AppControllerFactory( _configurationReaderMock.Object, _processRunnerMock.Object );
