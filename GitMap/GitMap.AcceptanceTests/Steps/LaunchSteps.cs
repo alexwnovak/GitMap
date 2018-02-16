@@ -1,5 +1,5 @@
-﻿using GitMap.AcceptanceTests.PageObjects;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
+using GitMap.AcceptanceTests.PageObjects;
 
 namespace GitMap.AcceptanceTests.Steps
 {
