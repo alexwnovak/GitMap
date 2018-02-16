@@ -83,7 +83,7 @@ namespace GitMap.AcceptanceTests
 #line 7
 this.ScenarioSetup(scenarioInfo);
 #line 8
-   testRunner.Given("my commit editor is configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+   testRunner.Given("my commit editor has been configured to be notepad.exe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
    testRunner.When("the application launches", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10

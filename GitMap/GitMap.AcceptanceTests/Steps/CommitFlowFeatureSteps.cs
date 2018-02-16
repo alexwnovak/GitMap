@@ -19,7 +19,7 @@ namespace GitMap.AcceptanceTests.Steps
          _scenarioContext = scenarioContext;
       }
 
-      [Given( @"my commit editor is configured to be (.*)" )]
+      [Given( @"my commit editor has been configured to be (.*)" )]
       public void GivenMyCommitEditorIsConfiguredToBeNotepad_Exe( string editorPath )
       {
          _configuredEditor = editorPath;

@@ -5,6 +5,6 @@
 
 @Acceptance
 Scenario: Editing an interactive rebase
-   Given my commit editor is configured to be notepad.exe
+   Given my commit editor has been configured to be notepad.exe
    When the application launches
    Then my configured editor is launched with the file

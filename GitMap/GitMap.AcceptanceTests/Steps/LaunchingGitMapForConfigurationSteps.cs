@@ -13,7 +13,7 @@ namespace GitMap.AcceptanceTests.Steps
          _scenarioContext = scenarioContext;
       }
 
-      [Given( @"I launch GitMap with no arguments" )]
+      [Given( "I have launched GitMap with no arguments" )]
       public void GivenILaunchGitMapWithNoArguments()
       {
          _scenarioContext.Pending();
