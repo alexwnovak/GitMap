@@ -6,16 +6,23 @@ namespace GitMap.AcceptanceTests.Steps
    [Binding]
    public class LaunchingGitMapForConfigurationSteps
    {
+      private readonly ScenarioContext _scenarioContext;
+
+      public LaunchingGitMapForConfigurationSteps( ScenarioContext scenarioContext )
+      {
+         _scenarioContext = scenarioContext;
+      }
+
       [Given( @"I launch GitMap with no arguments" )]
       public void GivenILaunchGitMapWithNoArguments()
       {
-         ScenarioContext.Current.Pending();
+         _scenarioContext.Pending();
       }
 
       [Then( @"the UI appears" )]
       public void ThenTheUIAppears()
       {
-         ScenarioContext.Current.Pending();
+         _scenarioContext.Pending();
       }
    }
 }
