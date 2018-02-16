@@ -1,4 +1,4 @@
-﻿using Moq;
+﻿using GitMap.AcceptanceTests.PageObjects;
 using TechTalk.SpecFlow;
 
 namespace GitMap.AcceptanceTests.Steps
@@ -13,14 +13,18 @@ namespace GitMap.AcceptanceTests.Steps
          _scenarioContext = scenarioContext;
       }
 
-      [Then( "my configured editor is launched with the file" )]
-      public void ThenMyConfiguredEditorIsLaunchedWithTheFile()
+      [When( "the application launches with the argument (.*)" )]
+      public void WhenTheApplicationLaunchesWithAnArgument( string argument )
       {
-         var processRunnerMock = _scenarioContext.Get<Mock<IProcessRunner>>();
-         string configuredEditor = (string) _scenarioContext["configuredEditor"];
-         string filePath = (string) _scenarioContext["filePath"];
+         var appControllerPageObject = _scenarioContext.Get<AppControllerPageObject>();
+         appControllerPageObject.Run( argument );
+      }
 
-         processRunnerMock.Verify( pr => pr.Run( configuredEditor, filePath ), Times.Once() );
+      [Then( "(.*) is launched with the commit file" )]
+      public void ThenMyConfiguredEditorIsLaunchedWithTheCommitFile( string configuredEditor )
+      {
+         var appControllerPageObject = _scenarioContext.Get<AppControllerPageObject>();
+         appControllerPageObject.VerifyCommitEditorLaunch( configuredEditor );
       }
 
       [Then( "my configured rebase editor is launched with the rebase file" )]
@@ -29,7 +33,7 @@ namespace GitMap.AcceptanceTests.Steps
       }
 
       [Given( "I have launched the application with no arguments" )]
-      public void GivenILaunchGitMapWithNoArguments()
+      public void GivenILaunchTheApplicationWithNoArguments()
       {
          var appController = new AppControllerFactory().Create();
          appController.Run( new string[0] );
