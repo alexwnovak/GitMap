@@ -6,11 +6,12 @@ namespace GitMap
    {
       public int Run( string fileName, string arguments )
       {
-         var process = Process.Start( fileName, arguments );
+         using ( var process = Process.Start( fileName, arguments ) )
+         {
+            process.WaitForExit();
 
-         process.WaitForExit();
-
-         return process.ExitCode;
+            return process.ExitCode;
+         }
       }
    }
 }
