@@ -27,11 +27,6 @@ namespace GitMap.AcceptanceTests.Steps
          appControllerPageObject.VerifyCommitEditorLaunch( configuredEditor );
       }
 
-      [Then( "my configured rebase editor is launched with the rebase file" )]
-      public void ThenMyConfiguredRebaseEditorIsLaunchedWithTheRebaseFile()
-      {
-      }
-
       [Given( "I have launched the application with no arguments" )]
       public void GivenILaunchTheApplicationWithNoArguments()
       {
