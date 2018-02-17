@@ -14,22 +14,17 @@ namespace GitMap.AcceptanceTests.PageObjects
 
       private AppController _appController;
 
-      public void AddCommitWorkflow( string editorPath )
+      public void AddCommitWorkflow( string editorPath ) =>
+         AddWorkflow( WorkflowNames.CommitWorkflow, GitFileNames.CommitFileName, editorPath );
+
+      public void AddRebaseWorkflow( string editorPath ) =>
+         AddWorkflow( WorkflowNames.RebaseWorkflow, GitFileNames.RebaseFileName, editorPath );
+
+      private void AddWorkflow( string workflowName, string gitFileName, string editorPath )
       {
-         var commitConfiguration = new ConfigurationPair( editorPath, "%1" );
-         _configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( commitConfiguration );
-
-         var commitWorkflow = new Workflow( WorkflowNames.CommitWorkflow, _configurationReaderMock.Object, _processRunnerMock.Object );
-         _workflows[GitFileNames.CommitFileName] = commitWorkflow;
-      }
-
-      public void AddRebaseWorkflow( string editorPath )
-      {
-         var rebaseConfiguration = new ConfigurationPair( editorPath, "%1" );
-         _configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.RebaseWorkflow ) ).Returns( rebaseConfiguration );
-
-         var rebaseWorkflow = new Workflow( WorkflowNames.RebaseWorkflow, _configurationReaderMock.Object, _processRunnerMock.Object );
-         _workflows[GitFileNames.RebaseFileName] = rebaseWorkflow;
+         var configurationPair = new ConfigurationPair( editorPath, "%1" );
+         _configurationReaderMock.Setup( cr => cr.Read( workflowName ) ).Returns( configurationPair );
+         _workflows[gitFileName] = new Workflow( workflowName, _configurationReaderMock.Object, _processRunnerMock.Object );
       }
 
       public void Run( string argument )
