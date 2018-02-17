@@ -6,5 +6,5 @@
 @Acceptance
 Scenario: Making a commit
    Given my commit editor has been configured to be notepad.exe
-   When the application launches
-   Then my configured editor is launched with the file
+   When the application launches with the argument C:\Repo\.git\COMMIT_EDITMSG
+   Then notepad.exe is launched to edit the file

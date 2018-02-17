@@ -1,17 +1,11 @@
-﻿using Moq;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
+using GitMap.AcceptanceTests.PageObjects;
 
 namespace GitMap.AcceptanceTests.Steps
 {
    [Binding]
    public class CommitFlowSteps
    {
-      private string _configuredEditor;
-      private const string _commitFilePath = @"C:\Git\Repo\.git\COMMIT_EDITMSG";
-
-      private readonly Mock<IConfigurationReader> _configurationReaderMock = new Mock<IConfigurationReader>();
-      private readonly Mock<IProcessRunner> _processRunnerMock = new Mock<IProcessRunner>();
-
       private readonly ScenarioContext _scenarioContext;
 
       public CommitFlowSteps( ScenarioContext scenarioContext )
@@ -20,27 +14,26 @@ namespace GitMap.AcceptanceTests.Steps
       }
 
       [Given( "my commit editor has been configured to be (.*)" )]
-      public void GivenMyCommitEditorIsConfiguredToBeNotepad_Exe( string editorPath )
+      public void GivenMyCommitEditorIsConfigured( string editorPath )
       {
-         _configuredEditor = editorPath;
+         var appControllerPageObject = new AppControllerPageObject();
+         appControllerPageObject.AddCommitWorkflow( editorPath );
 
-         var notepadConfiguration = new ConfigurationPair( _configuredEditor, "%1" );
+         _scenarioContext.Set( appControllerPageObject );
+      }
 
-         _configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( notepadConfiguration );
+      [Given( "my rebase editor has been configured to be (.*)" )]
+      public void GivenMyRebaseEditorIsConfigured( string editorPath )
+      {
+         var appControllerPageObject = new AppControllerPageObject();
+         appControllerPageObject.AddRebaseWorkflow( editorPath );
 
-         _scenarioContext.Set( _processRunnerMock );
-         _scenarioContext["configuredEditor"] = editorPath;
-         _scenarioContext["filePath"] = _commitFilePath;
+         _scenarioContext.Set( appControllerPageObject );
       }
 
       [When( "the application launches" )]
       public void WhenTheApplicationLaunches()
       {
-         var factory = new AppControllerFactory( _configurationReaderMock.Object, _processRunnerMock.Object );
-
-         var appController = factory.Create();
-
-         appController.Run( new[] { _commitFilePath } );
       }
    }
 }
