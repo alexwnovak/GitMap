@@ -9,7 +9,8 @@
    Title="{m:Resx ApplicationName}"
    Width="525"
    Height="350"
-   WindowStartupLocation="CenterScreen">
+   WindowStartupLocation="CenterScreen"
+   ResizeMode="NoResize">
    <Grid>
 
    </Grid>
