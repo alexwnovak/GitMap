@@ -7,4 +7,4 @@
 Scenario: Editing an interactive rebase
    Given my rebase editor has been configured to be notepad.exe
    When the application launches with the argument C:\Repo\.git\git-rebase-todo
-   Then notepad.exe is launched with the commit file
+   Then notepad.exe is launched to edit the file

@@ -20,11 +20,11 @@ namespace GitMap.AcceptanceTests.Steps
          appControllerPageObject.Run( argument );
       }
 
-      [Then( "(.*) is launched with the commit file" )]
+      [Then( "(.*) is launched to edit the file" )]
       public void ThenMyConfiguredEditorIsLaunchedWithTheCommitFile( string configuredEditor )
       {
          var appControllerPageObject = _scenarioContext.Get<AppControllerPageObject>();
-         appControllerPageObject.VerifyCommitEditorLaunch( configuredEditor );
+         appControllerPageObject.VerifyEditorLaunch( configuredEditor );
       }
 
       [Given( "I have launched the application with no arguments" )]

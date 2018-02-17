@@ -7,4 +7,4 @@
 Scenario: Making a commit
    Given my commit editor has been configured to be notepad.exe
    When the application launches with the argument C:\Repo\.git\COMMIT_EDITMSG
-   Then notepad.exe is launched with the commit file
+   Then notepad.exe is launched to edit the file

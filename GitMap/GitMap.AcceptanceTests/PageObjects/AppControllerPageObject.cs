@@ -25,8 +25,8 @@ namespace GitMap.AcceptanceTests.PageObjects
 
       public void AddRebaseWorkflow( string editorPath )
       {
-         var commitConfiguration = new ConfigurationPair( editorPath, "%1" );
-         _configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.RebaseWorkflow ) ).Returns( commitConfiguration );
+         var rebaseConfiguration = new ConfigurationPair( editorPath, "%1" );
+         _configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.RebaseWorkflow ) ).Returns( rebaseConfiguration );
 
          var rebaseWorkflow = new Workflow( WorkflowNames.RebaseWorkflow, _configurationReaderMock.Object, _processRunnerMock.Object );
          _workflows[GitFileNames.RebaseFileName] = rebaseWorkflow;
@@ -40,7 +40,7 @@ namespace GitMap.AcceptanceTests.PageObjects
          _appController.Run( new[] { argument } );
       }
 
-      public void VerifyCommitEditorLaunch( string configuredEditor )
+      public void VerifyEditorLaunch( string configuredEditor )
       {
          _processRunnerMock.Verify( pr => pr.Run( configuredEditor, _filePath ), Times.Once() );
       }

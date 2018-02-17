@@ -87,7 +87,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 9
    testRunner.When("the application launches with the argument C:\\Repo\\.git\\COMMIT_EDITMSG", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
-   testRunner.Then("notepad.exe is launched with the commit file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+   testRunner.Then("notepad.exe is launched to edit the file", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
