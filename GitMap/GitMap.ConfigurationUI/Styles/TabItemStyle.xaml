@@ -11,7 +11,7 @@
 
                   <ContentPresenter x:Name="ContentSite"
                      VerticalAlignment="Center"
-                     HorizontalAlignment="Center"
+                     HorizontalAlignment="Left"
                      ContentSource="Header"
                      Margin="10,2"/>
                </Grid>
