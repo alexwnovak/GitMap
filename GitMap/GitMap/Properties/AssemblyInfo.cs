@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration( "" )]
 [assembly: AssemblyCompany( "" )]
 [assembly: AssemblyProduct( "GitMap" )]
-[assembly: AssemblyCopyright( "Copyright © 2017 Alex Novak. All rights reserved." )]
+[assembly: AssemblyCopyright( "Copyright © 2017-2018 Alex Novak. All rights reserved." )]
 [assembly: AssemblyTrademark( "" )]
 [assembly: AssemblyCulture( "" )]
 
