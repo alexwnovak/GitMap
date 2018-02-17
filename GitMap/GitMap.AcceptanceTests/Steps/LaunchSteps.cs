@@ -30,14 +30,18 @@ namespace GitMap.AcceptanceTests.Steps
       [Given( "I have launched the application with no arguments" )]
       public void GivenILaunchTheApplicationWithNoArguments()
       {
-         var appController = new AppControllerFactory().Create();
-         appController.Run( new string[0] );
+         var appControllerPageObject = new AppControllerPageObject();
+         appControllerPageObject.AddConfigurationWorkflow();
+         appControllerPageObject.Run( new string[0] );
+
+         _scenarioContext.Set( appControllerPageObject );
       }
 
       [Then( "the UI appears" )]
       public void ThenTheUIAppears()
       {
-         _scenarioContext.Pending();
+         var appControllerPageObject = _scenarioContext.Get<AppControllerPageObject>();
+         appControllerPageObject.VerifyConfigurationUILaunch();
       }
    }
 }

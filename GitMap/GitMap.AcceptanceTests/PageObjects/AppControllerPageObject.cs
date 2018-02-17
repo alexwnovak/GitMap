@@ -20,6 +20,9 @@ namespace GitMap.AcceptanceTests.PageObjects
       public void AddRebaseWorkflow( string editorPath ) =>
          AddWorkflow( WorkflowNames.RebaseWorkflow, GitFileNames.RebaseFileName, editorPath );
 
+      public void AddConfigurationWorkflow() =>
+         _workflows[""] = new ConfigurationWorkflow( _processRunnerMock.Object );
+
       private void AddWorkflow( string workflowName, string gitFileName, string editorPath )
       {
          var configurationPair = new ConfigurationPair( editorPath, "%1" );
@@ -27,17 +30,27 @@ namespace GitMap.AcceptanceTests.PageObjects
          _workflows[gitFileName] = new Workflow( workflowName, _configurationReaderMock.Object, _processRunnerMock.Object );
       }
 
-      public void Run( string argument )
+      public void Run( params string[] arguments )
       {
-         _filePath = argument;
+         if ( arguments.Length > 0 )
+         {
+            _filePath = arguments[0];
+         }
 
          _appController = new AppController( _workflows, Mock.Of<IOutputController>() );
-         _appController.Run( new[] { argument } );
+         _appController.Run( arguments );
       }
 
       public void VerifyEditorLaunch( string configuredEditor )
       {
          _processRunnerMock.Verify( pr => pr.Run( configuredEditor, _filePath ), Times.Once() );
+      }
+
+      public void VerifyConfigurationUILaunch()
+      {
+         _processRunnerMock.Verify( pr => pr.Run(
+            It.Is<string>( fn => fn.EndsWith( "GitMap.ConfigurationUI.exe" ) ), null ),
+            Times.Once() );
       }
    }
 }
