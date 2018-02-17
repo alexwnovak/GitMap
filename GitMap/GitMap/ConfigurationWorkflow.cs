@@ -9,7 +9,7 @@ namespace GitMap
 
       public ConfigurationWorkflow( IProcessRunner processRunner )
       {
-         _processRunner = processRunner;
+         _processRunner = processRunner ?? throw new ArgumentNullException( nameof( processRunner ) );
       }
 
       public int Launch( string parameter )
