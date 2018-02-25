@@ -68,5 +68,23 @@ namespace GitMap.ConfigurationUI.Properties {
                 return ResourceManager.GetString("ApplicationName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Commit.
+        /// </summary>
+        internal static string Commit {
+            get {
+                return ResourceManager.GetString("Commit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rebase.
+        /// </summary>
+        internal static string Rebase {
+            get {
+                return ResourceManager.GetString("Rebase", resourceCulture);
+            }
+        }
     }
 }
