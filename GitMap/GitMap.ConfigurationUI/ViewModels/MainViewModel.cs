@@ -1,19 +1,19 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
    public class MainViewModel : ViewModelBase
    {
-      public MainViewModel()
+      public ObservableCollection<EditorViewModel> EditorViewModels
       {
-         ////if (IsInDesignMode)
-         ////{
-         ////    // Code runs in Blend --> create design time data.
-         ////}
-         ////else
-         ////{
-         ////    // Code runs "for real"
-         ////}
+         get;
+      }
+
+      public MainViewModel( IEnumerable<EditorViewModel> editorViewModels )
+      {
+         EditorViewModels = new ObservableCollection<EditorViewModel>( editorViewModels );
       }
    }
 }
