@@ -4,6 +4,7 @@
    <Style TargetType="TabControl">
       <Setter Property="Background" Value="{StaticResource Background}" />
       <Setter Property="TabStripPlacement" Value="Left" />
+      <Setter Property="BorderBrush" Value="Transparent" />
       <Setter Property="ContentTemplate" Value="{StaticResource TabContentTemplate}" />
    </Style>
 </ResourceDictionary>
