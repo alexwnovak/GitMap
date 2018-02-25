@@ -9,11 +9,10 @@
                   Width="100"
                   Height="30">
 
-                  <ContentPresenter x:Name="ContentSite"
+                  <TextBlock Text="{Binding Header, Mode=OneWay}"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
-                     ContentSource="Header"
-                     Margin="10,2"/>
+                     Margin="6,0,0,0" />
                </Grid>
 
                <ControlTemplate.Triggers>
