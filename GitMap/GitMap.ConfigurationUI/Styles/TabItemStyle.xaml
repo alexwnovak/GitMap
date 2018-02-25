@@ -17,10 +17,7 @@
 
                <ControlTemplate.Triggers>
                   <Trigger Property="IsSelected" Value="True">
-                     <Setter TargetName="Panel" Property="Background" Value="LightSkyBlue" />
-                  </Trigger>
-                  <Trigger Property="IsSelected" Value="False">
-                     <Setter TargetName="Panel" Property="Background" Value="White" />
+                     <Setter TargetName="Panel" Property="Background" Value="#BFE38D" />
                   </Trigger>
                </ControlTemplate.Triggers>
             </ControlTemplate>
