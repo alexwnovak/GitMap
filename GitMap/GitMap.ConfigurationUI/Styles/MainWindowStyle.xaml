@@ -7,5 +7,16 @@
       <Setter Property="Height" Value="300" />
       <Setter Property="ResizeMode" Value="NoResize" />
       <Setter Property="Background" Value="{StaticResource Background}" />
+      <Setter Property="Template">
+         <Setter.Value>
+            <ControlTemplate TargetType="g:MainWindow">
+               <Grid Background="{TemplateBinding Background}">
+                  <AdornerDecorator>
+                     <ContentPresenter />
+                  </AdornerDecorator>
+               </Grid>
+            </ControlTemplate>
+         </Setter.Value>
+      </Setter>
    </Style>
 </ResourceDictionary>
