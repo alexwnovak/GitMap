@@ -7,7 +7,8 @@
             <ControlTemplate TargetType="TabItem">
                <Grid Name="Panel"
                   Width="100"
-                  Height="30">
+                  Height="30"
+                  Background="Transparent">
 
                   <TextBlock Text="{Binding Header, Mode=OneWay}"
                      VerticalAlignment="Center"
