@@ -2,4 +2,5 @@
    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
    xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles">
    <SolidColorBrush x:Key="Background">#2B4B6F</SolidColorBrush>
+   <SolidColorBrush x:Key="EditorBackground">#256E5E</SolidColorBrush>
 </ResourceDictionary>
