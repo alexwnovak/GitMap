@@ -5,6 +5,7 @@
    <Style TargetType="g:MainWindow">
       <Setter Property="Width" Value="500" />
       <Setter Property="Height" Value="300" />
+      <Setter Property="WindowStyle" Value="None" />
       <Setter Property="ResizeMode" Value="NoResize" />
       <Setter Property="Background" Value="{StaticResource Background}" />
       <Setter Property="Template">
