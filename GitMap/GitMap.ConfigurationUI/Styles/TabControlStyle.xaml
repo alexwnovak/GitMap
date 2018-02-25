@@ -5,7 +5,7 @@
       <Setter Property="Background" Value="{StaticResource Background}" />
       <Setter Property="Padding" Value="0" />
       <Setter Property="TabStripPlacement" Value="Left" />
-      <Setter Property="BorderBrush" Value="Transparent" />
+      <Setter Property="BorderThickness" Value="0" />
       <Setter Property="ContentTemplate" Value="{StaticResource TabContentTemplate}" />
    </Style>
 </ResourceDictionary>
