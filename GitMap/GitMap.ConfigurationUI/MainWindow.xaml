@@ -10,8 +10,11 @@
    Width="525"
    Height="350"
    WindowStartupLocation="CenterScreen"
-   ResizeMode="NoResize">
+   ResizeMode="NoResize"
+   DataContext="{Binding Main, Source={StaticResource Locator}}">
    <Grid>
-
+      <TabControl TabStripPlacement="Left"
+         ItemsSource="{Binding EditorViewModels}"
+         ContentTemplate="{StaticResource TabContentTemplate}" />
    </Grid>
 </Window>

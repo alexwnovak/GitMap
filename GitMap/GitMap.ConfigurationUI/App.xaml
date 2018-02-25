@@ -10,6 +10,7 @@
       <ResourceDictionary>
          <ResourceDictionary.MergedDictionaries>
             <ResourceDictionary Source="Styles/TabItemStyle.xaml" />
+            <ResourceDictionary Source="Styles/TabContentTemplate.xaml" />
             <ResourceDictionary>
                <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:GitMap.ConfigurationUI.ViewModels" />
             </ResourceDictionary>
