@@ -9,6 +9,7 @@
    <Application.Resources>
       <ResourceDictionary>
          <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Styles/Colors.xaml" />
             <ResourceDictionary Source="Styles/TabItemStyle.xaml" />
             <ResourceDictionary Source="Styles/TabContentTemplate.xaml" />
             <ResourceDictionary>
