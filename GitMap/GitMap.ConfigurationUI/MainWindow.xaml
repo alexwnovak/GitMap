@@ -6,8 +6,8 @@
    xmlns:local="clr-namespace:GitMap.ConfigurationUI"
    xmlns:m="clr-namespace:GitMap.ConfigurationUI.Markup"
    mc:Ignorable="d"
-   Title="{m:Resx ApplicationName}"
    WindowStartupLocation="CenterScreen"
+   Title="{m:Resx ApplicationName}"
    DataContext="{Binding Main, Source={StaticResource Locator}}">
    <Grid>
       <TabControl ItemsSource="{Binding EditorViewModels}" />
