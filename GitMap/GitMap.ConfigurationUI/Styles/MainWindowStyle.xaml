@@ -11,10 +11,24 @@
       <Setter Property="Template">
          <Setter.Value>
             <ControlTemplate TargetType="g:MainWindow">
-               <Grid Background="{TemplateBinding Background}">
-                  <AdornerDecorator>
-                     <ContentPresenter />
-                  </AdornerDecorator>
+               <Grid>
+                  <Grid.RowDefinitions>
+                     <RowDefinition Height="30" />
+                     <RowDefinition />
+                  </Grid.RowDefinitions>
+
+                  <Grid Background="White">
+                     <TextBlock Text="{TemplateBinding Title}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                  </Grid>
+
+                  <Grid Grid.Row="1"
+                     Background="{TemplateBinding Background}">
+                     <AdornerDecorator>
+                        <ContentPresenter />
+                     </AdornerDecorator>
+                  </Grid>
                </Grid>
             </ControlTemplate>
          </Setter.Value>
