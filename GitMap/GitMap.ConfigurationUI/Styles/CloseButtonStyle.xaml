@@ -5,11 +5,40 @@
       <Setter Property="Template">
          <Setter.Value>
             <ControlTemplate>
-               <Grid Background="Brown">
+               <Grid x:Name="Grid"
+                  Background="Brown">
                   <TextBlock FontFamily="Segoe MDL2 Assets"
                      Text="&#xE106;"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
+
+                  <VisualStateManager.VisualStateGroups>
+                     <VisualStateGroup x:Name="CommonStates">
+                        <VisualStateGroup.Transitions>
+                           <VisualTransition GeneratedDuration="0:0:0.1" />
+                           <VisualTransition GeneratedDuration="0" To="Pressed" />
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="MouseOver">
+                           <Storyboard>
+                              <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                 Storyboard.TargetName="Grid">
+                                 <EasingColorKeyFrame KeyTime="0"
+                                    Value="White" />
+                              </ColorAnimationUsingKeyFrames>
+                           </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                           <Storyboard>
+                              <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
+                                 Storyboard.TargetName="Grid">
+                                 <EasingColorKeyFrame KeyTime="0"
+                                    Value="Black" />
+                              </ColorAnimationUsingKeyFrames>
+                           </Storyboard>
+                        </VisualState>
+                     </VisualStateGroup>
+                  </VisualStateManager.VisualStateGroups>
                </Grid>
             </ControlTemplate>
          </Setter.Value>
