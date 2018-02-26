@@ -11,4 +11,7 @@
 
    <Color x:Key="CloseButtonPressedColor">#A6373F</Color>
    <SolidColorBrush x:Key="CloseButtonPressed" Color="{StaticResource CloseButtonPressedColor}" />
+
+   <Color x:Key="HighlightColor">#A4C867</Color>
+   <SolidColorBrush x:Key="Highlight" Color="{StaticResource HighlightColor}" />
 </ResourceDictionary>

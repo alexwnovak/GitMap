@@ -18,7 +18,7 @@
 
                <ControlTemplate.Triggers>
                   <Trigger Property="IsSelected" Value="True">
-                     <Setter TargetName="Panel" Property="Background" Value="#BFE38D" />
+                     <Setter TargetName="Panel" Property="Background" Value="{StaticResource Highlight}" />
                   </Trigger>
                </ControlTemplate.Triggers>
             </ControlTemplate>
