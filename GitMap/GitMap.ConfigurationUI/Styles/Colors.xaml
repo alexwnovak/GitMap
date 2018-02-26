@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles">
+   <SolidColorBrush x:Key="TitleBar">#113C51</SolidColorBrush>
+   <SolidColorBrush x:Key="Background">#032738</SolidColorBrush>
+   <SolidColorBrush x:Key="EditorBackground">#A6BDCA</SolidColorBrush>
+   <SolidColorBrush x:Key="ForegroundLight">#80FFFFFF</SolidColorBrush>
+   <SolidColorBrush x:Key="ForegroundDark">#D8000000</SolidColorBrush>
+
+   <Color x:Key="OverlayLightColor">#20FFFFFF</Color>
+   <SolidColorBrush x:Key="OverlayLight" Color="{StaticResource OverlayLightColor}" />
+
+   <Color x:Key="CloseButtonPressedColor">#A6373F</Color>
+   <SolidColorBrush x:Key="CloseButtonPressed" Color="{StaticResource CloseButtonPressedColor}" />
+
+   <Color x:Key="HighlightColor">#A4C867</Color>
+   <SolidColorBrush x:Key="Highlight" Color="{StaticResource HighlightColor}" />
+</ResourceDictionary>

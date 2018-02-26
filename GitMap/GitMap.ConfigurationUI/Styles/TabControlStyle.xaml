@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+   xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles">
+   <Style TargetType="TabControl">
+      <Setter Property="Padding" Value="0" />
+      <Setter Property="Background" Value="{StaticResource Background}" />
+      <Setter Property="TabStripPlacement" Value="Left" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="ContentTemplate" Value="{StaticResource TabContentTemplate}" />
+   </Style>
+</ResourceDictionary>

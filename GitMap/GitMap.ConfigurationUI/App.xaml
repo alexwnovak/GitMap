@@ -9,8 +9,12 @@
    <Application.Resources>
       <ResourceDictionary>
          <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Styles/Colors.xaml" />
+            <ResourceDictionary Source="Styles/MainWindowStyle.xaml" />
             <ResourceDictionary Source="Styles/TabItemStyle.xaml" />
             <ResourceDictionary Source="Styles/TabContentTemplate.xaml" />
+            <ResourceDictionary Source="Styles/TabControlStyle.xaml" />
+            <ResourceDictionary Source="Styles/CloseButtonStyle.xaml" />
             <ResourceDictionary>
                <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:GitMap.ConfigurationUI.ViewModels" />
             </ResourceDictionary>
