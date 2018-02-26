@@ -2,7 +2,7 @@
    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
    xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles">
    <DataTemplate x:Key="TabContentTemplate">
-      <Grid Background="{StaticResource EditorBackground}">
+      <Grid Margin="20">
          <CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay}"
             Content="Enable this" />
       </Grid>
