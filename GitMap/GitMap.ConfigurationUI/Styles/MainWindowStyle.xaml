@@ -18,9 +18,17 @@
                   </Grid.RowDefinitions>
 
                   <Grid Background="White">
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="40" />
+                     </Grid.ColumnDefinitions>
+
                      <TextBlock Text="{TemplateBinding Title}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center" />
+
+                     <Button Grid.Column="1"
+                         Style="{DynamicResource CloseButtonStyle}" />
                   </Grid>
 
                   <Grid Grid.Row="1"

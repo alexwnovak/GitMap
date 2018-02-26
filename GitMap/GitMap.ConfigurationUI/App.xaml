@@ -14,6 +14,7 @@
             <ResourceDictionary Source="Styles/TabItemStyle.xaml" />
             <ResourceDictionary Source="Styles/TabContentTemplate.xaml" />
             <ResourceDictionary Source="Styles/TabControlStyle.xaml" />
+            <ResourceDictionary Source="Styles/CloseButtonStyle.xaml" />
             <ResourceDictionary>
                <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:GitMap.ConfigurationUI.ViewModels" />
             </ResourceDictionary>
