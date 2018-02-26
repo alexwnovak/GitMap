@@ -3,7 +3,7 @@
    xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles">
    <Style TargetType="TabControl">
       <Setter Property="Padding" Value="0" />
-      <Setter Property="Background" Value="{StaticResource EditorBackground}" />
+      <Setter Property="Background" Value="{StaticResource Background}" />
       <Setter Property="TabStripPlacement" Value="Left" />
       <Setter Property="BorderThickness" Value="0" />
       <Setter Property="ContentTemplate" Value="{StaticResource TabContentTemplate}" />
