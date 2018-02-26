@@ -3,7 +3,7 @@
    xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles">
    <SolidColorBrush x:Key="TitleBar">#113C51</SolidColorBrush>
    <SolidColorBrush x:Key="Background">#032738</SolidColorBrush>
-   <SolidColorBrush x:Key="EditorBackground">#256E5E</SolidColorBrush>
+   <SolidColorBrush x:Key="EditorBackground">#A6BDCA</SolidColorBrush>
    <SolidColorBrush x:Key="ForegroundLight">#80FFFFFF</SolidColorBrush>
    <SolidColorBrush x:Key="ForegroundDark">#D8000000</SolidColorBrush>
 
