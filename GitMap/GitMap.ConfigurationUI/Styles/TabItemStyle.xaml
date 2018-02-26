@@ -10,7 +10,9 @@
                   Height="40"
                   Background="Transparent">
 
-                  <TextBlock Text="{Binding Header, Mode=OneWay}"
+                  <TextBlock x:Name="TextBlock"
+                     Text="{Binding Header, Mode=OneWay}"
+                     Foreground="{StaticResource ForegroundLight}"
                      VerticalAlignment="Center"
                      HorizontalAlignment="Left"
                      Margin="15,0,0,0" />
@@ -19,6 +21,7 @@
                <ControlTemplate.Triggers>
                   <Trigger Property="IsSelected" Value="True">
                      <Setter TargetName="Panel" Property="Background" Value="{StaticResource Highlight}" />
+                     <Setter TargetName="TextBlock" Property="Foreground" Value="{StaticResource ForegroundDark}" />
                   </Trigger>
                </ControlTemplate.Triggers>
             </ControlTemplate>
