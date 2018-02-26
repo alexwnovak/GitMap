@@ -1,6 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
    xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles">
+   <SolidColorBrush x:Key="TitleBar">#113C51</SolidColorBrush>
    <SolidColorBrush x:Key="Background">#2B4B6F</SolidColorBrush>
    <SolidColorBrush x:Key="EditorBackground">#256E5E</SolidColorBrush>
+   <SolidColorBrush x:Key="ForegroundLight">#80FFFFFF</SolidColorBrush>
+
+   <Color x:Key="OverlayLightColor">#20FFFFFF</Color>
+   <SolidColorBrush x:Key="OverlayLight" Color="{StaticResource OverlayLightColor}" />
 </ResourceDictionary>

@@ -17,13 +17,15 @@
                      <RowDefinition />
                   </Grid.RowDefinitions>
 
-                  <Grid Background="White">
+                  <Grid Background="{StaticResource TitleBar}">
                      <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="40" />
                      </Grid.ColumnDefinitions>
 
-                     <TextBlock Text="{TemplateBinding Title}"
+                     <TextBlock Grid.ColumnSpan="2"
+                        Text="{TemplateBinding Title}"
+                        Foreground="{StaticResource ForegroundLight}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center" />
 

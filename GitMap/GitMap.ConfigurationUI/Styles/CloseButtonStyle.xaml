@@ -6,9 +6,10 @@
          <Setter.Value>
             <ControlTemplate>
                <Grid x:Name="Grid"
-                  Background="Brown">
+                  Background="Transparent">
                   <TextBlock FontFamily="Segoe MDL2 Assets"
                      Text="&#xE106;"
+                     Foreground="{StaticResource ForegroundLight}"
                      HorizontalAlignment="Center"
                      VerticalAlignment="Center" />
 
@@ -24,7 +25,7 @@
                               <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Background).(SolidColorBrush.Color)"
                                  Storyboard.TargetName="Grid">
                                  <EasingColorKeyFrame KeyTime="0"
-                                    Value="White" />
+                                    Value="{StaticResource OverlayLightColor}" />
                               </ColorAnimationUsingKeyFrames>
                            </Storyboard>
                         </VisualState>
