@@ -8,4 +8,7 @@
 
    <Color x:Key="OverlayLightColor">#20FFFFFF</Color>
    <SolidColorBrush x:Key="OverlayLight" Color="{StaticResource OverlayLightColor}" />
+
+   <Color x:Key="CloseButtonPressedColor">#A6373F</Color>
+   <SolidColorBrush x:Key="CloseButtonPressed" Color="{StaticResource CloseButtonPressedColor}" />
 </ResourceDictionary>
