@@ -16,6 +16,7 @@
             <ResourceDictionary Source="Styles/TabControlStyle.xaml" />
             <ResourceDictionary Source="Styles/CloseButtonStyle.xaml" />
             <ResourceDictionary Source="Styles/CheckBoxStyle.xaml" />
+            <ResourceDictionary Source="Styles/TextBoxStyle.xaml" />
             <ResourceDictionary>
                <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:GitMap.ConfigurationUI.ViewModels" />
             </ResourceDictionary>
