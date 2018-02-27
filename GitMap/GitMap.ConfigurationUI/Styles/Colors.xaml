@@ -23,6 +23,8 @@
 
    <SolidColorBrush x:Key="ButtonBackground" Color="#86B5CE" />
 
+   <SolidColorBrush x:Key="EditBackground" Color="#FFF" />
+
    <Color x:Key="ButtonBackgroundHoverColor">#97D0EF</Color>
    <SolidColorBrush x:Key="ButtonBackgroundHover" Color="{StaticResource ButtonBackgroundHoverColor}" />
 
