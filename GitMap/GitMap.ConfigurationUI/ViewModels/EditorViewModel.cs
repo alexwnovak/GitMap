@@ -17,5 +17,19 @@ namespace GitMap.ConfigurationUI.ViewModels
          get => _isEnabled;
          set => Set( nameof( IsEnabled ), ref _isEnabled, value );
       }
+
+      private string _editorPath;
+      public string EditorPath
+      {
+         get => _editorPath;
+         set => Set( nameof( EditorPath ), ref _editorPath, value );
+      }
+
+      private string _arguments;
+      public string Arguments
+      {
+         get => _arguments;
+         set => Set( nameof( Arguments ), ref _arguments, value );
+      }
    }
 }
