@@ -12,10 +12,7 @@
                   BorderBrush="{StaticResource Background}"
                   BorderThickness="2">
                   <Grid ClipToBounds="True">
-                     <Grid x:Name="ToggleButton"
-                        Width="200"
-                        Background="#888">
-
+                     <Grid x:Name="ToggleButton">
                         <StackPanel Orientation="Horizontal">
                            <Grid Width="50"
                               Height="35"
