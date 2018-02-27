@@ -46,7 +46,7 @@
                                  Storyboard.TargetProperty="Margin"
                                  From="0,0,0,0"
                                  To="-50,0,0,0"
-                                 Duration="0:0:0" />
+                                 Duration="0:0:0.1" />
                            </Storyboard>
                         </VisualState>
                         <VisualState x:Name="Checked">
@@ -55,7 +55,7 @@
                                  Storyboard.TargetProperty="Margin"
                                  From="-50,0,0,0"
                                  To="0,0,0,0"
-                                 Duration="0:0:0" />
+                                 Duration="0:0:0.1" />
                            </Storyboard>
                         </VisualState>
                      </VisualStateGroup>
