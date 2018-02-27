@@ -30,4 +30,7 @@
 
    <Color x:Key="ButtonBackgroundPressedColor">#99DBFF</Color>
    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{StaticResource ButtonBackgroundPressedColor}" />
+
+   <Color x:Key="DisabledColor">#CCC</Color>
+   <SolidColorBrush x:Key="Disabled" Color="{StaticResource DisabledColor}" />
 </ResourceDictionary>
