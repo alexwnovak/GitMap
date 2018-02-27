@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
@@ -30,6 +32,20 @@ namespace GitMap.ConfigurationUI.ViewModels
       {
          get => _arguments;
          set => Set( nameof( Arguments ), ref _arguments, value );
+      }
+
+      public ICommand BrowseCommand
+      {
+         get;
+      }
+
+      public EditorViewModel()
+      {
+         BrowseCommand = new RelayCommand( OnBrowseCommand );
+      }
+
+      private void OnBrowseCommand()
+      {
       }
    }
 }
