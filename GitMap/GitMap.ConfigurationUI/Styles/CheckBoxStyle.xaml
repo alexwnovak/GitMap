@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-   xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles">
+   xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles"
+   xmlns:m="clr-namespace:GitMap.ConfigurationUI.Markup">
    <Style TargetType="CheckBox">
       <Setter Property="Background" Value="Yellow" />
       <Setter Property="Template">
@@ -16,15 +17,26 @@
                         Background="#888">
 
                         <StackPanel Orientation="Horizontal">
-                           <TextBlock Text="On"
-                              Background="{StaticResource On}"
-                              HorizontalAlignment="Center"
-                              Width="50" />
+                           <Grid Width="50"
+                              Height="35"
+                              Background="{StaticResource On}">
+                              <TextBlock Text="{m:Resx On}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Margin="0,-5,0,0"
+                                 Foreground="{StaticResource ForegroundDark}" />
+                           </Grid>
                            <Grid Background="#EEE"
                               Width="30" />
-                           <TextBlock Text="Off"
-                              Background="{StaticResource Off}"
-                              Width="50" />
+                           <Grid Width="50"
+                              Height="35"
+                              Background="{StaticResource Off}">
+                              <TextBlock Text="{m:Resx Off}"
+                                 HorizontalAlignment="Center"
+                                 VerticalAlignment="Center"
+                                 Margin="0,-5,0,0"
+                                 Foreground="{StaticResource ForegroundDark}" />
+                           </Grid>
                         </StackPanel>
                      </Grid>
                   </Grid>
