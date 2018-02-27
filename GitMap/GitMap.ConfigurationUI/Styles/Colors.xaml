@@ -20,4 +20,12 @@
    <SolidColorBrush x:Key="Off" Color="#C9677A" />
 
    <SolidColorBrush x:Key="ButtonFace" Color="#DDD" />
+
+   <SolidColorBrush x:Key="ButtonBackground" Color="#86B5CE" />
+
+   <Color x:Key="ButtonBackgroundHoverColor">#97D0EF</Color>
+   <SolidColorBrush x:Key="ButtonBackgroundHover" Color="{StaticResource ButtonBackgroundHoverColor}" />
+
+   <Color x:Key="ButtonBackgroundPressedColor">#99DBFF</Color>
+   <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{StaticResource ButtonBackgroundPressedColor}" />
 </ResourceDictionary>
