@@ -8,7 +8,7 @@
             <ControlTemplate>
                <Border Width="84"
                   Height="35"
-                  BorderBrush="Green"
+                  BorderBrush="{StaticResource Background}"
                   BorderThickness="2">
                   <Grid ClipToBounds="True">
                      <Grid x:Name="ToggleButton"
@@ -17,13 +17,13 @@
 
                         <StackPanel Orientation="Horizontal">
                            <TextBlock Text="On"
-                              Background="CornflowerBlue"
+                              Background="{StaticResource On}"
                               HorizontalAlignment="Center"
                               Width="50" />
                            <Grid Background="#EEE"
                               Width="30" />
                            <TextBlock Text="Off"
-                              Background="CornflowerBlue"
+                              Background="{StaticResource Off}"
                               Width="50" />
                         </StackPanel>
                      </Grid>

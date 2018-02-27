@@ -15,4 +15,7 @@
 
    <Color x:Key="HighlightColor">#A4C867</Color>
    <SolidColorBrush x:Key="Highlight" Color="{StaticResource HighlightColor}" />
+
+   <SolidColorBrush x:Key="On" Color="#A2C767" />
+   <SolidColorBrush x:Key="Off" Color="#C9677A" />
 </ResourceDictionary>
