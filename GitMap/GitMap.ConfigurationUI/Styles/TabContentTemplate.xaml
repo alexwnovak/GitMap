@@ -4,8 +4,14 @@
    <DataTemplate x:Key="TabContentTemplate">
       <Grid Margin="0,2,0,0"
          Background="{StaticResource EditorBackground}">
-         <CheckBox IsChecked="{Binding IsEnabled, Mode=TwoWay}"
-            Content="Enable this" />
+         <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+         </Grid.RowDefinitions>
+
+         <CheckBox Grid.Row="1"
+            IsChecked="{Binding IsEnabled, Mode=TwoWay}"
+            HorizontalAlignment="Left"
+            Margin="12,6,0,0" />
       </Grid>
    </DataTemplate>
 </ResourceDictionary>
