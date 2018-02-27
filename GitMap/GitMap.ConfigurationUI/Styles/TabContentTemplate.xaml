@@ -39,7 +39,10 @@
                   <ColumnDefinition Width="30" />
                </Grid.ColumnDefinitions>
 
-               <TextBox Text="{Binding EditorPath, Mode=TwoWay}" />
+               <TextBox Text="{Binding EditorPath, Mode=TwoWay}"
+                  VerticalContentAlignment="Center"
+                  Padding="4,0,0,0" />
+
                <Button Grid.Column="2"
                   FontFamily="Segoe MDL2 Assets"
                   Content="&#xE10C;" />
@@ -49,7 +52,9 @@
                Text="{m:Resx Arguments}" />
 
             <TextBox Grid.Row="6"
-               Text="{Binding Arguments, Mode=TwoWay}" />
+               Text="{Binding Arguments, Mode=TwoWay}"
+               VerticalContentAlignment="Center"
+               Padding="4,0,0,0" />
          </Grid>
       </Grid>
    </DataTemplate>
