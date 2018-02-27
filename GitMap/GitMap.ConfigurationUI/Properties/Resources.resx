@@ -120,8 +120,14 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>GitMap Configuration</value>
   </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Arguments:</value>
+  </data>
   <data name="Commit" xml:space="preserve">
     <value>Commit</value>
+  </data>
+  <data name="EditorPath" xml:space="preserve">
+    <value>Editor Path:</value>
   </data>
   <data name="Off" xml:space="preserve">
     <value>Off</value>

@@ -70,11 +70,29 @@ namespace GitMap.ConfigurationUI.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Arguments:.
+        /// </summary>
+        internal static string Arguments {
+            get {
+                return ResourceManager.GetString("Arguments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Commit.
         /// </summary>
         internal static string Commit {
             get {
                 return ResourceManager.GetString("Commit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editor Path:.
+        /// </summary>
+        internal static string EditorPath {
+            get {
+                return ResourceManager.GetString("EditorPath", resourceCulture);
             }
         }
         
