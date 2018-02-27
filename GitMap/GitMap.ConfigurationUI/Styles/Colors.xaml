@@ -18,4 +18,6 @@
 
    <SolidColorBrush x:Key="On" Color="#A2C767" />
    <SolidColorBrush x:Key="Off" Color="#C9677A" />
+
+   <SolidColorBrush x:Key="ButtonFace" Color="#DDD" />
 </ResourceDictionary>
