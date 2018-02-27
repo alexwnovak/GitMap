@@ -25,7 +25,8 @@
                <RowDefinition Height="26" />
             </Grid.RowDefinitions>
 
-            <CheckBox Grid.Row="0"
+            <CheckBox x:Name="CheckBox"
+               Grid.Row="0"
                IsChecked="{Binding IsEnabled, Mode=TwoWay}"
                HorizontalAlignment="Left" />
 
@@ -39,17 +40,20 @@
                   <ColumnDefinition Width="30" />
                </Grid.ColumnDefinitions>
 
-               <TextBox Text="{Binding EditorPath, Mode=TwoWay}" />
+               <TextBox Text="{Binding EditorPath, Mode=TwoWay}"
+                  IsEnabled="{Binding IsChecked, ElementName=CheckBox}" />
 
                <Button Grid.Column="2"
-                  Style="{DynamicResource BrowseButtonStyle}" />
+                  Style="{DynamicResource BrowseButtonStyle}" 
+                  IsEnabled="{Binding IsChecked, ElementName=CheckBox}" />
             </Grid>
 
             <TextBlock Grid.Row="5"
                Text="{m:Resx Arguments}" />
 
             <TextBox Grid.Row="6"
-               Text="{Binding Arguments, Mode=TwoWay}" />
+               Text="{Binding Arguments, Mode=TwoWay}"
+               IsEnabled="{Binding IsChecked, ElementName=CheckBox}" />
          </Grid>
       </Grid>
    </DataTemplate>
