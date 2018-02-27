@@ -39,14 +39,17 @@
                   <ColumnDefinition Width="30" />
                </Grid.ColumnDefinitions>
 
-               <TextBox />
-               <Button Grid.Column="2" Content="..." />
+               <TextBox Text="{Binding EditorPath, Mode=TwoWay}" />
+               <Button Grid.Column="2"
+                  FontFamily="Segoe MDL2 Assets"
+                  Content="&#xE10C;" />
             </Grid>
 
             <TextBlock Grid.Row="5"
                Text="{m:Resx Arguments}" />
 
-            <TextBox Grid.Row="6" />
+            <TextBox Grid.Row="6"
+               Text="{Binding Arguments, Mode=TwoWay}" />
          </Grid>
       </Grid>
    </DataTemplate>
