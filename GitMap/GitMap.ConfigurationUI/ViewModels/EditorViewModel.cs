@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GitMap.ConfigurationUI.Services;
 using GitMap.Core;
 
 namespace GitMap.ConfigurationUI.ViewModels
@@ -9,6 +10,7 @@ namespace GitMap.ConfigurationUI.ViewModels
    public class EditorViewModel : ViewModelBase
    {
       private readonly IConfigurationReader _configurationReader;
+      private readonly IFileBrowserService _fileBrowserService;
       private readonly string _workflowName;
 
       public string Header
@@ -42,9 +44,13 @@ namespace GitMap.ConfigurationUI.ViewModels
          get;
       }
 
-      public EditorViewModel( IConfigurationReader configurationReader, string workflowName, string header )
+      public EditorViewModel( IConfigurationReader configurationReader,
+         IFileBrowserService fileBrowserService,
+         string workflowName,
+         string header )
       {
          _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
+         _fileBrowserService = fileBrowserService ?? throw new ArgumentNullException( nameof( fileBrowserService ) );
          _workflowName = workflowName;
          Header = header;
          BrowseCommand = new RelayCommand( OnBrowseCommand );

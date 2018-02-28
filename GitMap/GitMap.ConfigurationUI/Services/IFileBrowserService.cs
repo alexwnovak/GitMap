@@ -2,5 +2,6 @@
 {
    public interface IFileBrowserService
    {
+      string PickSingleFile();
    }
 }
