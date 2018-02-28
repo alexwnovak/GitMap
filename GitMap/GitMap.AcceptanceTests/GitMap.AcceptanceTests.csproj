@@ -99,6 +99,10 @@
     <Compile Include="Steps\CommitFlowSteps.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GitMap.Core\GitMap.Core.csproj">
+      <Project>{76a579e8-3e07-4bf7-8801-e82b6d91021b}</Project>
+      <Name>GitMap.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GitMap\GitMap.csproj">
       <Project>{c19fcc61-bd78-43f6-af2c-485dd551fef1}</Project>
       <Name>GitMap</Name>
