@@ -1,4 +1,6 @@
-﻿namespace GitMap
+﻿using GitMap.Core;
+
+namespace GitMap
 {
    public class Workflow : IWorkflow
    {
