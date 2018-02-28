@@ -8,6 +8,7 @@ namespace GitMap.ConfigurationUI.ViewModels
    public class EditorViewModel : ViewModelBase
    {
       private readonly IConfigurationReader _configurationReader;
+      private readonly string _workflowName;
 
       public string Header
       {
@@ -40,9 +41,10 @@ namespace GitMap.ConfigurationUI.ViewModels
          get;
       }
 
-      public EditorViewModel( IConfigurationReader configurationReader, string header )
+      public EditorViewModel( IConfigurationReader configurationReader, string workflowName, string header )
       {
          _configurationReader = configurationReader;
+         _workflowName = workflowName;
          Header = header;
          BrowseCommand = new RelayCommand( OnBrowseCommand );
       }

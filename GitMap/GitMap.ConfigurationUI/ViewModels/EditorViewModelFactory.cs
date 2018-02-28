@@ -7,7 +7,9 @@ namespace GitMap.ConfigurationUI.ViewModels
    {
       public EditorViewModel Create( string header )
       {
-         return new EditorViewModel( SimpleIoc.Default.GetInstance<IConfigurationReader>(), header );
+         return new EditorViewModel( SimpleIoc.Default.GetInstance<IConfigurationReader>(),
+            WorkflowNames.CommitWorkflow,
+            header );
       }
    }
 }
