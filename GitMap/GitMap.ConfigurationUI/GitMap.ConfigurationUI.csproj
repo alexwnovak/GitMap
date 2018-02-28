@@ -70,6 +70,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behaviors\WindowDragBehavior.cs" />
+    <Compile Include="Services\FileBrowserService.cs" />
+    <Compile Include="Services\IFileBrowserService.cs" />
     <Compile Include="ViewModels\EditorViewModel.cs" />
     <Compile Include="ViewModels\EditorViewModelFactory.cs" />
     <Compile Include="ViewModels\IEditorViewModelFactory.cs" />
