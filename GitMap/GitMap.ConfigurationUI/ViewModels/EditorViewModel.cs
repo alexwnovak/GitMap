@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GitMap.Core;
@@ -43,7 +44,7 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       public EditorViewModel( IConfigurationReader configurationReader, string workflowName, string header )
       {
-         _configurationReader = configurationReader;
+         _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
          _workflowName = workflowName;
          Header = header;
          BrowseCommand = new RelayCommand( OnBrowseCommand );

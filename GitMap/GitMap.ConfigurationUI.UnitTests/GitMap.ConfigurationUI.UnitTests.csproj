@@ -77,6 +77,16 @@
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GitMap.ConfigurationUI\GitMap.ConfigurationUI.csproj">
+      <Project>{0d2f014b-aa1e-4b3e-9ea1-e40c1b15e411}</Project>
+      <Name>GitMap.ConfigurationUI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GitMap.Core\GitMap.Core.csproj">
+      <Project>{76a579e8-3e07-4bf7-8801-e82b6d91021b}</Project>
+      <Name>GitMap.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
