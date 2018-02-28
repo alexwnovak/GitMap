@@ -4,7 +4,7 @@
    {
       public EditorViewModel Create( string header )
       {
-         throw new System.NotImplementedException();
+         return new EditorViewModel( header );
       }
    }
 }

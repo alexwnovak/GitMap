@@ -6,11 +6,9 @@ namespace GitMap.ConfigurationUI.ViewModels
 {
    public class EditorViewModel : ViewModelBase
    {
-      private string _header;
       public string Header
       {
-         get => _header;
-         set => Set( nameof( Header ), ref _header, value );
+         get;
       }
 
       private bool _isEnabled;
@@ -39,8 +37,9 @@ namespace GitMap.ConfigurationUI.ViewModels
          get;
       }
 
-      public EditorViewModel()
+      public EditorViewModel( string header )
       {
+         Header = header;
          BrowseCommand = new RelayCommand( OnBrowseCommand );
       }
 
