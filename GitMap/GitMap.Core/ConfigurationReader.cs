@@ -1,7 +1,6 @@
 ﻿using Microsoft.Win32;
-using GitMap.Core;
 
-namespace GitMap
+namespace GitMap.Core
 {
    public class ConfigurationReader : IConfigurationReader
    {

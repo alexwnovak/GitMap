@@ -1,6 +1,4 @@
-﻿using GitMap.Core;
-
-namespace GitMap
+﻿namespace GitMap.Core
 {
    public interface IConfigurationReader
    {
