@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
 using GitMap.ConfigurationUI.ViewModels;
+using GitMap.Core;
 
 namespace GitMap.ConfigurationUI
 {
@@ -9,6 +10,7 @@ namespace GitMap.ConfigurationUI
       protected override void OnStartup( StartupEventArgs e )
       {
          SimpleIoc.Default.Register<IEditorViewModelFactory, EditorViewModelFactory>();
+         SimpleIoc.Default.Register<IConfigurationReader, ConfigurationReader>();
       }
    }
 }

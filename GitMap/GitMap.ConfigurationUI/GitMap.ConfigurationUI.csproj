@@ -152,5 +152,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GitMap.Core\GitMap.Core.csproj">
+      <Project>{76a579e8-3e07-4bf7-8801-e82b6d91021b}</Project>
+      <Name>GitMap.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

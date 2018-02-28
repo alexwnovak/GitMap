@@ -1,11 +1,14 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GitMap.Core;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
    public class EditorViewModel : ViewModelBase
    {
+      private readonly IConfigurationReader _configurationReader;
+
       public string Header
       {
          get;
@@ -37,8 +40,9 @@ namespace GitMap.ConfigurationUI.ViewModels
          get;
       }
 
-      public EditorViewModel( string header )
+      public EditorViewModel( IConfigurationReader configurationReader, string header )
       {
+         _configurationReader = configurationReader;
          Header = header;
          BrowseCommand = new RelayCommand( OnBrowseCommand );
       }
