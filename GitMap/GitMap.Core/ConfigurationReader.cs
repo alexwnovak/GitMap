@@ -11,6 +11,7 @@ namespace GitMap.Core
          {
             return new ConfigurationPair
             {
+               IsEnabled = ReadValue<bool>( key, $"{workflowName}IsEnabled" ),
                FilePath = ReadValue<string>( key, $"{workflowName}FilePath" ),
                Arguments = ReadValue<string>( key, $"{workflowName}Arguments" )
             };

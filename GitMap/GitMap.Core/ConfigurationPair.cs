@@ -4,6 +4,12 @@
    {
       public static readonly ConfigurationPair Empty = new ConfigurationPair();
 
+      public bool IsEnabled
+      {
+         get;
+         set;
+      }
+
       public string FilePath
       {
          get;
