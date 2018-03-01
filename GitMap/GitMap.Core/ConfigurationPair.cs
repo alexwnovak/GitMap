@@ -7,21 +7,13 @@
       public string FilePath
       {
          get;
+         set;
       }
 
       public string Arguments
       {
          get;
-      }
-
-      public ConfigurationPair( string filePath, string arguments )
-      {
-         FilePath = filePath;
-         Arguments = arguments;
-      }
-
-      private ConfigurationPair()
-      {
+         set;
       }
    }
 }

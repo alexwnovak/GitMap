@@ -10,8 +10,14 @@ namespace GitMap.UnitTests
       [Fact]
       public void Launch_GetsCommitEditorConfiguration_LaunchesConfiguredEditor()
       {
+         var configurationPair = new ConfigurationPair
+         {
+            FilePath = "file path",
+            Arguments = "arguments"
+         };
+
          var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( new ConfigurationPair( "file path", "arguments" ) );
+         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( configurationPair );
          var processRunnerMock = new Mock<IProcessRunner>();
 
          var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
@@ -24,8 +30,14 @@ namespace GitMap.UnitTests
       [Fact]
       public void Launch_ConfigurationSpecifiesWhereTheFilePathGoes_EditorReceivesTheFilePath()
       {
+         var configurationPair = new ConfigurationPair
+         {
+            FilePath = "file path",
+            Arguments = "-file %1"
+         };
+
          var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( new ConfigurationPair( "file path", "-file %1" ) );
+         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( configurationPair );
          var processRunnerMock = new Mock<IProcessRunner>();
 
          var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
@@ -38,8 +50,14 @@ namespace GitMap.UnitTests
       [Fact]
       public void Launch_EditorIsLaunched_ReturnsEditorProcessExitCode()
       {
+         var configurationPair = new ConfigurationPair
+         {
+            FilePath = "does not matter",
+            Arguments = "does not matter"
+         };
+
          var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( new ConfigurationPair( "does not matter", "does not matter" ) );
+         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( configurationPair );
          var processRunnerMock = new Mock<IProcessRunner>();
          processRunnerMock.Setup( pr => pr.Run( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( 1 );
 

@@ -26,7 +26,12 @@ namespace GitMap.AcceptanceTests.PageObjects
 
       private void AddWorkflow( string workflowName, string gitFileName, string editorPath )
       {
-         var configurationPair = new ConfigurationPair( editorPath, "%1" );
+         var configurationPair = new ConfigurationPair
+         {
+            FilePath = editorPath,
+            Arguments = "%1"
+         };
+
          _configurationReaderMock.Setup( cr => cr.Read( workflowName ) ).Returns( configurationPair );
          _workflows[gitFileName] = new Workflow( workflowName, _configurationReaderMock.Object, _processRunnerMock.Object );
       }

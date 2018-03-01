@@ -70,7 +70,10 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void LoadedCommand_EditorHasBeenConfigured_ReadsEditorConfiguration()
       {
-         var pair = new ConfigurationPair( "notepad.exe", null );
+         var pair = new ConfigurationPair
+         {
+            FilePath = "notepad.exe"
+         };
 
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( pair );
@@ -88,7 +91,10 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void LoadedCommand_ArgumentsHaveBeenConfigured_ReadsArgumentsConfiguration()
       {
-         var pair = new ConfigurationPair( null, "%1" );
+         var pair = new ConfigurationPair
+         {
+            Arguments = "%1"
+         };
 
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( pair );
