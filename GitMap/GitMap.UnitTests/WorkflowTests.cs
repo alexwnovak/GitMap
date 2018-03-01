@@ -10,14 +10,14 @@ namespace GitMap.UnitTests
       [Fact]
       public void Launch_GetsCommitEditorConfiguration_LaunchesConfiguredEditor()
       {
-         var configurationPair = new ConfigurationPair
+         var editorConfiguration = new EditorConfiguration
          {
             FilePath = "file path",
             Arguments = "arguments"
          };
 
          var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( configurationPair );
+         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
          var processRunnerMock = new Mock<IProcessRunner>();
 
          var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
@@ -30,14 +30,14 @@ namespace GitMap.UnitTests
       [Fact]
       public void Launch_ConfigurationSpecifiesWhereTheFilePathGoes_EditorReceivesTheFilePath()
       {
-         var configurationPair = new ConfigurationPair
+         var editorConfiguration = new EditorConfiguration
          {
             FilePath = "file path",
             Arguments = "-file %1"
          };
 
          var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( configurationPair );
+         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
          var processRunnerMock = new Mock<IProcessRunner>();
 
          var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
@@ -50,14 +50,14 @@ namespace GitMap.UnitTests
       [Fact]
       public void Launch_EditorIsLaunched_ReturnsEditorProcessExitCode()
       {
-         var configurationPair = new ConfigurationPair
+         var editorConfiguration = new EditorConfiguration
          {
             FilePath = "does not matter",
             Arguments = "does not matter"
          };
 
          var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( configurationPair );
+         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
          var processRunnerMock = new Mock<IProcessRunner>();
          processRunnerMock.Setup( pr => pr.Run( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( 1 );
 
@@ -72,7 +72,7 @@ namespace GitMap.UnitTests
       public void Launch_NoEditorConfigured_ReturnsExitCode1()
       {
          var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( ConfigurationPair.Empty );
+         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( EditorConfiguration.Empty );
 
          var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, Mock.Of<IProcessRunner>() );
 

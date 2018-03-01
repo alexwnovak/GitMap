@@ -5,11 +5,11 @@ namespace GitMap.Core
 {
    public class ConfigurationReader : IConfigurationReader
    {
-      public ConfigurationPair Read( string workflowName )
+      public EditorConfiguration Read( string workflowName )
       {
          using ( var key = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\GitMap" ) )
          {
-            return new ConfigurationPair
+            return new EditorConfiguration
             {
                IsEnabled = ReadValue<bool>( key, $"{workflowName}IsEnabled" ),
                FilePath = ReadValue<string>( key, $"{workflowName}FilePath" ),

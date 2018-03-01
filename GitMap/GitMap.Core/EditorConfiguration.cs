@@ -1,8 +1,8 @@
 ﻿namespace GitMap.Core
 {
-   public class ConfigurationPair
+   public class EditorConfiguration
    {
-      public static readonly ConfigurationPair Empty = new ConfigurationPair();
+      public static readonly EditorConfiguration Empty = new EditorConfiguration();
 
       public bool IsEnabled
       {

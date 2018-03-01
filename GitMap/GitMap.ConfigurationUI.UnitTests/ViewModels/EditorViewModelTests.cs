@@ -70,7 +70,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void LoadedCommand_EditorHasBeenConfigured_ReadsEditorConfiguration()
       {
-         var pair = new ConfigurationPair
+         var pair = new EditorConfiguration
          {
             FilePath = "notepad.exe"
          };
@@ -91,7 +91,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void LoadedCommand_ArgumentsHaveBeenConfigured_ReadsArgumentsConfiguration()
       {
-         var pair = new ConfigurationPair
+         var pair = new EditorConfiguration
          {
             Arguments = "%1"
          };
