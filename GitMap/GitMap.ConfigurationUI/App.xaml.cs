@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using GalaSoft.MvvmLight.Ioc;
+using GitMap.ConfigurationUI.Services;
 using GitMap.ConfigurationUI.ViewModels;
-using Resx = GitMap.ConfigurationUI.Properties.Resources;
+using GitMap.Core;
 
 namespace GitMap.ConfigurationUI
 {
@@ -10,13 +10,9 @@ namespace GitMap.ConfigurationUI
    {
       protected override void OnStartup( StartupEventArgs e )
       {
-         var editorViewModels = new []
-         {
-            new EditorViewModel { Header = Resx.Commit, IsEnabled = true },
-            new EditorViewModel { Header = Resx.Rebase, IsEnabled = false }
-         };
-
-         SimpleIoc.Default.Register<IEnumerable<EditorViewModel>>( () => editorViewModels );
+         SimpleIoc.Default.Register<IEditorViewModelFactory, EditorViewModelFactory>();
+         SimpleIoc.Default.Register<IConfigurationReader, ConfigurationReader>();
+         SimpleIoc.Default.Register<IFileBrowserService, FileBrowserService>();
       }
    }
 }

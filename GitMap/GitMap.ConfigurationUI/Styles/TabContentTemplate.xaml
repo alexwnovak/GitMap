@@ -45,7 +45,8 @@
 
                <Button Grid.Column="2"
                   Style="{DynamicResource BrowseButtonStyle}" 
-                  IsEnabled="{Binding IsChecked, ElementName=CheckBox}" />
+                  IsEnabled="{Binding IsChecked, ElementName=CheckBox}"
+                  Command="{Binding BrowseCommand, Mode=OneTime}" />
             </Grid>
 
             <TextBlock Grid.Row="5"

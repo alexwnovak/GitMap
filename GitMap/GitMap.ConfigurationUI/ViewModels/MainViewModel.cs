@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
+using GitMap.ConfigurationUI.Properties;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
@@ -9,11 +10,15 @@ namespace GitMap.ConfigurationUI.ViewModels
       public ObservableCollection<EditorViewModel> EditorViewModels
       {
          get;
-      }
+      } = new ObservableCollection<EditorViewModel>();
 
-      public MainViewModel( IEnumerable<EditorViewModel> editorViewModels )
+      public MainViewModel( IEditorViewModelFactory editorViewModelFactory )
       {
-         EditorViewModels = new ObservableCollection<EditorViewModel>( editorViewModels );
+         var commit = editorViewModelFactory.Create( Resources.Commit );
+         var rebase = editorViewModelFactory.Create( Resources.Rebase );
+         
+         EditorViewModels.Add( commit );
+         EditorViewModels.Add( rebase );
       }
    }
 }

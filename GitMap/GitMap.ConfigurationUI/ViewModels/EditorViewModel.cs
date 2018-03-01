@@ -1,14 +1,21 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Windows.Input;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GitMap.ConfigurationUI.Services;
+using GitMap.Core;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
    public class EditorViewModel : ViewModelBase
    {
-      private string _header;
+      private readonly IConfigurationReader _configurationReader;
+      private readonly IFileBrowserService _fileBrowserService;
+      private readonly string _workflowName;
+
       public string Header
       {
-         get => _header;
-         set => Set( nameof( Header ), ref _header, value );
+         get;
       }
 
       private bool _isEnabled;
@@ -31,5 +38,24 @@ namespace GitMap.ConfigurationUI.ViewModels
          get => _arguments;
          set => Set( nameof( Arguments ), ref _arguments, value );
       }
+
+      public ICommand BrowseCommand
+      {
+         get;
+      }
+
+      public EditorViewModel( IConfigurationReader configurationReader,
+         IFileBrowserService fileBrowserService,
+         string workflowName,
+         string header )
+      {
+         _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
+         _fileBrowserService = fileBrowserService ?? throw new ArgumentNullException( nameof( fileBrowserService ) );
+         _workflowName = workflowName;
+         Header = header;
+         BrowseCommand = new RelayCommand( OnBrowseCommand );
+      }
+
+      private void OnBrowseCommand() => EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
    }
 }

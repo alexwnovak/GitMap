@@ -1,4 +1,4 @@
-﻿namespace GitMap
+﻿namespace GitMap.Core
 {
    public static class WorkflowNames
    {

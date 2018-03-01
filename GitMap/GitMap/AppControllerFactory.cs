@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using GitModel;
+using GitMap.Core;
 
 namespace GitMap
 {

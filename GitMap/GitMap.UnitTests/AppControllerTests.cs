@@ -13,7 +13,7 @@ namespace GitMap.UnitTests
       {
          Action constructor = () => new AppController( null, Mock.Of<IOutputController>() );
 
-         constructor.ShouldThrow<ArgumentException>();
+         constructor.Should().Throw<ArgumentException>();
       }
 
       [Fact]
@@ -21,7 +21,7 @@ namespace GitMap.UnitTests
       {
          Action constructor = () => new AppController( new Dictionary<string, IWorkflow>(), null );
 
-         constructor.ShouldThrow<ArgumentException>();
+         constructor.Should().Throw<ArgumentException>();
       }
 
       [Fact]

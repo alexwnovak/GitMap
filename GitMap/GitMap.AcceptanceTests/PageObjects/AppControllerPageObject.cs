@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Moq;
 using GitModel;
+using GitMap.Core;
 
 namespace GitMap.AcceptanceTests.PageObjects
 {

@@ -11,7 +11,7 @@ namespace GitMap.UnitTests
       {
          Action constructor = () => new ConfigurationWorkflow( null );
 
-         constructor.ShouldThrow<ArgumentNullException>();
+         constructor.Should().Throw<ArgumentNullException>();
       }
    }
 }

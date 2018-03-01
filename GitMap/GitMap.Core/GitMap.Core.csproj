@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C19FCC61-BD78-43F6-AF2C-485DD551FEF1}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>GitMap</RootNamespace>
-    <AssemblyName>GitMap</AssemblyName>
+    <ProjectGuid>{76A579E8-3E07-4BF7-8801-E82B6D91021B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GitMap.Core</RootNamespace>
+    <AssemblyName>GitMap.Core</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,9 +31,6 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GitModel, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GitModel.0.9.0\lib\netstandard1.5\GitModel.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,31 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppController.cs" />
-    <Compile Include="AppControllerFactory.cs" />
-    <Compile Include="ConfigurationWorkflow.cs" />
-    <Compile Include="IOutputController.cs" />
-    <Compile Include="OutputController.cs" />
-    <Compile Include="Workflow.cs" />
-    <Compile Include="IProcessRunner.cs" />
-    <Compile Include="IWorkflow.cs" />
-    <Compile Include="ProcessRunner.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ConfigurationPair.cs" />
+    <Compile Include="ConfigurationReader.cs" />
+    <Compile Include="IConfigurationReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GitMap.ConfigurationUI\GitMap.ConfigurationUI.csproj">
-      <Project>{0d2f014b-aa1e-4b3e-9ea1-e40c1b15e411}</Project>
-      <Name>GitMap.ConfigurationUI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GitMap.Core\GitMap.Core.csproj">
-      <Project>{76a579e8-3e07-4bf7-8801-e82b6d91021b}</Project>
-      <Name>GitMap.Core</Name>
-    </ProjectReference>
+    <Compile Include="WorkflowNames.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
