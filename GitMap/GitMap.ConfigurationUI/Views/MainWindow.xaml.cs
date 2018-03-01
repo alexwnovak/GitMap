@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 
-namespace GitMap.ConfigurationUI
+namespace GitMap.ConfigurationUI.Views
 {
    public partial class MainWindow : Window
    {
