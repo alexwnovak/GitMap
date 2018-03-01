@@ -5,9 +5,17 @@
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    xmlns:local="clr-namespace:GitMap.ConfigurationUI"
    xmlns:m="clr-namespace:GitMap.ConfigurationUI.Markup"
+   xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
    mc:Ignorable="d"
    WindowStartupLocation="CenterScreen"
    Title="{m:Resx ApplicationName}"
    DataContext="{Binding Main, Source={StaticResource Locator}}">
+
+   <i:Interaction.Triggers>
+      <i:EventTrigger EventName="Loaded">
+         <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+      </i:EventTrigger>
+   </i:Interaction.Triggers>
+
    <TabControl ItemsSource="{Binding EditorViewModels}" />
 </Window>

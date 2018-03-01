@@ -39,6 +39,11 @@ namespace GitMap.ConfigurationUI.ViewModels
          set => Set( nameof( Arguments ), ref _arguments, value );
       }
 
+      public ICommand LoadedCommand
+      {
+         get;
+      }
+
       public ICommand BrowseCommand
       {
          get;
@@ -53,7 +58,13 @@ namespace GitMap.ConfigurationUI.ViewModels
          _fileBrowserService = fileBrowserService ?? throw new ArgumentNullException( nameof( fileBrowserService ) );
          _workflowName = workflowName;
          Header = header;
+
+         LoadedCommand = new RelayCommand( OnLoadedCommand );
          BrowseCommand = new RelayCommand( OnBrowseCommand );
+      }
+
+      private void OnLoadedCommand()
+      {
       }
 
       private void OnBrowseCommand() => EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
