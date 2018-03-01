@@ -66,5 +66,41 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          viewModel.EditorPath.Should().Be( "notepad.exe" );
       }
+
+      [Fact]
+      public void LoadedCommand_EditorHasBeenConfigured_ReadsEditorConfiguration()
+      {
+         var pair = new ConfigurationPair( "notepad.exe", null );
+
+         var configurationReaderMock = new Mock<IConfigurationReader>();
+         configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( pair );
+
+         var viewModel = new EditorViewModel( configurationReaderMock.Object,
+            Mock.Of<IFileBrowserService>(),
+            WorkflowNames.CommitWorkflow,
+            "Something" );
+
+         viewModel.LoadedCommand.Execute( null );
+
+         viewModel.EditorPath.Should().Be( "notepad.exe" );
+      }
+
+      [Fact]
+      public void LoadedCommand_ArgumentsHaveBeenConfigured_ReadsArgumentsConfiguration()
+      {
+         var pair = new ConfigurationPair( null, "%1" );
+
+         var configurationReaderMock = new Mock<IConfigurationReader>();
+         configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( pair );
+
+         var viewModel = new EditorViewModel( configurationReaderMock.Object,
+            Mock.Of<IFileBrowserService>(),
+            WorkflowNames.CommitWorkflow,
+            "Something" );
+
+         viewModel.LoadedCommand.Execute( null );
+
+         viewModel.Arguments.Should().Be( "%1" );
+      }
    }
 }

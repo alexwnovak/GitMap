@@ -65,6 +65,10 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       private void OnLoadedCommand()
       {
+         var pair = _configurationReader.Read( _workflowName );
+
+         EditorPath = pair.FilePath;
+         Arguments = pair.Arguments;
       }
 
       private void OnBrowseCommand() => EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
