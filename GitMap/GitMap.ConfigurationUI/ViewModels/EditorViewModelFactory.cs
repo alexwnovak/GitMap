@@ -6,11 +6,11 @@ namespace GitMap.ConfigurationUI.ViewModels
 {
    public class EditorViewModelFactory : IEditorViewModelFactory
    {
-      public EditorViewModel Create( string header )
+      public EditorViewModel Create( string workflowName, string header )
       {
          return new EditorViewModel( SimpleIoc.Default.GetInstance<IConfigurationReader>(),
             SimpleIoc.Default.GetInstance<IFileBrowserService>(),
-            WorkflowNames.CommitWorkflow,
+            workflowName,
             header );
       }
    }

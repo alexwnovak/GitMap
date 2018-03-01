@@ -3,6 +3,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GitMap.ConfigurationUI.Properties;
+using GitMap.Core;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
@@ -20,8 +21,8 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       public MainViewModel( IEditorViewModelFactory editorViewModelFactory )
       {
-         var commit = editorViewModelFactory.Create( Resources.Commit );
-         var rebase = editorViewModelFactory.Create( Resources.Rebase );
+         var commit = editorViewModelFactory.Create( WorkflowNames.CommitWorkflow, Resources.Commit );
+         var rebase = editorViewModelFactory.Create( WorkflowNames.RebaseWorkflow, Resources.Rebase );
 
          EditorViewModels.Add( commit );
          EditorViewModels.Add( rebase );
