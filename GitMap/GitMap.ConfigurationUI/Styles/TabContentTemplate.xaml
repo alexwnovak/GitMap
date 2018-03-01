@@ -3,8 +3,7 @@
    xmlns:local="clr-namespace:GitMap.ConfigurationUI.Styles"
    xmlns:m="clr-namespace:GitMap.ConfigurationUI.Markup">
    <DataTemplate x:Key="TabContentTemplate">
-      <Grid Margin="0,2,0,0"
-         Background="{StaticResource EditorBackground}">
+      <Grid Background="{StaticResource EditorBackground}">
          <Grid Margin="10,4,16,4">
             <Grid.RowDefinitions>
                <!-- Toggle button -->
