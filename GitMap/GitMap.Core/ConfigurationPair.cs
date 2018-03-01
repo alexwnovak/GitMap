@@ -2,7 +2,7 @@
 {
    public class ConfigurationPair
    {
-      public static ConfigurationPair Empty = new ConfigurationPair();
+      public static readonly ConfigurationPair Empty = new ConfigurationPair();
 
       public string FilePath
       {
