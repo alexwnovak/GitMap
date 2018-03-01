@@ -58,6 +58,7 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       private void OnBrowseCommand()
       {
+         EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
       }
    }
 }

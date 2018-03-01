@@ -31,5 +31,40 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          constructor.Should().Throw<ArgumentNullException>();
       }
+
+      [Fact]
+      public void BrowseCommand_ChoosesAFile_EditorPathBecomesTheChosenFile()
+      {
+         var fileBrowserServiceMock = new Mock<IFileBrowserService>();
+         fileBrowserServiceMock.Setup( fbs => fbs.PickSingleFile() ).Returns( "notepad.exe" );
+
+         var viewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
+            fileBrowserServiceMock.Object,
+            "Something",
+            "Something" );
+
+         viewModel.BrowseCommand.Execute( null );
+
+         viewModel.EditorPath.Should().Be( "notepad.exe" );
+      }
+
+      [Fact]
+      public void BrowseCommand_CancelsOutOfChoosingAFile_EditorPathIsUnchanged()
+      {
+         var fileBrowserServiceMock = new Mock<IFileBrowserService>();
+         fileBrowserServiceMock.Setup( fbs => fbs.PickSingleFile() ).Returns<string>( null );
+
+         var viewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
+            fileBrowserServiceMock.Object,
+            "Something",
+            "Something" )
+         {
+            EditorPath = "notepad.exe"
+         };
+
+         viewModel.BrowseCommand.Execute( null );
+
+         viewModel.EditorPath.Should().Be( "notepad.exe" );
+      }
    }
 }
