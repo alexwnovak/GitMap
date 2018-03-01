@@ -56,9 +56,6 @@ namespace GitMap.ConfigurationUI.ViewModels
          BrowseCommand = new RelayCommand( OnBrowseCommand );
       }
 
-      private void OnBrowseCommand()
-      {
-         EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
-      }
+      private void OnBrowseCommand() => EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
    }
 }
