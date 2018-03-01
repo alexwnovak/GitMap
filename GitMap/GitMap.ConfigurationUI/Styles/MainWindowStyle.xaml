@@ -5,8 +5,8 @@
    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
    xmlns:b="clr-namespace:GitMap.ConfigurationUI.Behaviors">
    <Style TargetType="v:MainWindow">
-      <Setter Property="Width" Value="500" />
-      <Setter Property="Height" Value="300" />
+      <Setter Property="Width" Value="600" />
+      <Setter Property="Height" Value="400" />
       <Setter Property="WindowStyle" Value="None" />
       <Setter Property="ResizeMode" Value="NoResize" />
       <Setter Property="Background" Value="{StaticResource Background}" />
