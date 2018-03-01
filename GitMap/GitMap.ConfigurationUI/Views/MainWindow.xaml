@@ -10,7 +10,5 @@
    Background="{StaticResource Background}"
    Title="{m:Resx ApplicationName}"
    DataContext="{Binding Main, Source={StaticResource Locator}}">
-   <Grid>
-      <TabControl ItemsSource="{Binding EditorViewModels}" />
-   </Grid>
+   <TabControl ItemsSource="{Binding EditorViewModels}" />
 </Window>
