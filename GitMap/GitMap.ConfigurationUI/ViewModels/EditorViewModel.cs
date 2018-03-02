@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -77,6 +78,16 @@ namespace GitMap.ConfigurationUI.ViewModels
          IsEnabled = editorConfiguration.IsEnabled;
          EditorPath = editorConfiguration.FilePath;
          Arguments = editorConfiguration.Arguments;
+
+         PropertyChanged += OnPropertyChanged;
+
+         void OnPropertyChanged( object sender, PropertyChangedEventArgs e )
+         {
+            if ( e.PropertyName != nameof( IsDirty ) )
+            {
+               IsDirty = true;
+            }
+         }
       }
 
       private void OnBrowseCommand() => EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
