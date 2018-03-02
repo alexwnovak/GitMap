@@ -28,7 +28,7 @@ namespace GitMap.Core
          }
 
          var typeConverter = TypeDescriptor.GetConverter( typeof( T ) );
-         return (T) typeConverter.ConvertTo( value, typeof( T ) );
+         return (T) typeConverter.ConvertFromString( value.ToString() );
       }
    }
 }

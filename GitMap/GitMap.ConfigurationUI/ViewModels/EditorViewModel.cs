@@ -67,6 +67,7 @@ namespace GitMap.ConfigurationUI.ViewModels
       {
          var pair = _configurationReader.Read( _workflowName );
 
+         IsEnabled = pair.IsEnabled;
          EditorPath = pair.FilePath;
          Arguments = pair.Arguments;
       }
