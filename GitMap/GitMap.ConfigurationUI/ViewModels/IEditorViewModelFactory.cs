@@ -2,6 +2,6 @@
 {
    public interface IEditorViewModelFactory
    {
-      EditorViewModel Create( string header );
+      EditorViewModel Create( string workflowName, string header );
    }
 }

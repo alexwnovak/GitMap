@@ -19,7 +19,7 @@ namespace GitMap
       {
          var configuration = _configurationReader.Read( _workflowName );
 
-         if ( configuration == ConfigurationPair.Empty )
+         if ( configuration == EditorConfiguration.Empty )
          {
             return 1;
          }

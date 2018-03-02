@@ -1,25 +1,34 @@
-﻿using Microsoft.Win32;
+﻿using System.ComponentModel;
+using Microsoft.Win32;
 
 namespace GitMap.Core
 {
    public class ConfigurationReader : IConfigurationReader
    {
-      public ConfigurationPair Read( string workflowName )
+      public EditorConfiguration Read( string workflowName )
       {
-         ConfigurationPair configuredEditorInfo = ConfigurationPair.Empty;
-
          using ( var key = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\GitMap" ) )
          {
-            var filePath = key.GetValue( $"{workflowName}FilePath" );
-            var arguments = key.GetValue( $"{workflowName}Arguments" );
-
-            if ( filePath != null && arguments != null )
+            return new EditorConfiguration
             {
-               configuredEditorInfo = new ConfigurationPair( filePath.ToString(), arguments.ToString() );
-            }
+               IsEnabled = ReadValue<bool>( key, $"{workflowName}IsEnabled" ),
+               FilePath = ReadValue<string>( key, $"{workflowName}FilePath" ),
+               Arguments = ReadValue<string>( key, $"{workflowName}Arguments" )
+            };
+         }
+      }
+
+      private T ReadValue<T>( RegistryKey key, string name )
+      {
+         var value = key.GetValue( name );
+
+         if ( value == null )
+         {
+            return default( T );
          }
 
-         return configuredEditorInfo;
+         var typeConverter = TypeDescriptor.GetConverter( typeof( T ) );
+         return (T) typeConverter.ConvertTo( value, typeof( T ) );
       }
    }
 }

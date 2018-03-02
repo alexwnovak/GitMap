@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigurationPair.cs" />
+    <Compile Include="EditorConfiguration.cs" />
     <Compile Include="ConfigurationReader.cs" />
     <Compile Include="IConfigurationReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
