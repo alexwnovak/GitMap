@@ -70,6 +70,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Behaviors\WindowDragBehavior.cs" />
+    <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\ExitConfirmationResult.cs" />
     <Compile Include="Services\FileBrowserService.cs" />
     <Compile Include="Services\IDialogService.cs" />
