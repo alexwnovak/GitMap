@@ -65,11 +65,11 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       private void OnLoadedCommand()
       {
-         var pair = _configurationReader.Read( _workflowName );
+         var editorConfiguration = _configurationReader.Read( _workflowName );
 
-         IsEnabled = pair.IsEnabled;
-         EditorPath = pair.FilePath;
-         Arguments = pair.Arguments;
+         IsEnabled = editorConfiguration.IsEnabled;
+         EditorPath = editorConfiguration.FilePath;
+         Arguments = editorConfiguration.Arguments;
       }
 
       private void OnBrowseCommand() => EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
