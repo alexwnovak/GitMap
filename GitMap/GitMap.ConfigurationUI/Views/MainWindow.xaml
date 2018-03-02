@@ -14,7 +14,7 @@
 
    <i:Interaction.Triggers>
       <i:EventTrigger EventName="Loaded">
-         <i:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneTime}" />
+         <command:EventToCommand Command="{Binding LoadedCommand, Mode=OneTime}" />
       </i:EventTrigger>
       <i:EventTrigger EventName="Closing">
          <command:EventToCommand Command="{Binding ExitingCommand, Mode=OneTime}"
