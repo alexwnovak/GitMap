@@ -13,7 +13,7 @@
 
    <i:Interaction.Triggers>
       <i:EventTrigger EventName="Loaded">
-         <i:InvokeCommandAction Command="{Binding LoadedCommand}" />
+         <i:InvokeCommandAction Command="{Binding LoadedCommand, Mode=OneTime}" />
       </i:EventTrigger>
    </i:Interaction.Triggers>
 
