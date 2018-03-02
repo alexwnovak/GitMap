@@ -18,6 +18,13 @@ namespace GitMap.ConfigurationUI.ViewModels
          get;
       }
 
+      private bool _isDirty;
+      public bool IsDirty
+      {
+         get => _isDirty;
+         set => Set( nameof( IsDirty ), ref _isDirty, value );
+      }
+
       private bool _isEnabled;
       public bool IsEnabled
       {
