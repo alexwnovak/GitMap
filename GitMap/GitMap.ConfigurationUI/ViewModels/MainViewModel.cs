@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -19,6 +20,11 @@ namespace GitMap.ConfigurationUI.ViewModels
          get;
       }
 
+      public ICommand ExitingCommand
+      {
+         get;
+      }
+
       public MainViewModel( IEditorViewModelFactory editorViewModelFactory )
       {
          var commit = editorViewModelFactory.Create( WorkflowNames.CommitWorkflow, Resources.Commit );
@@ -28,6 +34,7 @@ namespace GitMap.ConfigurationUI.ViewModels
          EditorViewModels.Add( rebase );
 
          LoadedCommand = new RelayCommand( OnLoadedCommand );
+         ExitingCommand = new RelayCommand<CancelEventArgs>( OnExitingCommand );
       }
 
       private void OnLoadedCommand()
@@ -36,6 +43,10 @@ namespace GitMap.ConfigurationUI.ViewModels
          {
             editorViewModel.LoadedCommand.Execute( null );
          }
+      }
+
+      private void OnExitingCommand( CancelEventArgs e )
+      {
       }
    }
 }
