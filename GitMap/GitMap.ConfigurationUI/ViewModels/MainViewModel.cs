@@ -59,6 +59,17 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       private void OnExitingCommand( CancelEventArgs e )
       {
+         bool promptToSaveChanges = EditorViewModels.Any( evm => evm.IsDirty );
+
+         if ( promptToSaveChanges )
+         {
+            var result = _dialogService.ShowExitConfirmationDialog();
+
+            if ( result == ExitConfirmationResult.Cancel )
+            {
+               e.Cancel = true;
+            }
+         }
       }
    }
 }
