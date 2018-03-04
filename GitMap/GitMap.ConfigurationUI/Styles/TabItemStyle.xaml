@@ -31,7 +31,11 @@
                      VerticalAlignment="Center"
                      Margin="0,0,12,0"
                      Fill="{StaticResource ForegroundLight}"
-                     Visibility="{Binding IsDirty, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                     Visibility="{Binding IsDirty, Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                     <Ellipse.RenderTransform>
+                        <TranslateTransform x:Name="EllipseTranslateTransform" />
+                     </Ellipse.RenderTransform>
+                  </Ellipse>
                </Grid>
 
                <ControlTemplate.Triggers>
@@ -51,6 +55,24 @@
                         </BeginStoryboard>
                      </Trigger.EnterActions>
                   </Trigger>
+                  <DataTrigger Binding="{Binding IsDirty}" Value="True">
+                     <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                           <Storyboard>
+                              <DoubleAnimation Storyboard.TargetName="Ellipse"
+                                 Storyboard.TargetProperty="Opacity"
+                                 From="0"
+                                 To="1"
+                                 Duration="0:0:0.1" />
+                              <DoubleAnimation Storyboard.TargetName="EllipseTranslateTransform"
+                                 Storyboard.TargetProperty="X"
+                                 From="-6"
+                                 To="0"
+                                 Duration="0:0:0.1" />
+                           </Storyboard>
+                        </BeginStoryboard>
+                     </DataTrigger.EnterActions>
+                  </DataTrigger>
                </ControlTemplate.Triggers>
             </ControlTemplate>
          </Setter.Value>
