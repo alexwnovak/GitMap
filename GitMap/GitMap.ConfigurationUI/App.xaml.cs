@@ -12,6 +12,7 @@ namespace GitMap.ConfigurationUI
       {
          SimpleIoc.Default.Register<IEditorViewModelFactory, EditorViewModelFactory>();
          SimpleIoc.Default.Register<IConfigurationReader, ConfigurationReader>();
+         SimpleIoc.Default.Register<IConfigurationWriter, ConfigurationWriter>();
          SimpleIoc.Default.Register<IFileBrowserService, FileBrowserService>();
          SimpleIoc.Default.Register<IDialogService, DialogService>();
       }
