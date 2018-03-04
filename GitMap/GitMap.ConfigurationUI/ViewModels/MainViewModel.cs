@@ -82,6 +82,11 @@ namespace GitMap.ConfigurationUI.ViewModels
             if ( result == ExitConfirmationResult.Cancel )
             {
                e.Cancel = true;
+               return;
+            }
+            if ( result == ExitConfirmationResult.No )
+            {
+               return;
             }
 
             foreach ( var editorViewModel in EditorViewModels )

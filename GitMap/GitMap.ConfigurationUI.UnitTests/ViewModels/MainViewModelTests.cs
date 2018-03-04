@@ -133,6 +133,36 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       }
 
       [Fact]
+      public void ExitingCommand_DoesNotSaveWhenPrompted_ChangesAreNotSaved()
+      {
+         var dialogServiceMock = new Mock<IDialogService>();
+         dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.No );
+
+         var configurationWriterMock = new Mock<IConfigurationWriter>();
+
+         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
+            "Something",
+            "Something" )
+         {
+            IsDirty = true
+         };
+
+         var factoryMock = new Mock<IEditorViewModelFactory>();
+         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
+
+         var cancelEventArgs = new CancelEventArgs();
+
+         var mainViewModel = new MainViewModel( factoryMock.Object,
+            Mock.Of<IConfigurationReader>(),
+            configurationWriterMock.Object,
+            dialogServiceMock.Object );
+
+         mainViewModel.ExitingCommand.Execute( cancelEventArgs );
+
+         configurationWriterMock.Verify( cw => cw.Write( It.IsAny<string>(), It.IsAny<EditorConfiguration>() ), Times.Never() );
+      }
+
+      [Fact]
       public void ExitingCommand_SavesChangesWhenPrompted_ChangesAreSaved()
       {
          var dialogServiceMock = new Mock<IDialogService>();
