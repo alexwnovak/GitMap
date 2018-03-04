@@ -39,14 +39,17 @@ namespace GitMap.ConfigurationUI.ViewModels
 
          _dialogService = dialogService ?? throw new ArgumentNullException( nameof( dialogService ) );
 
-         var commit = editorViewModelFactory.Create( WorkflowNames.CommitWorkflow, Resources.Commit );
-         var rebase = editorViewModelFactory.Create( WorkflowNames.RebaseWorkflow, Resources.Rebase );
-
-         EditorViewModels.Add( commit );
-         EditorViewModels.Add( rebase );
+         AddEditor( editorViewModelFactory, WorkflowNames.CommitWorkflow, Resources.Commit );
+         AddEditor( editorViewModelFactory, WorkflowNames.RebaseWorkflow, Resources.Rebase );
 
          LoadedCommand = new RelayCommand( OnLoadedCommand );
          ExitingCommand = new RelayCommand<CancelEventArgs>( OnExitingCommand );
+      }
+
+      private void AddEditor( IEditorViewModelFactory editorViewModelFactory, string workflowName, string header )
+      {
+         var editor = editorViewModelFactory.Create( workflowName, header );
+         EditorViewModels.Add( editor );
       }
 
       private void OnLoadedCommand()
