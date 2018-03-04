@@ -39,7 +39,7 @@
                   <ColumnDefinition Width="30" />
                </Grid.ColumnDefinitions>
 
-               <TextBox Text="{Binding EditorPath, Mode=TwoWay}"
+               <TextBox Text="{Binding EditorPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   IsEnabled="{Binding IsChecked, ElementName=CheckBox}" />
 
                <Button Grid.Column="2"
@@ -52,7 +52,7 @@
                Text="{m:Resx Arguments}" />
 
             <TextBox Grid.Row="6"
-               Text="{Binding Arguments, Mode=TwoWay}"
+               Text="{Binding Arguments, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                IsEnabled="{Binding IsChecked, ElementName=CheckBox}" />
          </Grid>
       </Grid>

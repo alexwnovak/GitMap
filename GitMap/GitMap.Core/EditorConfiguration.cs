@@ -10,16 +10,18 @@
          set;
       }
 
+      private string _filePath;
       public string FilePath
       {
-         get;
-         set;
+         get => _filePath ?? string.Empty;
+         set => _filePath = value;
       }
 
+      private string _arguments;
       public string Arguments
       {
-         get;
-         set;
+         get => _arguments ?? string.Empty;
+         set => _arguments = value;
       }
    }
 }

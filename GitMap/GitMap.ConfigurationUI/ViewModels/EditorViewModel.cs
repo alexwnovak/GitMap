@@ -1,21 +1,31 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GitMap.ConfigurationUI.Services;
-using GitMap.Core;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
    public class EditorViewModel : ViewModelBase
    {
-      private readonly IConfigurationReader _configurationReader;
       private readonly IFileBrowserService _fileBrowserService;
-      private readonly string _workflowName;
+
+      public string WorkflowName
+      {
+         get;
+      }
 
       public string Header
       {
          get;
+      }
+
+      private bool _isDirty;
+      public bool IsDirty
+      {
+         get => _isDirty;
+         set => Set( nameof( IsDirty ), ref _isDirty, value );
       }
 
       private bool _isEnabled;
@@ -39,37 +49,30 @@ namespace GitMap.ConfigurationUI.ViewModels
          set => Set( nameof( Arguments ), ref _arguments, value );
       }
 
-      public ICommand LoadedCommand
-      {
-         get;
-      }
-
       public ICommand BrowseCommand
       {
          get;
       }
 
-      public EditorViewModel( IConfigurationReader configurationReader,
-         IFileBrowserService fileBrowserService,
+      public EditorViewModel( IFileBrowserService fileBrowserService,
          string workflowName,
          string header )
       {
-         _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
          _fileBrowserService = fileBrowserService ?? throw new ArgumentNullException( nameof( fileBrowserService ) );
-         _workflowName = workflowName;
+         WorkflowName = workflowName;
          Header = header;
 
-         LoadedCommand = new RelayCommand( OnLoadedCommand );
          BrowseCommand = new RelayCommand( OnBrowseCommand );
+
+         PropertyChanged += OnPropertyChanged;
       }
 
-      private void OnLoadedCommand()
+      private void OnPropertyChanged( object sender, PropertyChangedEventArgs e )
       {
-         var editorConfiguration = _configurationReader.Read( _workflowName );
-
-         IsEnabled = editorConfiguration.IsEnabled;
-         EditorPath = editorConfiguration.FilePath;
-         Arguments = editorConfiguration.Arguments;
+         if ( e.PropertyName != nameof( IsDirty ) )
+         {
+            IsDirty = true;
+         }
       }
 
       private void OnBrowseCommand() => EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;

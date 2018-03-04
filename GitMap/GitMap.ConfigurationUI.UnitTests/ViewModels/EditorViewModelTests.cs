@@ -11,21 +11,9 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
    public class EditorViewModelTests
    {
       [Fact]
-      public void Constructor_ConfigurationReaderIsNull_ThrowsArgumentNullException()
-      {
-         Action constructor = () => new EditorViewModel( null,
-            Mock.Of<IFileBrowserService>(),
-            "Something",
-            "Something" );
-
-         constructor.Should().Throw<ArgumentNullException>();
-      }
-
-      [Fact]
       public void Constructor_FileBrowserServiceIsNull_ThrowsArgumentNullException()
       {
-         Action constructor = () => new EditorViewModel( Mock.Of<IConfigurationReader>(),
-            null,
+         Action constructor = () => new EditorViewModel( null,
             "Something",
             "Something" );
 
@@ -38,8 +26,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var fileBrowserServiceMock = new Mock<IFileBrowserService>();
          fileBrowserServiceMock.Setup( fbs => fbs.PickSingleFile() ).Returns( "notepad.exe" );
 
-         var viewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
-            fileBrowserServiceMock.Object,
+         var viewModel = new EditorViewModel( fileBrowserServiceMock.Object,
             "Something",
             "Something" );
 
@@ -54,8 +41,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var fileBrowserServiceMock = new Mock<IFileBrowserService>();
          fileBrowserServiceMock.Setup( fbs => fbs.PickSingleFile() ).Returns<string>( null );
 
-         var viewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
-            fileBrowserServiceMock.Object,
+         var viewModel = new EditorViewModel( fileBrowserServiceMock.Object,
             "Something",
             "Something" )
          {
@@ -68,45 +54,40 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       }
 
       [Fact]
-      public void LoadedCommand_EditorHasBeenConfigured_ReadsEditorConfiguration()
+      public void IsDirty_EditorPathChanges_IsDirtyIsTrue()
       {
-         var pair = new EditorConfiguration
-         {
-            FilePath = "notepad.exe"
-         };
+         var viewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(), null, null );
 
-         var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( pair );
+         viewModel.IsDirty.Should().BeFalse();
 
-         var viewModel = new EditorViewModel( configurationReaderMock.Object,
-            Mock.Of<IFileBrowserService>(),
-            WorkflowNames.CommitWorkflow,
-            "Something" );
+         viewModel.EditorPath = "Something else";
 
-         viewModel.LoadedCommand.Execute( null );
-
-         viewModel.EditorPath.Should().Be( "notepad.exe" );
+         viewModel.IsDirty.Should().BeTrue();
       }
 
       [Fact]
-      public void LoadedCommand_ArgumentsHaveBeenConfigured_ReadsArgumentsConfiguration()
+      public void IsDirty_ArgumentsChanged_IsDirtyIsTrue()
       {
-         var pair = new EditorConfiguration
-         {
-            Arguments = "%1"
-         };
+         var viewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(), null, null );
 
-         var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( WorkflowNames.CommitWorkflow ) ).Returns( pair );
+         viewModel.IsDirty.Should().BeFalse();
 
-         var viewModel = new EditorViewModel( configurationReaderMock.Object,
-            Mock.Of<IFileBrowserService>(),
-            WorkflowNames.CommitWorkflow,
-            "Something" );
+         viewModel.Arguments = "Something else";
 
-         viewModel.LoadedCommand.Execute( null );
-
-         viewModel.Arguments.Should().Be( "%1" );
+         viewModel.IsDirty.Should().BeTrue();
       }
+
+      [Fact]
+      public void IsDirty_IsEnabledChanges_IsDirtyIsTrue()
+      {
+         var viewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(), null, null );
+
+         viewModel.IsDirty.Should().BeFalse();
+
+         viewModel.IsEnabled = true;
+
+         viewModel.IsDirty.Should().BeTrue();
+      }
+
    }
 }
