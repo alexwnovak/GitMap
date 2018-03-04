@@ -68,6 +68,7 @@ namespace GitMap.ConfigurationUI.ViewModels
             editorViewModel.Arguments = editorConfiguration.Arguments;
             editorViewModel.EditorPath = editorConfiguration.FilePath;
             editorViewModel.IsEnabled = editorConfiguration.IsEnabled;
+            editorViewModel.IsDirty = false;
          }
       }
 
