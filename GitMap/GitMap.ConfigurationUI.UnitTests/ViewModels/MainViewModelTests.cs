@@ -14,7 +14,15 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void Constructor_FactoryIsNull_ThrowsArgumentNullException()
       {
-         Action constructor = () => new MainViewModel( null, Mock.Of<IDialogService>() );
+         Action constructor = () => new MainViewModel( null, Mock.Of<IConfigurationReader>(), Mock.Of<IDialogService>() );
+
+         constructor.Should().Throw<ArgumentNullException>();
+      }
+
+      [Fact]
+      public void Constructor_ConfigurationReaderIsNull_ThrowsArgumentNullException()
+      {
+         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(), null, Mock.Of<IDialogService>() );
 
          constructor.Should().Throw<ArgumentNullException>();
       }
@@ -22,7 +30,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void Constructor_DialogServiceIsNull_ThrowsArgumentNullException()
       {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(), null );
+         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(), Mock.Of<IConfigurationReader>(), null );
 
          constructor.Should().Throw<ArgumentNullException>();
       }
@@ -40,7 +48,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object, Mock.Of<IDialogService>() );
+         var mainViewModel = new MainViewModel( factoryMock.Object, Mock.Of<IConfigurationReader>(), Mock.Of<IDialogService>() );
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
          cancelEventArgs.Cancel.Should().BeFalse();
@@ -65,7 +73,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object, dialogServiceMock.Object );
+         var mainViewModel = new MainViewModel( factoryMock.Object, Mock.Of<IConfigurationReader>(), dialogServiceMock.Object );
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
          cancelEventArgs.Cancel.Should().BeFalse();
@@ -90,7 +98,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object, dialogServiceMock.Object );
+         var mainViewModel = new MainViewModel( factoryMock.Object, Mock.Of<IConfigurationReader>(), dialogServiceMock.Object );
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
          cancelEventArgs.Cancel.Should().BeTrue();

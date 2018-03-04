@@ -13,6 +13,7 @@ namespace GitMap.ConfigurationUI.ViewModels
 {
    public class MainViewModel : ViewModelBase
    {
+      private readonly IConfigurationReader _configurationReader;
       private readonly IDialogService _dialogService;
 
       public ObservableCollection<EditorViewModel> EditorViewModels
@@ -30,13 +31,16 @@ namespace GitMap.ConfigurationUI.ViewModels
          get;
       }
 
-      public MainViewModel( IEditorViewModelFactory editorViewModelFactory, IDialogService dialogService )
+      public MainViewModel( IEditorViewModelFactory editorViewModelFactory,
+         IConfigurationReader configurationReader,
+         IDialogService dialogService )
       {
          if ( editorViewModelFactory == null )
          {
             throw new ArgumentNullException( nameof( editorViewModelFactory ) );
          }
 
+         _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
          _dialogService = dialogService ?? throw new ArgumentNullException( nameof( dialogService ) );
 
          AddEditor( editorViewModelFactory, WorkflowNames.CommitWorkflow, Resources.Commit );
