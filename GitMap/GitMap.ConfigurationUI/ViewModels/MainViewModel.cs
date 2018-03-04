@@ -14,6 +14,7 @@ namespace GitMap.ConfigurationUI.ViewModels
    public class MainViewModel : ViewModelBase
    {
       private readonly IConfigurationReader _configurationReader;
+      private readonly IConfigurationWriter _configurationWriter;
       private readonly IDialogService _dialogService;
 
       public ObservableCollection<EditorViewModel> EditorViewModels
@@ -33,6 +34,7 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       public MainViewModel( IEditorViewModelFactory editorViewModelFactory,
          IConfigurationReader configurationReader,
+         IConfigurationWriter configurationWriter,
          IDialogService dialogService )
       {
          if ( editorViewModelFactory == null )
@@ -41,6 +43,7 @@ namespace GitMap.ConfigurationUI.ViewModels
          }
 
          _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
+         _configurationWriter = configurationWriter ?? throw new ArgumentNullException( nameof( configurationWriter ) );
          _dialogService = dialogService ?? throw new ArgumentNullException( nameof( dialogService ) );
 
          AddEditor( editorViewModelFactory, WorkflowNames.CommitWorkflow, Resources.Commit );
@@ -79,6 +82,18 @@ namespace GitMap.ConfigurationUI.ViewModels
             if ( result == ExitConfirmationResult.Cancel )
             {
                e.Cancel = true;
+            }
+
+            foreach ( var editorViewModel in EditorViewModels )
+            {
+               var editorConfiguration = new EditorConfiguration
+               {
+                  FilePath = editorViewModel.EditorPath,
+                  Arguments = editorViewModel.Arguments,
+                  IsEnabled = editorViewModel.IsEnabled
+               };
+
+               _configurationWriter.Write( editorViewModel.WorkflowName, editorConfiguration );
             }
          }
       }

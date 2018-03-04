@@ -14,7 +14,10 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void Constructor_FactoryIsNull_ThrowsArgumentNullException()
       {
-         Action constructor = () => new MainViewModel( null, Mock.Of<IConfigurationReader>(), Mock.Of<IDialogService>() );
+         Action constructor = () => new MainViewModel( null,
+            Mock.Of<IConfigurationReader>(),
+            Mock.Of<IConfigurationWriter>(),
+            Mock.Of<IDialogService>() );
 
          constructor.Should().Throw<ArgumentNullException>();
       }
@@ -22,7 +25,21 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void Constructor_ConfigurationReaderIsNull_ThrowsArgumentNullException()
       {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(), null, Mock.Of<IDialogService>() );
+         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
+            null,
+            Mock.Of<IConfigurationWriter>(),
+            Mock.Of<IDialogService>() );
+
+         constructor.Should().Throw<ArgumentNullException>();
+      }
+
+      [Fact]
+      public void Constructor_ConfigurationWriterIsNull_ThrowsArgumentNullException()
+      {
+         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
+            Mock.Of<IConfigurationReader>(),
+            null,
+            Mock.Of<IDialogService>() );
 
          constructor.Should().Throw<ArgumentNullException>();
       }
@@ -30,7 +47,10 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void Constructor_DialogServiceIsNull_ThrowsArgumentNullException()
       {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(), Mock.Of<IConfigurationReader>(), null );
+         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
+            Mock.Of<IConfigurationReader>(),
+            Mock.Of<IConfigurationWriter>(),
+            null );
 
          constructor.Should().Throw<ArgumentNullException>();
       }
@@ -47,7 +67,11 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object, Mock.Of<IConfigurationReader>(), Mock.Of<IDialogService>() );
+         var mainViewModel = new MainViewModel( factoryMock.Object,
+            Mock.Of<IConfigurationReader>(),
+            Mock.Of<IConfigurationWriter>(),
+            Mock.Of<IDialogService>() );
+
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
          cancelEventArgs.Cancel.Should().BeFalse();
@@ -71,7 +95,10 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object, Mock.Of<IConfigurationReader>(), dialogServiceMock.Object );
+         var mainViewModel = new MainViewModel( factoryMock.Object,
+            Mock.Of<IConfigurationReader>(),
+            Mock.Of<IConfigurationWriter>(),
+            dialogServiceMock.Object );
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
          cancelEventArgs.Cancel.Should().BeFalse();
@@ -95,10 +122,47 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object, Mock.Of<IConfigurationReader>(), dialogServiceMock.Object );
+         var mainViewModel = new MainViewModel( factoryMock.Object,
+            Mock.Of<IConfigurationReader>(),
+            Mock.Of<IConfigurationWriter>(),
+            dialogServiceMock.Object );
+
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
          cancelEventArgs.Cancel.Should().BeTrue();
+      }
+
+      [Fact]
+      public void ExitingCommand_SavesChangesWhenPrompted_ChangesAreSaved()
+      {
+         var dialogServiceMock = new Mock<IDialogService>();
+         dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.Yes );
+
+         var configurationWriterMock = new Mock<IConfigurationWriter>();
+
+         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
+            "Something",
+            "Something" )
+         {
+            EditorPath = "editor",
+            Arguments = "arguments",
+            IsEnabled = true
+         };
+
+         var factoryMock = new Mock<IEditorViewModelFactory>();
+         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
+
+         var cancelEventArgs = new CancelEventArgs();
+
+         var mainViewModel = new MainViewModel( factoryMock.Object,
+            Mock.Of<IConfigurationReader>(),
+            configurationWriterMock.Object,
+            dialogServiceMock.Object );
+
+         mainViewModel.ExitingCommand.Execute( cancelEventArgs );
+
+         configurationWriterMock.Verify( cw => cw.Write( It.IsAny<string>(), It.Is<EditorConfiguration>( ec =>
+            ec.FilePath == "editor" && ec.Arguments == "arguments" && ec.IsEnabled ) ) );
       }
 
       [Fact]
@@ -124,7 +188,11 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( It.IsAny<string>() ) ).Returns( editorConfiguration );
 
-         var mainViewModel = new MainViewModel( factoryMock.Object, configurationReaderMock.Object, Mock.Of<DialogService>() );
+         var mainViewModel = new MainViewModel( factoryMock.Object,
+            configurationReaderMock.Object,
+            Mock.Of<IConfigurationWriter>(),
+            Mock.Of<DialogService>() );
+
          mainViewModel.LoadedCommand.Execute( null );
 
          editorViewModel.Arguments.Should().Be( "arguments" );
