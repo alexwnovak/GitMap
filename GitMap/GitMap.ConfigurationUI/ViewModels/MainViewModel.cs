@@ -60,7 +60,11 @@ namespace GitMap.ConfigurationUI.ViewModels
       {
          foreach ( var editorViewModel in EditorViewModels )
          {
-            editorViewModel.LoadedCommand.Execute( null );
+            var editorConfiguration = _configurationReader.Read( editorViewModel.WorkflowName );
+
+            editorViewModel.Arguments = editorConfiguration.Arguments;
+            editorViewModel.EditorPath = editorConfiguration.FilePath;
+            editorViewModel.IsEnabled = editorConfiguration.IsEnabled;
          }
       }
 

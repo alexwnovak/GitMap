@@ -12,7 +12,11 @@ namespace GitMap.ConfigurationUI.ViewModels
    {
       private readonly IConfigurationReader _configurationReader;
       private readonly IFileBrowserService _fileBrowserService;
-      private readonly string _workflowName;
+
+      public string WorkflowName
+      {
+         get;
+      }
 
       public string Header
       {
@@ -64,7 +68,7 @@ namespace GitMap.ConfigurationUI.ViewModels
       {
          _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
          _fileBrowserService = fileBrowserService ?? throw new ArgumentNullException( nameof( fileBrowserService ) );
-         _workflowName = workflowName;
+         WorkflowName = workflowName;
          Header = header;
 
          LoadedCommand = new RelayCommand( OnLoadedCommand );
@@ -73,7 +77,7 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       private void OnLoadedCommand()
       {
-         var editorConfiguration = _configurationReader.Read( _workflowName );
+         var editorConfiguration = _configurationReader.Read( WorkflowName );
 
          IsEnabled = editorConfiguration.IsEnabled;
          EditorPath = editorConfiguration.FilePath;

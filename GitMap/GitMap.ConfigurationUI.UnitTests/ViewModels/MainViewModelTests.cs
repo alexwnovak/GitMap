@@ -104,5 +104,36 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          cancelEventArgs.Cancel.Should().BeTrue();
       }
 
+      [Fact]
+      public void LoadedCommand_EditorsHaveSettings_SettingsAreLoaded()
+      {
+         var editorViewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
+            Mock.Of<IFileBrowserService>(),
+            "Something",
+            "Something" )
+         {
+            IsDirty = true
+         };
+
+         var factoryMock = new Mock<IEditorViewModelFactory>();
+         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
+
+         var editorConfiguration = new EditorConfiguration
+         {
+            Arguments = "arguments",
+            FilePath = "filePath",
+            IsEnabled = true
+         };
+
+         var configurationReaderMock = new Mock<IConfigurationReader>();
+         configurationReaderMock.Setup( cr => cr.Read( It.IsAny<string>() ) ).Returns( editorConfiguration );
+
+         var mainViewModel = new MainViewModel( factoryMock.Object, configurationReaderMock.Object, Mock.Of<DialogService>() );
+         mainViewModel.LoadedCommand.Execute( null );
+
+         editorViewModel.Arguments.Should().Be( "arguments" );
+         editorViewModel.EditorPath.Should().Be( "filePath" );
+         editorViewModel.IsEnabled.Should().BeTrue();
+      }
    }
 }
