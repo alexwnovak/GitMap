@@ -38,8 +38,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void ExitingCommand_NoDirtyEditors_ExitingProceeds()
       {
-         var editorViewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
-            Mock.Of<IFileBrowserService>(),
+         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
             "Something",
             "Something" );
 
@@ -60,8 +59,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var dialogServiceMock = new Mock<IDialogService>();
          dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.No );
 
-         var editorViewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
-            Mock.Of<IFileBrowserService>(),
+         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
             "Something",
             "Something" )
          {
@@ -85,8 +83,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var dialogServiceMock = new Mock<IDialogService>();
          dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.Cancel );
 
-         var editorViewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
-            Mock.Of<IFileBrowserService>(),
+         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
             "Something",
             "Something" )
          {
@@ -107,8 +104,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void LoadedCommand_EditorsHaveSettings_SettingsAreLoaded()
       {
-         var editorViewModel = new EditorViewModel( Mock.Of<IConfigurationReader>(),
-            Mock.Of<IFileBrowserService>(),
+         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
             "Something",
             "Something" )
          {
