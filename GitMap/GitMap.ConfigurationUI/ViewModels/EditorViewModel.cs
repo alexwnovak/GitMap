@@ -49,11 +49,6 @@ namespace GitMap.ConfigurationUI.ViewModels
          set => Set( nameof( Arguments ), ref _arguments, value );
       }
 
-      public ICommand LoadedCommand
-      {
-         get;
-      }
-
       public ICommand BrowseCommand
       {
          get;
@@ -67,20 +62,16 @@ namespace GitMap.ConfigurationUI.ViewModels
          WorkflowName = workflowName;
          Header = header;
 
-         LoadedCommand = new RelayCommand( OnLoadedCommand );
          BrowseCommand = new RelayCommand( OnBrowseCommand );
+
+         PropertyChanged += OnPropertyChanged;
       }
 
-      private void OnLoadedCommand()
+      private void OnPropertyChanged( object sender, PropertyChangedEventArgs e )
       {
-         PropertyChanged += OnPropertyChanged;
-
-         void OnPropertyChanged( object sender, PropertyChangedEventArgs e )
+         if ( e.PropertyName != nameof( IsDirty ) )
          {
-            if ( e.PropertyName != nameof( IsDirty ) )
-            {
-               IsDirty = true;
-            }
+            IsDirty = true;
          }
       }
 
