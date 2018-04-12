@@ -17,20 +17,10 @@ namespace GitMap.ConfigurationUI.ViewModels
       private readonly IConfigurationWriter _configurationWriter;
       private readonly IDialogService _dialogService;
 
-      public ObservableCollection<EditorViewModel> EditorViewModels
-      {
-         get;
-      } = new ObservableCollection<EditorViewModel>();
+      public ObservableCollection<EditorViewModel> EditorViewModels { get; } = new ObservableCollection<EditorViewModel>();
 
-      public ICommand LoadedCommand
-      {
-         get;
-      }
-
-      public ICommand ExitingCommand
-      {
-         get;
-      }
+      public ICommand LoadedCommand { get; }
+      public ICommand ExitingCommand { get; }
 
       public MainViewModel( IEditorViewModelFactory editorViewModelFactory,
          IConfigurationReader configurationReader,
