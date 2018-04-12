@@ -36,7 +36,7 @@
                         VerticalAlignment="Center" />
 
                      <Button Grid.Column="1"
-                         Style="{DynamicResource CloseButtonStyle}"
+                         Style="{StaticResource CloseButtonStyle}"
                          Command="{Binding CloseCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
                   </Grid>
 
