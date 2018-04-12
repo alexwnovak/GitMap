@@ -5,22 +5,19 @@
    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
    xmlns:b="clr-namespace:GitMap.ConfigurationUI.Behaviors">
    <Style TargetType="v:MainWindow">
-      <Setter Property="AllowsTransparency" Value="True" />
       <Setter Property="Background" Value="{StaticResource Background}" />
       <Setter Property="Width" Value="600" />
       <Setter Property="Height" Value="400" />
-      <Setter Property="WindowStyle" Value="None" />
       <Setter Property="ResizeMode" Value="NoResize" />
+      <Setter Property="WindowChrome.WindowChrome">
+         <Setter.Value>
+            <WindowChrome ResizeBorderThickness="6" GlassFrameThickness="1" />
+         </Setter.Value>
+      </Setter>
       <Setter Property="Template">
          <Setter.Value>
             <ControlTemplate TargetType="v:MainWindow">
-               <Grid Margin="12">
-                  <Grid.Effect>
-                     <DropShadowEffect BlurRadius="16"
-                        ShadowDepth="1"
-                        Direction="0" />
-                  </Grid.Effect>
-
+               <Grid>
                   <Grid.RowDefinitions>
                      <RowDefinition Height="30" />
                      <RowDefinition />
@@ -31,10 +28,6 @@
                         <ColumnDefinition />
                         <ColumnDefinition Width="40" />
                      </Grid.ColumnDefinitions>
-
-                     <i:Interaction.Behaviors>
-                        <b:WindowDragBehavior />
-                     </i:Interaction.Behaviors>
 
                      <TextBlock Grid.ColumnSpan="2"
                         Text="{TemplateBinding Title}"
