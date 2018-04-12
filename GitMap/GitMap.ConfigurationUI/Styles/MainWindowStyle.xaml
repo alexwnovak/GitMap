@@ -11,7 +11,7 @@
       <Setter Property="ResizeMode" Value="NoResize" />
       <Setter Property="WindowChrome.WindowChrome">
          <Setter.Value>
-            <WindowChrome ResizeBorderThickness="6" GlassFrameThickness="1" />
+            <WindowChrome CaptionHeight="30" GlassFrameThickness="1" />
          </Setter.Value>
       </Setter>
       <Setter Property="Template">
@@ -36,8 +36,9 @@
                         VerticalAlignment="Center" />
 
                      <Button Grid.Column="1"
-                         Style="{StaticResource CloseButtonStyle}"
-                         Command="{Binding CloseCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                        WindowChrome.IsHitTestVisibleInChrome="True"
+                        Style="{StaticResource CloseButtonStyle}"
+                        Command="{Binding CloseCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
                   </Grid>
 
                   <Grid Grid.Row="1"
