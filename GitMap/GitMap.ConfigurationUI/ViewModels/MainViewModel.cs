@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -27,9 +26,9 @@ namespace GitMap.ConfigurationUI.ViewModels
          IConfigurationWriter configurationWriter,
          IDialogService dialogService )
       {
-         _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
-         _configurationWriter = configurationWriter ?? throw new ArgumentNullException( nameof( configurationWriter ) );
-         _dialogService = dialogService ?? throw new ArgumentNullException( nameof( dialogService ) );
+         _configurationReader = configurationReader;
+         _configurationWriter = configurationWriter;
+         _dialogService = dialogService;
 
          EditorViewModels = new ObservableCollection<IEditorViewModel>( editorViewModels );
 
