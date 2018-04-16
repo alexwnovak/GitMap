@@ -78,9 +78,7 @@
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IFileBrowserService.cs" />
     <Compile Include="ViewModels\EditorViewModel.cs" />
-    <Compile Include="ViewModels\EditorViewModelFactory.cs" />
     <Compile Include="ViewModels\IEditorViewModel.cs" />
-    <Compile Include="ViewModels\IEditorViewModelFactory.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Page Include="Views\MainWindow.xaml">
