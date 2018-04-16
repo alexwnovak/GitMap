@@ -1,11 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GitMap.ConfigurationUI.Properties;
 using GitMap.ConfigurationUI.Services;
 using GitMap.Core;
 
@@ -22,7 +22,7 @@ namespace GitMap.ConfigurationUI.ViewModels
       public ICommand LoadedCommand { get; }
       public ICommand ExitingCommand { get; }
 
-      public MainViewModel( IEditorViewModelFactory editorViewModelFactory,
+      public MainViewModel( IEnumerable<EditorViewModel> editorViewModels,
          IConfigurationReader configurationReader,
          IConfigurationWriter configurationWriter,
          IDialogService dialogService )
@@ -31,17 +31,10 @@ namespace GitMap.ConfigurationUI.ViewModels
          _configurationWriter = configurationWriter ?? throw new ArgumentNullException( nameof( configurationWriter ) );
          _dialogService = dialogService ?? throw new ArgumentNullException( nameof( dialogService ) );
 
-         AddEditor( editorViewModelFactory, WorkflowNames.CommitWorkflow, Resources.Commit );
-         AddEditor( editorViewModelFactory, WorkflowNames.RebaseWorkflow, Resources.Rebase );
+         EditorViewModels = new ObservableCollection<EditorViewModel>( editorViewModels );
 
          LoadedCommand = new RelayCommand( OnLoadedCommand );
          ExitingCommand = new RelayCommand<CancelEventArgs>( OnExitingCommand );
-      }
-
-      private void AddEditor( IEditorViewModelFactory editorViewModelFactory, string workflowName, string header )
-      {
-         var editor = editorViewModelFactory.Create( workflowName, header );
-         EditorViewModels.Add( editor );
       }
 
       private void OnLoadedCommand()
