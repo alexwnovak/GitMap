@@ -23,39 +23,6 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       }
 
       [Fact]
-      public void Constructor_ConfigurationReaderIsNull_ThrowsArgumentNullException()
-      {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
-            null,
-            Mock.Of<IConfigurationWriter>(),
-            Mock.Of<IDialogService>() );
-
-         constructor.Should().Throw<ArgumentNullException>();
-      }
-
-      [Fact]
-      public void Constructor_ConfigurationWriterIsNull_ThrowsArgumentNullException()
-      {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
-            Mock.Of<IConfigurationReader>(),
-            null,
-            Mock.Of<IDialogService>() );
-
-         constructor.Should().Throw<ArgumentNullException>();
-      }
-
-      [Fact]
-      public void Constructor_DialogServiceIsNull_ThrowsArgumentNullException()
-      {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
-            Mock.Of<IConfigurationReader>(),
-            Mock.Of<IConfigurationWriter>(),
-            null );
-
-         constructor.Should().Throw<ArgumentNullException>();
-      }
-
-      [Fact]
       public void ExitingCommand_NoDirtyEditors_ExitingProceeds()
       {
          var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),

@@ -27,11 +27,6 @@ namespace GitMap.ConfigurationUI.ViewModels
          IConfigurationWriter configurationWriter,
          IDialogService dialogService )
       {
-         if ( editorViewModelFactory == null )
-         {
-            throw new ArgumentNullException( nameof( editorViewModelFactory ) );
-         }
-
          _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
          _configurationWriter = configurationWriter ?? throw new ArgumentNullException( nameof( configurationWriter ) );
          _dialogService = dialogService ?? throw new ArgumentNullException( nameof( dialogService ) );
