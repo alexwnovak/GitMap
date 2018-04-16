@@ -1,11 +1,10 @@
-using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GitMap.ConfigurationUI.Properties;
 using GitMap.ConfigurationUI.Services;
 using GitMap.Core;
 
@@ -17,46 +16,24 @@ namespace GitMap.ConfigurationUI.ViewModels
       private readonly IConfigurationWriter _configurationWriter;
       private readonly IDialogService _dialogService;
 
-      public ObservableCollection<EditorViewModel> EditorViewModels
-      {
-         get;
-      } = new ObservableCollection<EditorViewModel>();
+      public ObservableCollection<IEditorViewModel> EditorViewModels { get; } = new ObservableCollection<IEditorViewModel>();
 
-      public ICommand LoadedCommand
-      {
-         get;
-      }
+      public ICommand LoadedCommand { get; }
+      public ICommand ExitingCommand { get; }
 
-      public ICommand ExitingCommand
-      {
-         get;
-      }
-
-      public MainViewModel( IEditorViewModelFactory editorViewModelFactory,
+      public MainViewModel( IEnumerable<IEditorViewModel> editorViewModels,
          IConfigurationReader configurationReader,
          IConfigurationWriter configurationWriter,
          IDialogService dialogService )
       {
-         if ( editorViewModelFactory == null )
-         {
-            throw new ArgumentNullException( nameof( editorViewModelFactory ) );
-         }
+         _configurationReader = configurationReader;
+         _configurationWriter = configurationWriter;
+         _dialogService = dialogService;
 
-         _configurationReader = configurationReader ?? throw new ArgumentNullException( nameof( configurationReader ) );
-         _configurationWriter = configurationWriter ?? throw new ArgumentNullException( nameof( configurationWriter ) );
-         _dialogService = dialogService ?? throw new ArgumentNullException( nameof( dialogService ) );
-
-         AddEditor( editorViewModelFactory, WorkflowNames.CommitWorkflow, Resources.Commit );
-         AddEditor( editorViewModelFactory, WorkflowNames.RebaseWorkflow, Resources.Rebase );
+         EditorViewModels = new ObservableCollection<IEditorViewModel>( editorViewModels );
 
          LoadedCommand = new RelayCommand( OnLoadedCommand );
          ExitingCommand = new RelayCommand<CancelEventArgs>( OnExitingCommand );
-      }
-
-      private void AddEditor( IEditorViewModelFactory editorViewModelFactory, string workflowName, string header )
-      {
-         var editor = editorViewModelFactory.Create( workflowName, header );
-         EditorViewModels.Add( editor );
       }
 
       private void OnLoadedCommand()

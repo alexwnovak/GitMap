@@ -7,7 +7,7 @@ using GitMap.ConfigurationUI.Services;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
-   public class EditorViewModel : ViewModelBase
+   public class EditorViewModel : ViewModelBase, IEditorViewModel
    {
       private readonly IFileBrowserService _fileBrowserService;
 
@@ -58,7 +58,7 @@ namespace GitMap.ConfigurationUI.ViewModels
          string workflowName,
          string header )
       {
-         _fileBrowserService = fileBrowserService ?? throw new ArgumentNullException( nameof( fileBrowserService ) );
+         _fileBrowserService = fileBrowserService;
          WorkflowName = workflowName;
          Header = header;
 

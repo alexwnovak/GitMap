@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using Xunit;
 using Moq;
 using FluentAssertions;
@@ -12,62 +13,11 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
    public class MainViewModelTests
    {
       [Fact]
-      public void Constructor_FactoryIsNull_ThrowsArgumentNullException()
-      {
-         Action constructor = () => new MainViewModel( null,
-            Mock.Of<IConfigurationReader>(),
-            Mock.Of<IConfigurationWriter>(),
-            Mock.Of<IDialogService>() );
-
-         constructor.Should().Throw<ArgumentNullException>();
-      }
-
-      [Fact]
-      public void Constructor_ConfigurationReaderIsNull_ThrowsArgumentNullException()
-      {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
-            null,
-            Mock.Of<IConfigurationWriter>(),
-            Mock.Of<IDialogService>() );
-
-         constructor.Should().Throw<ArgumentNullException>();
-      }
-
-      [Fact]
-      public void Constructor_ConfigurationWriterIsNull_ThrowsArgumentNullException()
-      {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
-            Mock.Of<IConfigurationReader>(),
-            null,
-            Mock.Of<IDialogService>() );
-
-         constructor.Should().Throw<ArgumentNullException>();
-      }
-
-      [Fact]
-      public void Constructor_DialogServiceIsNull_ThrowsArgumentNullException()
-      {
-         Action constructor = () => new MainViewModel( Mock.Of<IEditorViewModelFactory>(),
-            Mock.Of<IConfigurationReader>(),
-            Mock.Of<IConfigurationWriter>(),
-            null );
-
-         constructor.Should().Throw<ArgumentNullException>();
-      }
-
-      [Fact]
       public void ExitingCommand_NoDirtyEditors_ExitingProceeds()
       {
-         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
-            "Something",
-            "Something" );
-
-         var factoryMock = new Mock<IEditorViewModelFactory>();
-         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
-
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object,
+         var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
             Mock.Of<IConfigurationReader>(),
             Mock.Of<IConfigurationWriter>(),
             Mock.Of<IDialogService>() );
@@ -83,19 +33,9 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var dialogServiceMock = new Mock<IDialogService>();
          dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.No );
 
-         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
-            "Something",
-            "Something" )
-         {
-            IsDirty = true
-         };
-
-         var factoryMock = new Mock<IEditorViewModelFactory>();
-         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
-
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object,
+         var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
             Mock.Of<IConfigurationReader>(),
             Mock.Of<IConfigurationWriter>(),
             dialogServiceMock.Object );
@@ -110,19 +50,12 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var dialogServiceMock = new Mock<IDialogService>();
          dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.Cancel );
 
-         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
-            "Something",
-            "Something" )
-         {
-            IsDirty = true
-         };
-
-         var factoryMock = new Mock<IEditorViewModelFactory>();
-         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
+         var viewModelMock = new Mock<IEditorViewModel>();
+         viewModelMock.SetupGet( vm => vm.IsDirty ).Returns( true );
 
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object,
+         var mainViewModel = new MainViewModel( new[] { viewModelMock.Object },
             Mock.Of<IConfigurationReader>(),
             Mock.Of<IConfigurationWriter>(),
             dialogServiceMock.Object );
@@ -140,19 +73,9 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          var configurationWriterMock = new Mock<IConfigurationWriter>();
 
-         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
-            "Something",
-            "Something" )
-         {
-            IsDirty = true
-         };
-
-         var factoryMock = new Mock<IEditorViewModelFactory>();
-         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
-
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object,
+         var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
             Mock.Of<IConfigurationReader>(),
             configurationWriterMock.Object,
             dialogServiceMock.Object );
@@ -168,23 +91,17 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var dialogServiceMock = new Mock<IDialogService>();
          dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.Yes );
 
+         var viewModelMock = new Mock<IEditorViewModel>();
+         viewModelMock.SetupGet( vm => vm.IsDirty ).Returns( true );
+         viewModelMock.SetupGet( vm => vm.EditorPath ).Returns( "editor" );
+         viewModelMock.SetupGet( vm => vm.Arguments ).Returns( "arguments" );
+         viewModelMock.SetupGet( vm => vm.IsEnabled ).Returns( true );
+
          var configurationWriterMock = new Mock<IConfigurationWriter>();
-
-         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
-            "Something",
-            "Something" )
-         {
-            EditorPath = "editor",
-            Arguments = "arguments",
-            IsEnabled = true
-         };
-
-         var factoryMock = new Mock<IEditorViewModelFactory>();
-         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
 
          var cancelEventArgs = new CancelEventArgs();
 
-         var mainViewModel = new MainViewModel( factoryMock.Object,
+         var mainViewModel = new MainViewModel( new[] { viewModelMock.Object },
             Mock.Of<IConfigurationReader>(),
             configurationWriterMock.Object,
             dialogServiceMock.Object );
@@ -198,16 +115,6 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void LoadedCommand_EditorsHaveSettings_SettingsAreLoaded()
       {
-         var editorViewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(),
-            "Something",
-            "Something" )
-         {
-            IsDirty = true
-         };
-
-         var factoryMock = new Mock<IEditorViewModelFactory>();
-         factoryMock.Setup( f => f.Create( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( editorViewModel );
-
          var editorConfiguration = new EditorConfiguration
          {
             Arguments = "arguments",
@@ -218,16 +125,12 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( It.IsAny<string>() ) ).Returns( editorConfiguration );
 
-         var mainViewModel = new MainViewModel( factoryMock.Object,
+         var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
             configurationReaderMock.Object,
             Mock.Of<IConfigurationWriter>(),
             Mock.Of<DialogService>() );
 
          mainViewModel.LoadedCommand.Execute( null );
-
-         editorViewModel.Arguments.Should().Be( "arguments" );
-         editorViewModel.EditorPath.Should().Be( "filePath" );
-         editorViewModel.IsEnabled.Should().BeTrue();
       }
    }
 }

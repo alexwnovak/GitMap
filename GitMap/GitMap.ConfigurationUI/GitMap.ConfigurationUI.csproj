@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.2.0.2\lib\net45\CommonServiceLocator.dll</HintPath>
@@ -69,15 +72,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviors\WindowDragBehavior.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\ExitConfirmationResult.cs" />
     <Compile Include="Services\FileBrowserService.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IFileBrowserService.cs" />
     <Compile Include="ViewModels\EditorViewModel.cs" />
-    <Compile Include="ViewModels\EditorViewModelFactory.cs" />
-    <Compile Include="ViewModels\IEditorViewModelFactory.cs" />
+    <Compile Include="ViewModels\IEditorViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Page Include="Views\MainWindow.xaml">
@@ -148,6 +149,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
