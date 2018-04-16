@@ -17,12 +17,12 @@ namespace GitMap.ConfigurationUI.ViewModels
       private readonly IConfigurationWriter _configurationWriter;
       private readonly IDialogService _dialogService;
 
-      public ObservableCollection<EditorViewModel> EditorViewModels { get; } = new ObservableCollection<EditorViewModel>();
+      public ObservableCollection<IEditorViewModel> EditorViewModels { get; } = new ObservableCollection<IEditorViewModel>();
 
       public ICommand LoadedCommand { get; }
       public ICommand ExitingCommand { get; }
 
-      public MainViewModel( IEnumerable<EditorViewModel> editorViewModels,
+      public MainViewModel( IEnumerable<IEditorViewModel> editorViewModels,
          IConfigurationReader configurationReader,
          IConfigurationWriter configurationWriter,
          IDialogService dialogService )
@@ -31,7 +31,7 @@ namespace GitMap.ConfigurationUI.ViewModels
          _configurationWriter = configurationWriter ?? throw new ArgumentNullException( nameof( configurationWriter ) );
          _dialogService = dialogService ?? throw new ArgumentNullException( nameof( dialogService ) );
 
-         EditorViewModels = new ObservableCollection<EditorViewModel>( editorViewModels );
+         EditorViewModels = new ObservableCollection<IEditorViewModel>( editorViewModels );
 
          LoadedCommand = new RelayCommand( OnLoadedCommand );
          ExitingCommand = new RelayCommand<CancelEventArgs>( OnExitingCommand );

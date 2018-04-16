@@ -7,7 +7,7 @@ using GitMap.ConfigurationUI.Services;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
-   public class EditorViewModel : ViewModelBase
+   public class EditorViewModel : ViewModelBase, IEditorViewModel
    {
       private readonly IFileBrowserService _fileBrowserService;
 

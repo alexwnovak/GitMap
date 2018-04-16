@@ -19,7 +19,7 @@ namespace GitMap.ConfigurationUI
          SimpleIoc.Default.Register( CreateEditorViewModels );
       }
 
-      private static IEnumerable<EditorViewModel> CreateEditorViewModels()
+      private static IEnumerable<IEditorViewModel> CreateEditorViewModels()
       {
          var fileBrowserService = SimpleIoc.Default.GetInstance<IFileBrowserService>();
 
