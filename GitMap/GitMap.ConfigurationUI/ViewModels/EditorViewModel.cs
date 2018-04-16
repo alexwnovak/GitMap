@@ -58,7 +58,7 @@ namespace GitMap.ConfigurationUI.ViewModels
          string workflowName,
          string header )
       {
-         _fileBrowserService = fileBrowserService ?? throw new ArgumentNullException( nameof( fileBrowserService ) );
+         _fileBrowserService = fileBrowserService;
          WorkflowName = workflowName;
          Header = header;
 
