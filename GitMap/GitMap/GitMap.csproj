@@ -53,7 +53,6 @@
     <Compile Include="IOutputController.cs" />
     <Compile Include="OutputController.cs" />
     <Compile Include="Workflow.cs" />
-    <Compile Include="IProcessRunner.cs" />
     <Compile Include="IWorkflow.cs" />
     <Compile Include="ProcessRunner.cs" />
     <Compile Include="Program.cs" />

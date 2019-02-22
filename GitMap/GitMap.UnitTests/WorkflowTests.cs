@@ -44,7 +44,6 @@ namespace GitMap.UnitTests
 
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
-         var processRunnerMock = new Mock<IProcessRunner>();
 
          string path = null;
          string arguments = null;
@@ -71,8 +70,6 @@ namespace GitMap.UnitTests
 
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
-         var processRunnerMock = new Mock<IProcessRunner>();
-         processRunnerMock.Setup( pr => pr.RunOld( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( 1 );
 
          var workflow = new Workflow(
             "CommitWorkflow",
