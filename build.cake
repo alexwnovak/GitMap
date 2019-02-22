@@ -3,7 +3,7 @@
 var target = Argument( "target", "Default" );
 var configuration = Argument( "configuration", "Release" );
 
-var buildDir = Directory( "./GitMap/GitMap/bin" ) + Directory( configuration );
+var buildDir = Directory( "./src/GitMap/bin" ) + Directory( configuration );
 
 //===========================================================================
 // Clean Task
@@ -23,7 +23,7 @@ Task( "RestoreNuGetPackages" )
    .IsDependentOn( "Clean" )
    .Does( () =>
 {
-   NuGetRestore( "./GitMap/GitMap.sln" );
+   NuGetRestore( "./src/GitMap.sln" );
 } );
 
 //===========================================================================
@@ -34,7 +34,7 @@ Task( "Build" )
    .IsDependentOn( "RestoreNuGetPackages")
    .Does( () =>
 {
-  MSBuild( "./GitMap/GitMap.sln", settings => settings.SetConfiguration( configuration ) );
+  MSBuild( "./src/GitMap.sln", settings => settings.SetConfiguration( configuration ) );
 } );
 
 //===========================================================================
@@ -45,14 +45,7 @@ Task( "RunUnitTests" )
    .IsDependentOn( "Build" )
    .Does( () =>
 {
-    XUnit2( "./GitMap/GitMap.UnitTests/bin/" + Directory( configuration ) + "/*Tests*.dll" );
-} );
-
-Task( "RunAcceptanceTests" )
-   .IsDependentOn( "RunUnitTests" )
-   .Does( () =>
-{
-    XUnit2( "./GitMap/GitMap.AcceptanceTests/bin/" + Directory( configuration ) + "/*Tests*.dll" );
+    XUnit2( "./src/GitMap.UnitTests/bin/" + Directory( configuration ) + "/*Tests*.dll" );
 } );
 
 //===========================================================================
@@ -60,6 +53,6 @@ Task( "RunAcceptanceTests" )
 //===========================================================================
 
 Task( "Default" )
-   .IsDependentOn( "RunAcceptanceTests" );
+   .IsDependentOn( "RunUnitTests" );
 
 RunTarget( target );
