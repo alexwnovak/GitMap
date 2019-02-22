@@ -1,4 +1,5 @@
-﻿using GitMap.Core;
+﻿using System;
+using GitMap.Core;
 
 namespace GitMap
 {
@@ -6,13 +7,16 @@ namespace GitMap
    {
       private readonly string _workflowName;
       private readonly IConfigurationReader _configurationReader;
-      private readonly IProcessRunner _processRunner;
+      private readonly Func<string, string, int> _startProcess;
 
-      public Workflow( string workflowName, IConfigurationReader configurationReader, IProcessRunner processRunner )
+      public Workflow(
+         string workflowName,
+         IConfigurationReader configurationReader,
+         Func<string, string, int> startProcess )
       {
          _workflowName = workflowName;
          _configurationReader = configurationReader;
-         _processRunner = processRunner;
+         _startProcess = startProcess;
       }
 
       public int Launch( string parameter )
@@ -26,7 +30,7 @@ namespace GitMap
 
          string arguments = configuration.Arguments.Replace( "%1", parameter );
 
-         return _processRunner.Run( configuration.FilePath, arguments );
+         return _startProcess( configuration.FilePath, arguments );
       }
    }
 }
