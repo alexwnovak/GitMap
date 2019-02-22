@@ -15,6 +15,7 @@ namespace GitMap
          var assemblyName = thisAssembly.GetName();
          string version = $"{assemblyName.Version.Major}.{assemblyName.Version.Minor}.{assemblyName.Version.Build}";
 
+         Console.WriteLine();
          Console.WriteLine( $"{assemblyName.Name} version {version}");
          Console.ForegroundColor = previousColor;
       }
