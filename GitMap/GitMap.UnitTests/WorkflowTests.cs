@@ -24,7 +24,7 @@ namespace GitMap.UnitTests
 
          workflow.Launch( null );
 
-         processRunnerMock.Verify( pr => pr.Run( "file path", "arguments" ), Times.Once() );
+         processRunnerMock.Verify( pr => pr.RunOld( "file path", "arguments" ), Times.Once() );
       }
 
       [Fact]
@@ -44,7 +44,7 @@ namespace GitMap.UnitTests
 
          workflow.Launch( "COMMIT_EDITMSG" );
 
-         processRunnerMock.Verify( pr => pr.Run( "file path", "-file COMMIT_EDITMSG" ), Times.Once() );
+         processRunnerMock.Verify( pr => pr.RunOld( "file path", "-file COMMIT_EDITMSG" ), Times.Once() );
       }
 
       [Fact]
@@ -59,7 +59,7 @@ namespace GitMap.UnitTests
          var configurationReaderMock = new Mock<IConfigurationReader>();
          configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
          var processRunnerMock = new Mock<IProcessRunner>();
-         processRunnerMock.Setup( pr => pr.Run( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( 1 );
+         processRunnerMock.Setup( pr => pr.RunOld( It.IsAny<string>(), It.IsAny<string>() ) ).Returns( 1 );
 
          var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, processRunnerMock.Object );
 

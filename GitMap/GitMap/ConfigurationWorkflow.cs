@@ -16,7 +16,7 @@ namespace GitMap
       {
          string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
          string configurationExe = Path.Combine( baseDirectory, "GitMap.ConfigurationUI.exe" );
-         return _processRunner.Run( configurationExe, null );
+         return _processRunner.RunOld( configurationExe, null );
       }
    }
 }

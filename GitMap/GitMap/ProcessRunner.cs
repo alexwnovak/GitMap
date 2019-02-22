@@ -4,7 +4,7 @@ namespace GitMap
 {
    public class ProcessRunner : IProcessRunner
    {
-      public int Run( string fileName, string arguments )
+      public int RunOld( string fileName, string arguments )
       {
          using ( var process = Process.Start( fileName, arguments ) )
          {

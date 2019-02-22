@@ -26,7 +26,7 @@ namespace GitMap
 
          string arguments = configuration.Arguments.Replace( "%1", parameter );
 
-         return _processRunner.Run( configuration.FilePath, arguments );
+         return _processRunner.RunOld( configuration.FilePath, arguments );
       }
    }
 }

@@ -49,12 +49,12 @@ namespace GitMap.AcceptanceTests.PageObjects
 
       public void VerifyEditorLaunch( string configuredEditor )
       {
-         _processRunnerMock.Verify( pr => pr.Run( configuredEditor, _filePath ), Times.Once() );
+         _processRunnerMock.Verify( pr => pr.RunOld( configuredEditor, _filePath ), Times.Once() );
       }
 
       public void VerifyConfigurationUILaunch()
       {
-         _processRunnerMock.Verify( pr => pr.Run(
+         _processRunnerMock.Verify( pr => pr.RunOld(
             It.Is<string>( fn => fn.EndsWith( "GitMap.ConfigurationUI.exe" ) ), null ),
             Times.Once() );
       }

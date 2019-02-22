@@ -2,6 +2,6 @@
 {
    public interface IProcessRunner
    {
-      int Run( string fileName, string arguments );
+      int RunOld( string fileName, string arguments );
    }
 }
