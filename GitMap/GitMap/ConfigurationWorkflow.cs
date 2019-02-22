@@ -5,18 +5,18 @@ namespace GitMap
 {
    public class ConfigurationWorkflow : IWorkflow
    {
-      private readonly IProcessRunner _processRunner;
+      private readonly Func<string, string, int> _startProcess;
 
-      public ConfigurationWorkflow( IProcessRunner processRunner )
+      public ConfigurationWorkflow( Func<string, string, int> startProcess )
       {
-         _processRunner = processRunner ?? throw new ArgumentNullException( nameof( processRunner ) );
+         _startProcess = startProcess ?? throw new ArgumentNullException( nameof( startProcess ) );
       }
 
       public int Launch( string parameter )
       {
          string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
          string configurationExe = Path.Combine( baseDirectory, "GitMap.ConfigurationUI.exe" );
-         return _processRunner.RunOld( configurationExe, null );
+         return _startProcess( configurationExe, null );
       }
    }
 }

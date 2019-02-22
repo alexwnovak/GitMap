@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GitModel;
 using GitMap.Core;
 
@@ -8,16 +9,19 @@ namespace GitMap
    {
       private readonly IConfigurationReader _configurationReader;
       private readonly IProcessRunner _processRunner;
+      private readonly Func<string, string, int> _startProcess;
 
       public AppControllerFactory()
-         : this( new ConfigurationReader(), new ProcessRunner() )
+         : this( new ConfigurationReader(), ProcessRunner.Run )
       {
       }
 
-      public AppControllerFactory( IConfigurationReader configurationReader, IProcessRunner processRunner )
+      public AppControllerFactory(
+         IConfigurationReader configurationReader,
+         Func<string, string, int> startProcess )
       {
          _configurationReader = configurationReader;
-         _processRunner = processRunner;
+         _startProcess = startProcess;
       }
 
       private IWorkflow CreateWorkflow( string workflowName ) =>
@@ -27,7 +31,7 @@ namespace GitMap
       {
          var workflows = new Dictionary<string, IWorkflow>
          {
-            [""] = new ConfigurationWorkflow( _processRunner ), 
+            [""] = new ConfigurationWorkflow( _startProcess ),
             [GitFileNames.CommitFileName] = CreateWorkflow( WorkflowNames.CommitWorkflow )
          };
 
