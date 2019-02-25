@@ -7,24 +7,24 @@ namespace GitMap
 {
    public class AppControllerFactory
    {
-      private readonly IConfigurationReader _configurationReader;
+      private readonly Func<string, EditorConfiguration> _readConfiguration;
       private readonly Func<string, string, int> _startProcess;
 
       public AppControllerFactory()
-         : this( new ConfigurationReader(), ProcessRunner.Run )
+         : this( ConfigurationReader.Read, ProcessRunner.Run )
       {
       }
 
       public AppControllerFactory(
-         IConfigurationReader configurationReader,
+         Func<string, EditorConfiguration> readConfiguration,
          Func<string, string, int> startProcess )
       {
-         _configurationReader = configurationReader;
+         _readConfiguration = readConfiguration;
          _startProcess = startProcess;
       }
 
       private IWorkflow CreateWorkflow( string workflowName ) =>
-         new Workflow( workflowName, _configurationReader, _startProcess );
+         new Workflow( workflowName, _readConfiguration, _startProcess );
 
       public AppController Create()
       {
