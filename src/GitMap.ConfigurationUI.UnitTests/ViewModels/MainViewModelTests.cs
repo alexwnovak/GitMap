@@ -18,7 +18,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var cancelEventArgs = new CancelEventArgs();
 
          var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
-            Mock.Of<IConfigurationReader>(),
+            w => EditorConfiguration.Empty,
             Mock.Of<IConfigurationWriter>(),
             Mock.Of<IDialogService>() );
 
@@ -36,7 +36,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var cancelEventArgs = new CancelEventArgs();
 
          var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
-            Mock.Of<IConfigurationReader>(),
+            w => EditorConfiguration.Empty,
             Mock.Of<IConfigurationWriter>(),
             dialogServiceMock.Object );
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
@@ -56,7 +56,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var cancelEventArgs = new CancelEventArgs();
 
          var mainViewModel = new MainViewModel( new[] { viewModelMock.Object },
-            Mock.Of<IConfigurationReader>(),
+            w => EditorConfiguration.Empty,
             Mock.Of<IConfigurationWriter>(),
             dialogServiceMock.Object );
 
@@ -76,7 +76,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var cancelEventArgs = new CancelEventArgs();
 
          var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
-            Mock.Of<IConfigurationReader>(),
+            w => EditorConfiguration.Empty,
             configurationWriterMock.Object,
             dialogServiceMock.Object );
 
@@ -102,7 +102,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var cancelEventArgs = new CancelEventArgs();
 
          var mainViewModel = new MainViewModel( new[] { viewModelMock.Object },
-            Mock.Of<IConfigurationReader>(),
+            w => EditorConfiguration.Empty,
             configurationWriterMock.Object,
             dialogServiceMock.Object );
 
@@ -122,11 +122,8 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
             IsEnabled = true
          };
 
-         var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( It.IsAny<string>() ) ).Returns( editorConfiguration );
-
          var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
-            configurationReaderMock.Object,
+            w => editorConfiguration,
             Mock.Of<IConfigurationWriter>(),
             Mock.Of<DialogService>() );
 

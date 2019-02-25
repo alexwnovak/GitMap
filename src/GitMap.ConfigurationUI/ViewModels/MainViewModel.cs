@@ -12,7 +12,7 @@ namespace GitMap.ConfigurationUI.ViewModels
 {
    public class MainViewModel : ViewModelBase
    {
-      private readonly IConfigurationReader _configurationReader;
+      private readonly ReadConfigurationFunction _readConfiguration;
       private readonly IConfigurationWriter _configurationWriter;
       private readonly IDialogService _dialogService;
 
@@ -22,11 +22,11 @@ namespace GitMap.ConfigurationUI.ViewModels
       public ICommand ExitingCommand { get; }
 
       public MainViewModel( IEnumerable<IEditorViewModel> editorViewModels,
-         IConfigurationReader configurationReader,
+         ReadConfigurationFunction readConfiguration,
          IConfigurationWriter configurationWriter,
          IDialogService dialogService )
       {
-         _configurationReader = configurationReader;
+         _readConfiguration = readConfiguration;
          _configurationWriter = configurationWriter;
          _dialogService = dialogService;
 
@@ -40,7 +40,7 @@ namespace GitMap.ConfigurationUI.ViewModels
       {
          foreach ( var editorViewModel in EditorViewModels )
          {
-            var editorConfiguration = _configurationReader.Read( editorViewModel.WorkflowName );
+            var editorConfiguration = _readConfiguration( editorViewModel.WorkflowName );
 
             editorViewModel.Arguments = editorConfiguration.Arguments;
             editorViewModel.EditorPath = editorConfiguration.FilePath;
