@@ -7,12 +7,17 @@ namespace GitMap
    public class AppController
    {
       private readonly IDictionary<string, IWorkflow> _workflows;
+      private Action _displayBanner;
       private readonly IOutputController _outputController;
 
-      public AppController( IDictionary<string, IWorkflow> workflows, IOutputController outputController )
+      public AppController(
+         IDictionary<string, IWorkflow> workflows,
+         IOutputController outputController,
+         Action displayBanner )
       {
          _workflows = workflows ?? throw new ArgumentException( nameof( workflows ) );
          _outputController = outputController ?? throw new ArgumentException( nameof( outputController ) );
+         _displayBanner = displayBanner;
       }
 
       private static string GetFilePath( string[] arguments ) =>
@@ -20,7 +25,7 @@ namespace GitMap
 
       public int Run( string[] arguments )
       {
-         _outputController.DisplayBanner();
+         _displayBanner();
 
          string filePath = GetFilePath( arguments );
          string fileName = Path.GetFileName( filePath );

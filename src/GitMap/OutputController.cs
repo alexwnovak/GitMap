@@ -5,7 +5,7 @@ namespace GitMap
 {
    public class OutputController : IOutputController
    {
-      public void DisplayBanner()
+      public static void DisplayBanner()
       {
          var previousColor = Console.ForegroundColor;
 

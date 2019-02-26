@@ -35,7 +35,7 @@ namespace GitMap
             [GitFileNames.RebaseFileName] = CreateWorkflow( WorkflowNames.RebaseWorkflow )
          };
 
-         return new AppController( workflows, new OutputController() );
+         return new AppController( workflows, new OutputController(), OutputController.DisplayBanner );
       }
    }
 }
