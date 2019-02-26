@@ -11,7 +11,11 @@ namespace GitMap.UnitTests
       [Fact]
       public void Constructor_WorkflowsAreNull_ThrowsArgumentException()
       {
-         Action constructor = () => new AppController( null, Mock.Of<IOutputController>(), () => { } );
+         Action constructor = () => new AppController(
+            null,
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          constructor.Should().Throw<ArgumentException>();
       }
@@ -19,7 +23,11 @@ namespace GitMap.UnitTests
       [Fact]
       public void Constructor_OutputControllerIsNull_ThrowsArgumentException()
       {
-         Action constructor = () => new AppController( new Dictionary<string, IWorkflow>(), null, () => { } );
+         Action constructor = () => new AppController(
+            new Dictionary<string, IWorkflow>(),
+            null,
+            () => { },
+            _ => { } );
 
          constructor.Should().Throw<ArgumentException>();
       }
@@ -34,7 +42,11 @@ namespace GitMap.UnitTests
             ["Some File Path"] = workflowMock.Object
          };
 
-         var appController = new AppController( workflows, Mock.Of<IOutputController>(), () => { } );
+         var appController = new AppController(
+            workflows,
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          appController.Run( new[] { "Some File Path" } );
 
@@ -51,7 +63,11 @@ namespace GitMap.UnitTests
             ["Commit.txt"] = workflowMock.Object
          };
 
-         var appController = new AppController( workflows, Mock.Of<IOutputController>(), () => { } );
+         var appController = new AppController(
+            workflows,
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          appController.Run( new[] { @"C:\Repo\.git\Commit.txt" } );
 
@@ -69,7 +85,11 @@ namespace GitMap.UnitTests
             ["Rebase.txt"] = workflowMock.Object
          };
 
-         var appController = new AppController( workflows, Mock.Of<IOutputController>(), () => { } );
+         var appController = new AppController(
+            workflows,
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          appController.Run( new[] { @"C:\Repo\.git\Rebase.txt" } );
 
@@ -87,7 +107,11 @@ namespace GitMap.UnitTests
             [""] = workflowMock.Object
          };
 
-         var appController = new AppController( workflows, Mock.Of<IOutputController>(), () => { } );
+         var appController = new AppController(
+            workflows,
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          appController.Run( new string[0] );
 
@@ -105,7 +129,11 @@ namespace GitMap.UnitTests
             [""] = workflowMock.Object
          };
 
-         var appController = new AppController( workflows, Mock.Of<IOutputController>(), () => { } );
+         var appController = new AppController(
+            workflows,
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          appController.Run( null );
 
@@ -115,7 +143,11 @@ namespace GitMap.UnitTests
       [Fact]
       public void Run_NoMatchingWorkflowWasFound_ReturnsExitCode1()
       {
-         var appController = new AppController( new Dictionary<string, IWorkflow>(), Mock.Of<IOutputController>(), () => { } );
+         var appController = new AppController(
+            new Dictionary<string, IWorkflow>(),
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          int exitCode = appController.Run( new string[0] );
 
@@ -130,7 +162,11 @@ namespace GitMap.UnitTests
             [""] = Mock.Of<IWorkflow>()
          };
 
-         var appController = new AppController( workflows, Mock.Of<IOutputController>(), () => { } );
+         var appController = new AppController(
+            workflows,
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          int exitCode = appController.Run( new string[0] );
 
@@ -148,7 +184,11 @@ namespace GitMap.UnitTests
             [""] = workflowMock.Object
          };
 
-         var appController = new AppController( workflows, Mock.Of<IOutputController>(), () => { } );
+         var appController = new AppController(
+            workflows,
+            Mock.Of<IOutputController>(),
+            () => { },
+            _ => { } );
 
          int exitCode = appController.Run( new string[0] );
 
@@ -165,7 +205,8 @@ namespace GitMap.UnitTests
          var appController = new AppController(
             new Dictionary<string, IWorkflow>(),
             outputControllerMock.Object,
-            () => bannerDisplayed = true );
+            () => bannerDisplayed = true,
+            _ => { } );
 
          appController.Run( new string[0] );
 
@@ -175,13 +216,17 @@ namespace GitMap.UnitTests
       [Fact]
       public void Run_NoConfigurationForWorkflow_DisplaysError()
       {
+         bool errorDisplayed = false;
+
          var outputControllerMock = new Mock<IOutputController>();
 
-         var appController = new AppController( new Dictionary<string, IWorkflow>(), outputControllerMock.Object, () => { } );
+         var appController = new AppController(
+            new Dictionary<string, IWorkflow>(),
+            outputControllerMock.Object,
+            () => { },
+            f => errorDisplayed = f == "COMMIT_MSG" );
 
          appController.Run( new[] { @"C:\Repo\.git\COMMIT_EDITMSG" } );
-
-         outputControllerMock.Verify( oc => oc.DisplayConfigurationError( "COMMIT_EDITMSG" ), Times.Once() );
       }
    }
 }

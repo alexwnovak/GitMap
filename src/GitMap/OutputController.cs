@@ -20,7 +20,7 @@ namespace GitMap
          Console.ForegroundColor = previousColor;
       }
 
-      public void DisplayConfigurationError( string fileName )
+      public static void DisplayConfigurationError( string fileName )
       {
          var previousColor = Console.ForegroundColor;
 
