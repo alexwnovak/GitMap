@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace GitMap
 {
-   public class OutputController : IOutputController
+   public static class OutputController
    {
       public static void DisplayBanner()
       {

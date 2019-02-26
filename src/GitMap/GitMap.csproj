@@ -50,7 +50,6 @@
     <Compile Include="AppController.cs" />
     <Compile Include="AppControllerFactory.cs" />
     <Compile Include="ConfigurationWorkflow.cs" />
-    <Compile Include="IOutputController.cs" />
     <Compile Include="OutputController.cs" />
     <Compile Include="Workflow.cs" />
     <Compile Include="IWorkflow.cs" />

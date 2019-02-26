@@ -13,19 +13,6 @@ namespace GitMap.UnitTests
       {
          Action constructor = () => new AppController(
             null,
-            Mock.Of<IOutputController>(),
-            () => { },
-            _ => { } );
-
-         constructor.Should().Throw<ArgumentException>();
-      }
-
-      [Fact]
-      public void Constructor_OutputControllerIsNull_ThrowsArgumentException()
-      {
-         Action constructor = () => new AppController(
-            new Dictionary<string, IWorkflow>(),
-            null,
             () => { },
             _ => { } );
 
@@ -44,7 +31,6 @@ namespace GitMap.UnitTests
 
          var appController = new AppController(
             workflows,
-            Mock.Of<IOutputController>(),
             () => { },
             _ => { } );
 
@@ -65,7 +51,6 @@ namespace GitMap.UnitTests
 
          var appController = new AppController(
             workflows,
-            Mock.Of<IOutputController>(),
             () => { },
             _ => { } );
 
@@ -87,7 +72,6 @@ namespace GitMap.UnitTests
 
          var appController = new AppController(
             workflows,
-            Mock.Of<IOutputController>(),
             () => { },
             _ => { } );
 
@@ -109,7 +93,6 @@ namespace GitMap.UnitTests
 
          var appController = new AppController(
             workflows,
-            Mock.Of<IOutputController>(),
             () => { },
             _ => { } );
 
@@ -131,7 +114,6 @@ namespace GitMap.UnitTests
 
          var appController = new AppController(
             workflows,
-            Mock.Of<IOutputController>(),
             () => { },
             _ => { } );
 
@@ -145,7 +127,6 @@ namespace GitMap.UnitTests
       {
          var appController = new AppController(
             new Dictionary<string, IWorkflow>(),
-            Mock.Of<IOutputController>(),
             () => { },
             _ => { } );
 
@@ -164,7 +145,6 @@ namespace GitMap.UnitTests
 
          var appController = new AppController(
             workflows,
-            Mock.Of<IOutputController>(),
             () => { },
             _ => { } );
 
@@ -186,7 +166,6 @@ namespace GitMap.UnitTests
 
          var appController = new AppController(
             workflows,
-            Mock.Of<IOutputController>(),
             () => { },
             _ => { } );
 
@@ -200,11 +179,8 @@ namespace GitMap.UnitTests
       {
          bool bannerDisplayed = false;
 
-         var outputControllerMock = new Mock<IOutputController>();
-
          var appController = new AppController(
             new Dictionary<string, IWorkflow>(),
-            outputControllerMock.Object,
             () => bannerDisplayed = true,
             _ => { } );
 
@@ -218,11 +194,8 @@ namespace GitMap.UnitTests
       {
          bool errorDisplayed = false;
 
-         var outputControllerMock = new Mock<IOutputController>();
-
          var appController = new AppController(
             new Dictionary<string, IWorkflow>(),
-            outputControllerMock.Object,
             () => { },
             f => errorDisplayed = f == "COMMIT_MSG" );
 

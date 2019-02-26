@@ -37,7 +37,6 @@ namespace GitMap
 
          return new AppController(
             workflows,
-            new OutputController(),
             OutputController.DisplayBanner,
             OutputController.DisplayConfigurationError );
       }
