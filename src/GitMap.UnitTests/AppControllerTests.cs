@@ -9,17 +9,6 @@ namespace GitMap.UnitTests
    public class AppControllerTests
    {
       [Fact]
-      public void Constructor_WorkflowsAreNull_ThrowsArgumentException()
-      {
-         Action constructor = () => new AppController(
-            null,
-            () => { },
-            _ => { } );
-
-         constructor.Should().Throw<ArgumentException>();
-      }
-
-      [Fact]
       public void Run_ArgumentMatchesWorkflow_LaunchesThatWorkflow()
       {
          var workflowMock = new Mock<IWorkflow>();
@@ -30,7 +19,7 @@ namespace GitMap.UnitTests
          };
 
          var appController = new AppController(
-            workflows,
+            () => workflows,
             () => { },
             _ => { } );
 
@@ -50,7 +39,7 @@ namespace GitMap.UnitTests
          };
 
          var appController = new AppController(
-            workflows,
+            () => workflows,
             () => { },
             _ => { } );
 
@@ -71,7 +60,7 @@ namespace GitMap.UnitTests
          };
 
          var appController = new AppController(
-            workflows,
+            () => workflows,
             () => { },
             _ => { } );
 
@@ -92,7 +81,7 @@ namespace GitMap.UnitTests
          };
 
          var appController = new AppController(
-            workflows,
+            () => workflows,
             () => { },
             _ => { } );
 
@@ -113,7 +102,7 @@ namespace GitMap.UnitTests
          };
 
          var appController = new AppController(
-            workflows,
+            () => workflows,
             () => { },
             _ => { } );
 
@@ -126,7 +115,7 @@ namespace GitMap.UnitTests
       public void Run_NoMatchingWorkflowWasFound_ReturnsExitCode1()
       {
          var appController = new AppController(
-            new Dictionary<string, IWorkflow>(),
+            () => new Dictionary<string, IWorkflow>(),
             () => { },
             _ => { } );
 
@@ -144,7 +133,7 @@ namespace GitMap.UnitTests
          };
 
          var appController = new AppController(
-            workflows,
+            () => workflows,
             () => { },
             _ => { } );
 
@@ -165,7 +154,7 @@ namespace GitMap.UnitTests
          };
 
          var appController = new AppController(
-            workflows,
+            () => workflows,
             () => { },
             _ => { } );
 
@@ -180,7 +169,7 @@ namespace GitMap.UnitTests
          bool bannerDisplayed = false;
 
          var appController = new AppController(
-            new Dictionary<string, IWorkflow>(),
+            () => new Dictionary<string, IWorkflow>(),
             () => bannerDisplayed = true,
             _ => { } );
 
@@ -195,7 +184,7 @@ namespace GitMap.UnitTests
          bool errorDisplayed = false;
 
          var appController = new AppController(
-            new Dictionary<string, IWorkflow>(),
+            () => new Dictionary<string, IWorkflow>(),
             () => { },
             f => errorDisplayed = f == "COMMIT_MSG" );
 
