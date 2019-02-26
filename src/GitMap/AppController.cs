@@ -6,9 +6,9 @@ namespace GitMap
 {
    public class AppController
    {
-      private Func<IDictionary<string, IWorkflow>> _getWorkflows;
-      private Action _displayBanner;
-      private Action<string> _displayConfigurationError;
+      private readonly Func<IDictionary<string, IWorkflow>> _getWorkflows;
+      private readonly Action _displayBanner;
+      private readonly Action<string> _displayConfigurationError;
 
       public AppController(
          Func<IDictionary<string, IWorkflow>> getWorkflows,
