@@ -4,7 +4,7 @@ namespace GitMap.Core
 {
    public class ConfigurationWriter : IConfigurationWriter
    {
-      public void Write( string workflowName, EditorConfiguration editorConfiguration )
+      public static void Write( string workflowName, EditorConfiguration editorConfiguration )
       {
          using ( var key = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\GitMap" ) )
          {

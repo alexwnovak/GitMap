@@ -13,6 +13,7 @@ namespace GitMap.ConfigurationUI.ViewModels
    public class MainViewModel : ViewModelBase
    {
       private readonly ReadConfigurationFunction _readConfiguration;
+      private readonly WriteConfigurationFunction _writeConfiguration;
       private readonly IConfigurationWriter _configurationWriter;
       private readonly IDialogService _dialogService;
 
@@ -23,11 +24,11 @@ namespace GitMap.ConfigurationUI.ViewModels
 
       public MainViewModel( IEnumerable<IEditorViewModel> editorViewModels,
          ReadConfigurationFunction readConfiguration,
-         IConfigurationWriter configurationWriter,
+         WriteConfigurationFunction writeConfiguration,
          IDialogService dialogService )
       {
          _readConfiguration = readConfiguration;
-         _configurationWriter = configurationWriter;
+         _writeConfiguration = writeConfiguration;
          _dialogService = dialogService;
 
          EditorViewModels = new ObservableCollection<IEditorViewModel>( editorViewModels );
@@ -76,7 +77,7 @@ namespace GitMap.ConfigurationUI.ViewModels
                   IsEnabled = editorViewModel.IsEnabled
                };
 
-               _configurationWriter.Write( editorViewModel.WorkflowName, editorConfiguration );
+               _writeConfiguration( editorViewModel.WorkflowName, editorConfiguration );
             }
          }
       }

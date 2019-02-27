@@ -19,6 +19,7 @@ namespace GitMap.ConfigurationUI
       public void Compose()
       {
          Container.Register<ReadConfigurationFunction>( () => ConfigurationReader.Read );
+         Container.Register<WriteConfigurationFunction>( () => ConfigurationWriter.Write );
          Container.Register<IConfigurationWriter, ConfigurationWriter>();
          Container.Register<IFileBrowserService, FileBrowserService>();
          Container.Register<IDialogService, DialogService>();
