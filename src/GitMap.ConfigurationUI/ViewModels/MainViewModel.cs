@@ -15,7 +15,6 @@ namespace GitMap.ConfigurationUI.ViewModels
       private readonly ReadConfigurationFunction _readConfiguration;
       private readonly WriteConfigurationFunction _writeConfiguration;
       private readonly ShowExitConfirmationFunction _showExitConfirmation;
-      private readonly IDialogService _dialogService;
 
       public ObservableCollection<IEditorViewModel> EditorViewModels { get; } = new ObservableCollection<IEditorViewModel>();
 
