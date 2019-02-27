@@ -11,7 +11,7 @@ namespace GitMap
       private readonly Func<string, string, int> _startProcess;
 
       public AppControllerFactory()
-         : this( ConfigurationReader.Read, ProcessRunner.Run )
+         : this( ConfigurationContext.Read, ProcessRunner.Run )
       {
       }
 
