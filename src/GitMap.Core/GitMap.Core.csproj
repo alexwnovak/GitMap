@@ -44,7 +44,6 @@
     <Compile Include="ConfigurationWriter.cs" />
     <Compile Include="EditorConfiguration.cs" />
     <Compile Include="ConfigurationReader.cs" />
-    <Compile Include="IConfigurationWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WorkflowNames.cs" />
   </ItemGroup>

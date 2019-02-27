@@ -20,7 +20,6 @@ namespace GitMap.ConfigurationUI
       {
          Container.Register<ReadConfigurationFunction>( () => ConfigurationReader.Read );
          Container.Register<WriteConfigurationFunction>( () => ConfigurationWriter.Write );
-         Container.Register<IConfigurationWriter, ConfigurationWriter>();
          Container.Register<IFileBrowserService, FileBrowserService>();
          Container.Register<IDialogService, DialogService>();
          Container.Register( CreateEditorViewModels );

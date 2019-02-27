@@ -2,7 +2,7 @@
 
 namespace GitMap.Core
 {
-   public class ConfigurationWriter : IConfigurationWriter
+   public static class ConfigurationWriter
    {
       public static void Write( string workflowName, EditorConfiguration editorConfiguration )
       {
