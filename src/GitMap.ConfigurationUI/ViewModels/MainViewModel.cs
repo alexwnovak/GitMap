@@ -14,6 +14,7 @@ namespace GitMap.ConfigurationUI.ViewModels
    {
       private readonly ReadConfigurationFunction _readConfiguration;
       private readonly WriteConfigurationFunction _writeConfiguration;
+      private readonly ShowExitConfirmationFunction _showExitConfirmation;
       private readonly IDialogService _dialogService;
 
       public ObservableCollection<IEditorViewModel> EditorViewModels { get; } = new ObservableCollection<IEditorViewModel>();
@@ -24,11 +25,11 @@ namespace GitMap.ConfigurationUI.ViewModels
       public MainViewModel( IEnumerable<IEditorViewModel> editorViewModels,
          ReadConfigurationFunction readConfiguration,
          WriteConfigurationFunction writeConfiguration,
-         IDialogService dialogService )
+         ShowExitConfirmationFunction showExitConfirmation )
       {
          _readConfiguration = readConfiguration;
          _writeConfiguration = writeConfiguration;
-         _dialogService = dialogService;
+         _showExitConfirmation = showExitConfirmation;
 
          EditorViewModels = new ObservableCollection<IEditorViewModel>( editorViewModels );
 
@@ -55,7 +56,7 @@ namespace GitMap.ConfigurationUI.ViewModels
 
          if ( promptToSaveChanges )
          {
-            var result = _dialogService.ShowExitConfirmationDialog();
+            var result = _showExitConfirmation();
 
             if ( result == ExitConfirmationResult.Cancel )
             {

@@ -20,7 +20,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
             w => EditorConfiguration.Empty,
             ( _, __ ) => { },
-            Mock.Of<IDialogService>() );
+            () => default( ExitConfirmationResult ) );
 
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
@@ -30,15 +30,13 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void ExitingCommand_DiscardsChangesWhenPrompted_ExitingProceeds()
       {
-         var dialogServiceMock = new Mock<IDialogService>();
-         dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.No );
-
          var cancelEventArgs = new CancelEventArgs();
 
          var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
             w => EditorConfiguration.Empty,
             ( _, __ ) => { },
-            dialogServiceMock.Object );
+            () => ExitConfirmationResult.No );
+
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
          cancelEventArgs.Cancel.Should().BeFalse();
@@ -47,9 +45,6 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void ExitingCommand_AbortsExitingWhenPrompted_ExitingProceeds()
       {
-         var dialogServiceMock = new Mock<IDialogService>();
-         dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.Cancel );
-
          var viewModelMock = new Mock<IEditorViewModel>();
          viewModelMock.SetupGet( vm => vm.IsDirty ).Returns( true );
 
@@ -58,7 +53,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var mainViewModel = new MainViewModel( new[] { viewModelMock.Object },
             w => EditorConfiguration.Empty,
             ( _, __ ) => { },
-            dialogServiceMock.Object );
+            () => ExitConfirmationResult.Cancel );
 
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
@@ -68,9 +63,6 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void ExitingCommand_DoesNotSaveWhenPrompted_ChangesAreNotSaved()
       {
-         var dialogServiceMock = new Mock<IDialogService>();
-         dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.No );
-
          var cancelEventArgs = new CancelEventArgs();
 
          bool configurationWritten = false;
@@ -78,7 +70,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
             w => EditorConfiguration.Empty,
             ( _, __ ) => configurationWritten = true,
-            dialogServiceMock.Object );
+            () => ExitConfirmationResult.No );
 
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
@@ -88,9 +80,6 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void ExitingCommand_SavesChangesWhenPrompted_ChangesAreSaved()
       {
-         var dialogServiceMock = new Mock<IDialogService>();
-         dialogServiceMock.Setup( ds => ds.ShowExitConfirmationDialog() ).Returns( ExitConfirmationResult.Yes );
-
          var viewModelMock = new Mock<IEditorViewModel>();
          viewModelMock.SetupGet( vm => vm.IsDirty ).Returns( true );
          viewModelMock.SetupGet( vm => vm.EditorPath ).Returns( "editor" );
@@ -104,7 +93,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var mainViewModel = new MainViewModel( new[] { viewModelMock.Object },
             w => EditorConfiguration.Empty,
             ( _, ec ) => actualConfiguration = ec,
-            dialogServiceMock.Object );
+            () => ExitConfirmationResult.Yes );
 
          mainViewModel.ExitingCommand.Execute( cancelEventArgs );
 
@@ -126,7 +115,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
          var mainViewModel = new MainViewModel( Enumerable.Empty<IEditorViewModel>(),
             w => editorConfiguration,
             ( _, __ ) => { },
-            Mock.Of<DialogService>() );
+            () => default( ExitConfirmationResult ) );
 
          mainViewModel.LoadedCommand.Execute( null );
       }

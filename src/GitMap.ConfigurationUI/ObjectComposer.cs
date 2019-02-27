@@ -21,7 +21,7 @@ namespace GitMap.ConfigurationUI
          Container.Register<ReadConfigurationFunction>( () => ConfigurationContext.Read );
          Container.Register<WriteConfigurationFunction>( () => ConfigurationContext.Write );
          Container.Register<IFileBrowserService, FileBrowserService>();
-         Container.Register<IDialogService, DialogService>();
+         Container.Register<ShowExitConfirmationFunction>( () => DialogService.ShowExitConfirmationDialog );
          Container.Register( CreateEditorViewModels );
       }
 
