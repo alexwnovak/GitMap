@@ -1,15 +1,13 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GitMap.ConfigurationUI.Services;
 
 namespace GitMap.ConfigurationUI.ViewModels
 {
    public class EditorViewModel : ViewModelBase, IEditorViewModel
    {
-      private readonly IFileBrowserService _fileBrowserService;
+      private readonly PickSingleFileFunction _pickSingleFile;
 
       public string WorkflowName
       {
@@ -54,11 +52,11 @@ namespace GitMap.ConfigurationUI.ViewModels
          get;
       }
 
-      public EditorViewModel( IFileBrowserService fileBrowserService,
+      public EditorViewModel( PickSingleFileFunction pickSingleFile,
          string workflowName,
          string header )
       {
-         _fileBrowserService = fileBrowserService;
+         _pickSingleFile = pickSingleFile;
          WorkflowName = workflowName;
          Header = header;
 
@@ -75,6 +73,6 @@ namespace GitMap.ConfigurationUI.ViewModels
          }
       }
 
-      private void OnBrowseCommand() => EditorPath = _fileBrowserService.PickSingleFile() ?? EditorPath;
+      private void OnBrowseCommand() => EditorPath = _pickSingleFile() ?? EditorPath;
    }
 }

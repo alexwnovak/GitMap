@@ -12,9 +12,9 @@ namespace GitMap.ConfigurationUI.ViewModels
 {
    public class MainViewModel : ViewModelBase
    {
-      private readonly IConfigurationReader _configurationReader;
-      private readonly IConfigurationWriter _configurationWriter;
-      private readonly IDialogService _dialogService;
+      private readonly ReadConfigurationFunction _readConfiguration;
+      private readonly WriteConfigurationFunction _writeConfiguration;
+      private readonly ShowExitConfirmationFunction _showExitConfirmation;
 
       public ObservableCollection<IEditorViewModel> EditorViewModels { get; } = new ObservableCollection<IEditorViewModel>();
 
@@ -22,13 +22,13 @@ namespace GitMap.ConfigurationUI.ViewModels
       public ICommand ExitingCommand { get; }
 
       public MainViewModel( IEnumerable<IEditorViewModel> editorViewModels,
-         IConfigurationReader configurationReader,
-         IConfigurationWriter configurationWriter,
-         IDialogService dialogService )
+         ReadConfigurationFunction readConfiguration,
+         WriteConfigurationFunction writeConfiguration,
+         ShowExitConfirmationFunction showExitConfirmation )
       {
-         _configurationReader = configurationReader;
-         _configurationWriter = configurationWriter;
-         _dialogService = dialogService;
+         _readConfiguration = readConfiguration;
+         _writeConfiguration = writeConfiguration;
+         _showExitConfirmation = showExitConfirmation;
 
          EditorViewModels = new ObservableCollection<IEditorViewModel>( editorViewModels );
 
@@ -40,7 +40,7 @@ namespace GitMap.ConfigurationUI.ViewModels
       {
          foreach ( var editorViewModel in EditorViewModels )
          {
-            var editorConfiguration = _configurationReader.Read( editorViewModel.WorkflowName );
+            var editorConfiguration = _readConfiguration( editorViewModel.WorkflowName );
 
             editorViewModel.Arguments = editorConfiguration.Arguments;
             editorViewModel.EditorPath = editorConfiguration.FilePath;
@@ -55,7 +55,7 @@ namespace GitMap.ConfigurationUI.ViewModels
 
          if ( promptToSaveChanges )
          {
-            var result = _dialogService.ShowExitConfirmationDialog();
+            var result = _showExitConfirmation();
 
             if ( result == ExitConfirmationResult.Cancel )
             {
@@ -76,7 +76,7 @@ namespace GitMap.ConfigurationUI.ViewModels
                   IsEnabled = editorViewModel.IsEnabled
                };
 
-               _configurationWriter.Write( editorViewModel.WorkflowName, editorConfiguration );
+               _writeConfiguration( editorViewModel.WorkflowName, editorConfiguration );
             }
          }
       }

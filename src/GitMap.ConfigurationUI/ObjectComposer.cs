@@ -18,21 +18,21 @@ namespace GitMap.ConfigurationUI
 
       public void Compose()
       {
-         Container.Register<IConfigurationReader, ConfigurationReader>();
-         Container.Register<IConfigurationWriter, ConfigurationWriter>();
-         Container.Register<IFileBrowserService, FileBrowserService>();
-         Container.Register<IDialogService, DialogService>();
+         Container.Register<ReadConfigurationFunction>( () => ConfigurationContext.Read );
+         Container.Register<WriteConfigurationFunction>( () => ConfigurationContext.Write );
+         Container.Register<PickSingleFileFunction>( () => FileBrowserService.PickSingleFile );
+         Container.Register<ShowExitConfirmationFunction>( () => DialogService.ShowExitConfirmationDialog );
          Container.Register( CreateEditorViewModels );
       }
 
       private IEnumerable<IEditorViewModel> CreateEditorViewModels()
       {
-         var fileBrowserService = Container.GetInstance<IFileBrowserService>();
+         var pickSingleFile = Container.GetInstance<PickSingleFileFunction>();
 
          return new[]
          {
-            new EditorViewModel( fileBrowserService, WorkflowNames.CommitWorkflow, Resx.Commit ),
-            new EditorViewModel( fileBrowserService, WorkflowNames.RebaseWorkflow, Resx.Rebase )
+            new EditorViewModel( pickSingleFile, WorkflowNames.CommitWorkflow, Resx.Commit ),
+            new EditorViewModel( pickSingleFile, WorkflowNames.RebaseWorkflow, Resx.Rebase )
          };
       }
    }

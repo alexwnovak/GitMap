@@ -3,9 +3,9 @@ using System.Reflection;
 
 namespace GitMap
 {
-   public class OutputController : IOutputController
+   public static class OutputController
    {
-      public void DisplayBanner()
+      public static void DisplayBanner()
       {
          var previousColor = Console.ForegroundColor;
 
@@ -20,7 +20,7 @@ namespace GitMap
          Console.ForegroundColor = previousColor;
       }
 
-      public void DisplayConfigurationError( string fileName )
+      public static void DisplayConfigurationError( string fileName )
       {
          var previousColor = Console.ForegroundColor;
 

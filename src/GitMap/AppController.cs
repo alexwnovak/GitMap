@@ -6,13 +6,18 @@ namespace GitMap
 {
    public class AppController
    {
-      private readonly IDictionary<string, IWorkflow> _workflows;
-      private readonly IOutputController _outputController;
+      private readonly Func<IDictionary<string, IWorkflow>> _getWorkflows;
+      private readonly Action _displayBanner;
+      private readonly Action<string> _displayConfigurationError;
 
-      public AppController( IDictionary<string, IWorkflow> workflows, IOutputController outputController )
+      public AppController(
+         Func<IDictionary<string, IWorkflow>> getWorkflows,
+         Action displayBanner,
+         Action<string> displayConfigurationError )
       {
-         _workflows = workflows ?? throw new ArgumentException( nameof( workflows ) );
-         _outputController = outputController ?? throw new ArgumentException( nameof( outputController ) );
+         _getWorkflows = getWorkflows;
+         _displayBanner = displayBanner;
+         _displayConfigurationError = displayConfigurationError;
       }
 
       private static string GetFilePath( string[] arguments ) =>
@@ -20,17 +25,19 @@ namespace GitMap
 
       public int Run( string[] arguments )
       {
-         _outputController.DisplayBanner();
+         _displayBanner();
 
          string filePath = GetFilePath( arguments );
          string fileName = Path.GetFileName( filePath );
 
-         if ( _workflows.TryGetValue( fileName, out var workflow ) )
+         var workflows = _getWorkflows();
+
+         if ( workflows.TryGetValue( fileName, out var workflow ) )
          {
             return workflow.Launch( filePath );
          }
 
-         _outputController.DisplayConfigurationError( fileName );
+         _displayConfigurationError( fileName );
          return 1;
       }
    }

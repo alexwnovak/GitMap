@@ -3,9 +3,19 @@ using Microsoft.Win32;
 
 namespace GitMap.Core
 {
-   public class ConfigurationReader : IConfigurationReader
+   public static class ConfigurationContext
    {
-      public EditorConfiguration Read( string workflowName )
+      public static void Write( string workflowName, EditorConfiguration editorConfiguration )
+      {
+         using ( var key = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\GitMap" ) )
+         {
+            key.SetValue( $"{workflowName}IsEnabled", editorConfiguration.IsEnabled );
+            key.SetValue( $"{workflowName}FilePath", editorConfiguration.FilePath );
+            key.SetValue( $"{workflowName}Arguments", editorConfiguration.Arguments );
+         }
+      }
+
+      public static EditorConfiguration Read( string workflowName )
       {
          using ( var key = Registry.CurrentUser.CreateSubKey( @"SOFTWARE\GitMap" ) )
          {
@@ -18,7 +28,7 @@ namespace GitMap.Core
          }
       }
 
-      private T ReadValue<T>( RegistryKey key, string name )
+      private static T ReadValue<T>( RegistryKey key, string name )
       {
          var value = key.GetValue( name );
 

@@ -6,22 +6,22 @@ namespace GitMap
    public class Workflow : IWorkflow
    {
       private readonly string _workflowName;
-      private readonly IConfigurationReader _configurationReader;
+      private readonly Func<string, EditorConfiguration> _readConfiguration;
       private readonly Func<string, string, int> _startProcess;
 
       public Workflow(
          string workflowName,
-         IConfigurationReader configurationReader,
+         Func<string, EditorConfiguration> readConfiguration,
          Func<string, string, int> startProcess )
       {
          _workflowName = workflowName;
-         _configurationReader = configurationReader;
+         _readConfiguration = readConfiguration;
          _startProcess = startProcess;
       }
 
       public int Launch( string parameter )
       {
-         var configuration = _configurationReader.Read( _workflowName );
+         var configuration = _readConfiguration( _workflowName );
 
          if ( configuration == EditorConfiguration.Empty )
          {

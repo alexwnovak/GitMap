@@ -2,9 +2,9 @@
 
 namespace GitMap.ConfigurationUI.Services
 {
-   public class FileBrowserService : IFileBrowserService
+   public static class FileBrowserService
    {
-      public string PickSingleFile()
+      public static string PickSingleFile()
       {
          var openFileDialog = new OpenFileDialog
          {

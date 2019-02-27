@@ -2,9 +2,9 @@
 
 namespace GitMap.ConfigurationUI.Services
 {
-   public class DialogService : IDialogService
+   public static class DialogService
    {
-      public ExitConfirmationResult ShowExitConfirmationDialog()
+      public static ExitConfirmationResult ShowExitConfirmationDialog()
       {
          var result = MessageBox.Show( "Do you want to save your changes?", "GitMap", MessageBoxButton.YesNoCancel );
 

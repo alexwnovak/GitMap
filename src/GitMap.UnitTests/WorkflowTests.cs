@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using Moq;
 using Xunit;
 using GitMap.Core;
 
@@ -16,15 +15,12 @@ namespace GitMap.UnitTests
             Arguments = "arguments"
          };
 
-         var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
-
          string path = null;
          string arguments = null;
 
          var workflow = new Workflow(
             "CommitWorkflow", 
-            configurationReaderMock.Object,
+            w => editorConfiguration,
             ( p, a ) => { path = p; arguments = a; return 0; } );
 
          workflow.Launch( null );
@@ -42,15 +38,12 @@ namespace GitMap.UnitTests
             Arguments = "-file %1"
          };
 
-         var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
-
          string path = null;
          string arguments = null;
 
          var workflow = new Workflow(
             "CommitWorkflow",
-            configurationReaderMock.Object,
+            w => editorConfiguration,
             ( p, a ) => { path = p; arguments = a; return 0; } );
 
          workflow.Launch( "COMMIT_EDITMSG" );
@@ -68,12 +61,9 @@ namespace GitMap.UnitTests
             Arguments = "does not matter"
          };
 
-         var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( editorConfiguration );
-
          var workflow = new Workflow(
             "CommitWorkflow",
-            configurationReaderMock.Object,
+            w => editorConfiguration,
             ( _, __ ) => 1 );
 
          int exitCode = workflow.Launch( "COMMIT_EDITMSG" );
@@ -84,10 +74,7 @@ namespace GitMap.UnitTests
       [Fact]
       public void Launch_NoEditorConfigured_ReturnsExitCode1()
       {
-         var configurationReaderMock = new Mock<IConfigurationReader>();
-         configurationReaderMock.Setup( cr => cr.Read( "CommitWorkflow" ) ).Returns( EditorConfiguration.Empty );
-
-         var workflow = new Workflow( "CommitWorkflow", configurationReaderMock.Object, ( _, __ ) => 0 );
+         var workflow = new Workflow( "CommitWorkflow", w => EditorConfiguration.Empty, ( _, __ ) => 0 );
 
          int exitCode = workflow.Launch( "COMMIT_EDITMSG" );
 

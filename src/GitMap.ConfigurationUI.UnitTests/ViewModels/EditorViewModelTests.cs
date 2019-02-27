@@ -1,8 +1,6 @@
 ﻿using Xunit;
-using Moq;
 using FluentAssertions;
 using GitMap.ConfigurationUI.ViewModels;
-using GitMap.ConfigurationUI.Services;
 
 namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 {
@@ -11,10 +9,8 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void BrowseCommand_ChoosesAFile_EditorPathBecomesTheChosenFile()
       {
-         var fileBrowserServiceMock = new Mock<IFileBrowserService>();
-         fileBrowserServiceMock.Setup( fbs => fbs.PickSingleFile() ).Returns( "notepad.exe" );
-
-         var viewModel = new EditorViewModel( fileBrowserServiceMock.Object,
+         var viewModel = new EditorViewModel(
+            () => "notepad.exe",
             "Something",
             "Something" );
 
@@ -26,10 +22,8 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void BrowseCommand_CancelsOutOfChoosingAFile_EditorPathIsUnchanged()
       {
-         var fileBrowserServiceMock = new Mock<IFileBrowserService>();
-         fileBrowserServiceMock.Setup( fbs => fbs.PickSingleFile() ).Returns<string>( null );
-
-         var viewModel = new EditorViewModel( fileBrowserServiceMock.Object,
+         var viewModel = new EditorViewModel(
+            () => null,
             "Something",
             "Something" )
          {
@@ -44,7 +38,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void IsDirty_EditorPathChanges_IsDirtyIsTrue()
       {
-         var viewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(), null, null );
+         var viewModel = new EditorViewModel( () => null, null, null );
 
          viewModel.IsDirty.Should().BeFalse();
 
@@ -56,7 +50,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void IsDirty_ArgumentsChanged_IsDirtyIsTrue()
       {
-         var viewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(), null, null );
+         var viewModel = new EditorViewModel( () => null, null, null );
 
          viewModel.IsDirty.Should().BeFalse();
 
@@ -68,7 +62,7 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
       [Fact]
       public void IsDirty_IsEnabledChanges_IsDirtyIsTrue()
       {
-         var viewModel = new EditorViewModel( Mock.Of<IFileBrowserService>(), null, null );
+         var viewModel = new EditorViewModel( () => null, null, null );
 
          viewModel.IsDirty.Should().BeFalse();
 
@@ -76,6 +70,5 @@ namespace GitMap.ConfigurationUI.UnitTests.ViewModels
 
          viewModel.IsDirty.Should().BeTrue();
       }
-
    }
 }
